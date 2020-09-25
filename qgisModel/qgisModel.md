@@ -1,3 +1,10 @@
+# Distance and Direction Modelling in QGIS
+
+### Purpose
+
+The purpose of this exercise was to build a model in QGIS that could calculate and visualize the distance and direction of census tracts from the central business district of a city. This can be a useful tool to test geographic theories of (urban growth) [https://www.opengeography.org/ch-9-urban-geography.html].
+
+### Data
 
 ```SQL
 CASE
