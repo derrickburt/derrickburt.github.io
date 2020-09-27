@@ -41,8 +41,10 @@ The first draft of the model incorporates the first model and then uses three fi
   transform(make_point(  @Mean_coordinate_s__OUTPUT_maxx , @Mean_coordinate_s__OUTPUT_maxy  ),
   layer_property( @citycenter ,'CRS'),'EPSG:4326'))
   ```
-  <\details>
+  </details>
+  
 2. The direction in degrees of each tract from the city's center by converting the tracts into centroids and transforming both input's coordinate systems into World Mercator (EPSG:54004). This conversion allows for distance to be accurately preserved. 
+
   <details><summary> Code </summary>
   
   ```
@@ -53,9 +55,11 @@ The first draft of the model incorporates the first model and then uses three fi
   transform(centroid($geometry),layer_property(@inputfeatures2, 'CRS'), 'EPSG:54004')))
   ```
   
+  </details>
+  
 3. The direction into 8 cardinal and intercardinal directions by taking the output from the direction algorithm and using a CASE statement to categorize degree intervals by labelling them N, NE, E, SE, SE... etc.
-  <details open>
-  <summary> Code </summary>
+
+  <details><summary> Code </summary>
   
   ```
   CASE
@@ -86,7 +90,7 @@ The first draft of the model incorporates the first model and then uses three fi
 
   END
   ```
-  <\details>
+  </details>
 
 ### Updating the Model with SQL Queries
 
@@ -104,7 +108,7 @@ To familiarize myself with the execute sql algorithim, I began by performing an 
 SELECT *, st_distance(st_centroid(st_transform(geometry, 4326)), (SELECT st_transform(geometry, 4326) from input1), TRUE) as  [% @FieldNamePrefix %]Dist
 FROM input2
 ```
-<\details>
+</details>
 
 #### Final SQL
 
@@ -141,7 +145,7 @@ azimuth((SELECT st_transform(geometry, 3395) from input1), st_centroid(st_transf
 
 FROM input2) as dis_dir
 ```
-<\details>
+</details>
 
 ### Results
 
