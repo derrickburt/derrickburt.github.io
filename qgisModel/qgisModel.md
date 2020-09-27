@@ -101,7 +101,7 @@ To update the model, I replaced the field calculator algorithms with an execute 
 
 #### First SQL 
 
-![model_image](photos/SQLModel.png)
+![model_image](photos/SQLmodel.png)
 
 To familiarize myself with the execute sql algorithim, I began by performing an sql query to calculate the distance from the tracts. Additionally, because the QGIS version for Mac OS uses an older version of GDAL (2.4.1), I needed to reproject both inputs before transforming them in the SQL query. This enables the SQL to read them in their correct coordinate systems and outputs a distance measurement in meters instead of decimal degrees. If using this model on a Windows OS, the reproject algorithms may be redundant.
 
