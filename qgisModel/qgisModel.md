@@ -6,15 +6,15 @@ The goal of this lab was to build a model in QGIS that could calculate and visua
 
 ### Data
 
-Data for this exercise was gathered from U.S. Census websites and compiled into a geopackage. The Philadelphia census tract shapefiles were gathered from the Census [Cartographic Boundary Files](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html). Demographic and Median Gross Rent were gathered from [Fact Finder]
+Data for this exercise was gathered from U.S. Census websites and compiled into a geopackage. The Philadelphia census tract shapefiles were gathered from the Census [Cartographic Boundary Files](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html). Demographic and Median Gross Rent were gathered from [Fact Finder](https://data.census.gov/cedsci/) and joined to to the shapefile boundaries. Download the data from this [geopackage](data/PhiladelphiaData.gpkg)
 
 ### Models 
 
 The follwing two models were created to perform these analyses:
 
-[Distance and Direction Model](models/DistDirModelforMacOS.model3)
+[Model to create CBD as centroid from tracts](models/CBDasCentroidforMacOS.model3)
 
-[Model to Create CBD as Centroid from Tracts](models/CBDasCentroidforMacOS.model3)
+[Model to calculate distance and direction from CBD](models/DistDirModelforMacOS.model3)
 
 ### Original Model
 
