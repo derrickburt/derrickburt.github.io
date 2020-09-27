@@ -12,9 +12,9 @@ Data for this exercise was gathered from U.S. Census websites and compiled into 
 
 The follwing two models were created to perform these analyses:
 
-[Distance and Direction Model] (derrickburt.github.io/qgismodel/models/DistanceandDirectionModel.model3)
+[Distance and Direction Model] (models/DistanceandDirectionModel.model3)
 
-[Create CBD from Tracts Model] (derrickburt.github.io/qgismodel/models/CBDasCentroid.model3)
+[Create CBD from Tracts Model] (models/CBDasCentroid.model3)
 
 ### Original Model
 
