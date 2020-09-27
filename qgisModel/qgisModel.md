@@ -12,9 +12,9 @@ Data for this exercise was gathered from U.S. Census websites and compiled into 
 
 The follwing two models were created to perform these analyses:
 
-[**Model to create CBD as centroid from tracts**](models/CBDasCentroidforMacOS.model3)
+[Model to create CBD as centroid from tracts](https://github.com/derrickburt/derrickburt.github.io/blob/master/qgisModel/models/CBDasCentroidforMacOS.model3)
 
-[**Model to calculate distance and direction from CBD**](models/DistDirModelforMacOS.model3)
+[Model to calculate distance and direction from CBD](models/DistDirModelforMacOS.model3)
 
 ### Original Model
 
