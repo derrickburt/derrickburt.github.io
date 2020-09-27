@@ -34,7 +34,7 @@ The model takes the census tracts as its input and finds the centroid of each tr
 
 The first draft of the model incorporates the algorithms from the CBD model and then uses three field calculator algorthims to calculate:
 
-1) The distance of each tract's centroid from the city center by converting the tracts into centroids and then transforming both input's coordinate systems into    World Geodetic System 1984 (WGS84, EPSG:4326). This conversion allows for an ellipsoidal calculation that preserves accurate distance. In this model, the     
+The distance of each tract's centroid from the city center by converting the tracts into centroids and then transforming both input's coordinate systems into    World Geodetic System 1984 (WGS84, EPSG:4326). This conversion allows for an ellipsoidal calculation that preserves accurate distance. In this model, the     
    distance  is calculated in decimal degrees.
 
   <details><summary> Code </summary>
@@ -47,21 +47,21 @@ The first draft of the model incorporates the algorithms from the CBD model and 
   ```
   </details>
   
-2) The direction in degrees of each tract from the city's center by converting the tracts into centroids and transforming both inputs' coordinate systems into World Mercator (EPSG:54004). This conversion allows for distance to be accurately preserved. 
+The direction in degrees of each tract from the city's center by converting the tracts into centroids and transforming both inputs' coordinate systems into World Mercator (EPSG:54004). This conversion allows for distance to be accurately preserved. 
 
   <details><summary> Code </summary>
   
   ```
   degrees(azimuth(
-
-  transform( make_point(@Mean_coordinate_s__OUTPUT_maxx ,@Mean_coordinate_s__OUTPUT_maxy),               layer_property( @citycenter, 'CRS'),'EPSG:54004'),
+  transform( make_point(@Mean_coordinate_s__OUTPUT_maxx ,@Mean_coordinate_s__OUTPUT_maxy),
+  layer_property( @citycenter, 'CRS'),'EPSG:54004'),
 
   transform(centroid($geometry),layer_property(@inputfeatures2, 'CRS'), 'EPSG:54004')))
   ```
   
   </details>
   
-3) The direction into 8 cardinal and intercardinal directions by taking the output from the direction algorithm and using a CASE statement to categorize degree intervals by labelling them N, NE, E, SE, SE... etc.
+The direction into 8 cardinal and intercardinal directions by taking the output from the direction algorithm and using a CASE statement to categorize degree intervals by labelling them N, NE, E, SE, SE... etc.
 
   <details><summary> Code </summary>
   
