@@ -55,7 +55,8 @@ The first draft of the model incorporates the first model and then uses three fi
   ```
   
 3. The direction into 8 cardinal and intercardinal directions by taking the output from the direction algorithm and using a CASE statement to categorize degree intervals by labelling them N, NE, E, SE, SE... etc.
-  <details><summary> Code </summary>
+  <details open>
+  <summary> Code </summary>
   
   ```
   CASE
@@ -86,8 +87,7 @@ The first draft of the model incorporates the first model and then uses three fi
 
   END
   ```
-
-<\details>
+  <\details>
 
 ### Updating the Model with SQL Queries
 
