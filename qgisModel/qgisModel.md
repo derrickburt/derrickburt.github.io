@@ -2,11 +2,13 @@
 
 ### Purpose
 
-The goal of this lab was to build a model using open source tools to calculate and visualize the distance and direction of census tracts from the central business district of a city. Further analyses on the data were also done to understand the demographic structuruingThis can be a useful tool to test geographic theories of [urban growth](https://www.opengeography.org/ch-9-urban-geography.html). In this exercise, I started out by building a test model on data from Chicago census tracts. Once the model was up and running, I tested its transferability on Philadelphia census tracts and updated it.
+The goal of this lab was to build a model using open source tools to calculate and visualize the distance and direction of census tracts from the central business district of a city. Further analyses on the data were also done to understand the demographic structure of the city. This can be a useful tool to test geographic theories of [urban growth](https://www.opengeography.org/ch-9-urban-geography.html). In this exercise, I started out by building a test model on data from Chicago census tracts. Once the model was up and running, I tested its transferability on Philadelphia census tracts and updated it.
 
 ### Data
 
-Data for this exercise was gathered from U.S. Census websites and compiled into a geopackage. The Philadelphia census tract shapefiles were gathered from the Census [Cartographic Boundary Files](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html). Demographic and Median Gross Rent were gathered from [Fact Finder](https://data.census.gov/cedsci/) and joined to to the shapefile boundaries. Download the data from this [geopackage](data/PhiladelphiaData.gpkg)
+Data for this exercise was gathered from the U.S. Census website and compiled into a geopackage. The Philadelphia census tract shapefiles were gathered from the Census [Cartographic Boundary Files](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html). Demographic and Median Gross Rent were gathered from [Fact Finder](https://data.census.gov/cedsci/) and joined to to the shapefile boundaries. 
+
+Download the data from this [geopackage](data/PhiladelphiaData.gpkg)
 
 ### Download Models 
 
@@ -22,17 +24,18 @@ The follwing two models were created to perform these analyses:
 
 ![model_image](photos/ModelCBD.png)
 
-This model is helpful if you would like to perform the distance and direction calculations with your own set of data. The other two models will find your cities CBD just by using input tracts, but if you would like to get an output feature of your CBD before running the other models, this model will be helpful.
+This model is helpful if you would like to perform the distance and direction calculations with your own set of data. The other two models will find your city's CBD just by using input tracts (you don't need to use this model before running the others), but if you would like to get an output feature of your CBD before running the other models, this model will be helpful.
 
-The model takes the census tracts as it input and finds the centroid of each tract's polygon. Then, it takes the mean coordinates of those centroids to find the city center. To get an accurate CBD centroid, the best course of action is to select I number of tracts in the downtown area of the city (I selected 22 tracts in downtown Philadelphia) and run the model using 'selected features only'. This is because a city's central business district is rarely located in the city's geometric center.
+The model takes the census tracts as its input and finds the centroid of each tract's polygon. Then, it takes the mean coordinates of those centroids to find the city center. To get an accurate CBD centroid, the best course of action is to select I number of tracts in the downtown area of the city (I selected 22 tracts in downtown Philadelphia) and run the model using 'selected features only'. This is because a city's central business district is rarely located in the city's geometric center.
 
 ### First Distance and Direction Model
 
 ![model_image](photos/modelFirst.png)
 
-The first draft of the model incorporates the first model and then uses three field calculator algorthims to calculate:
+The first draft of the model incorporates the algorithms from the CBD model and then uses three field calculator algorthims to calculate:
 
-1. The distance of each tract's centroid from the city center by converting the tracts into centroids and transforming both input's coordinate systems into World Geodetic System 1984 (WGS84, EPSG:4326). This conversion allows for an ellipsoidal calculation that preserves accurate distance. In this model, the distance  is calculated in decimal degrees.
+1. The distance of each tract's centroid from the city center by converting the tracts into centroids and then transforming both input's coordinate systems into World Geodetic System 1984 (WGS84, EPSG:4326). This conversion allows for an ellipsoidal calculation that preserves accurate distance. In this model, the distance  is calculated in decimal degrees.
+
   <details><summary> Code </summary>
   
   ```distance(
@@ -43,7 +46,7 @@ The first draft of the model incorporates the first model and then uses three fi
   ```
   </details>
   
-2. The direction in degrees of each tract from the city's center by converting the tracts into centroids and transforming both input's coordinate systems into World Mercator (EPSG:54004). This conversion allows for distance to be accurately preserved. 
+2. The direction in degrees of each tract from the city's center by converting the tracts into centroids and transforming both inputs' coordinate systems into World Mercator (EPSG:54004). This conversion allows for distance to be accurately preserved. 
 
   <details><summary> Code </summary>
   
@@ -98,9 +101,9 @@ To update the model, I replaced the field calculator algorithms with an execute 
 
 #### First SQL 
 
-![model_image](photos/ModelSQL.png)
+![model_image](photos/SQLModel.png)
 
-To familiarize myself with the execute sql algorithim, I began by performing an sql query to calculate the distance from the tracts. Additionally, because the QGIS version for Mac OS uses an older GDAL (2.4.1), I needed to reproject both inputs before transforming them in the SQL query. This enables the SQL to read them in their correct coordinate systems and outputs a distance measurement in meters instead of decimal degrees. If using this model on a Windows OS, the reproject algorithms may be redundant.
+To familiarize myself with the execute sql algorithim, I began by performing an sql query to calculate the distance from the tracts. Additionally, because the QGIS version for Mac OS uses an older version of GDAL (2.4.1), I needed to reproject both inputs before transforming them in the SQL query. This enables the SQL to read them in their correct coordinate systems and outputs a distance measurement in meters instead of decimal degrees. If using this model on a Windows OS, the reproject algorithms may be redundant.
 
 <details><summary> Code </summary>
   
@@ -150,6 +153,7 @@ FROM input2) as dis_dir
 ### Results
 
 #### Maps
+
 ##### Distance from CBD
 
 ![map_image](photos/DistanceFinal.png)
@@ -160,7 +164,7 @@ FROM input2) as dis_dir
 
 ##### Median Gross Rent 
 
-![map_image](photos/MedGrossRe.png)
+![map_image](photos/MedGrossRE.png)
 
 #### Median Gross Rent by Area (m. sq.)
 
@@ -168,23 +172,23 @@ FROM input2) as dis_dir
 
 #### Plots
 
-I used DataPlotly to make the following plots.
+I used DataPlotly to make the following plots:
 
 The [distance from CBD scatter plot](plots/dist_plot.html) does not show a remarkable linear relationship between distance from CBD and median rent. Most tracts had a median rent below $1000 regardless of distance, although there is a spike in median rent price between 2,500 and 15,000 meters from the CBD.
 
 The [direction from CBD polar plot](plots/dir_plot.html) displays the most expensive median rent in tracts primarily to the North East of the CBD. There is also a small spike in median rent in tracts to the South East.
 
-The [percent white and distance from CBD scatter plot](plots/dist_pctwhite.html) shows that there is a high concentration of tracts with alow proportion of white people from 5,000 to 15,000 meters from the CBD. This shows that many of the tracts just outside the city center have a low concentration of white residents. Otherwise, the distsribution of tracts with high proportions of white residents appears fairly random.
+The [percent white and distance from CBD scatter plot](plots/dist_pctwhite.html) shows that there is a high concentration of tracts with a low proportion of white residents from 5,000 to 15,000 meters from the CBD. This shows that many of the tracts just outside the city center have a low concentration of white residents. Otherwise, the distsribution of tracts with high proportions of white residents appears fairly random.
 
-The [percent black and distance from CBD scatter plot](plots/dist_pctblack.html) shows a high concentration of tracts with a high proportion of black people between 5,000 and 15,000 meters from the CBD. Thus, we might infer that there is a high concentration of black residents just outside the city center. Otherwise, there appears to be a low concentration of black residents just inside 5,000 meters and beyond 15,000 meters outside the city center.
+The [percent black and distance from CBD scatter plot](plots/dist_pctblack.html) shows a high concentration of tracts with a high proportion of black residents between 5,000 and 15,000 meters from the CBD. Thus, we might infer that there is a high concentration of black residents just outside the city center. Otherwise, there appears to be a low concentration of black residents just inside 5,000 meters and beyond 15,000 meters outside the city center.
 
 ### Discussion: Benefit of Modelling with Free and Open Source Softwares
 
-Using QGIS to model distance and direction allows us to perform GIS analyses not only for free, but also in a reproducible and user-defined setting. By building a model with software accessible to any user and sharing the data, models, and code, users can attempt to replicate the methodology in a comprehensive and scrutinous manner to check for errors (Singleton et al. 2016). Furthermore, this provides users the opportunity to integrate localized knowledge to fill in missing data or to correct innacurate data (Sieber 2004). Overall this provides an environment to users. In this specific scenario, it might be more likely for local governments to supplement missing population and rent data, but individual users could employ local knowledge to modify the location of the city's center. Furthermore, employing this analysis with open source tools and practices allows for it to be re-run with different data.
+Using QGIS to model distance and direction allows us to perform GIS analyses not only for free, but also in a reproducible and user-defined setting. By building a model with software accessible to any user and sharing the data, models, and code, users can attempt to replicate the methodology in a comprehensive and scrutinous manner to check for errors (Singleton et al. 2016). Furthermore, this provides users the opportunity to integrate localized knowledge to fill in missing data or to correct innacurate data (Sieber 2004). Overall this provides a flexible environment for users to modify and reapply this model. In this specific scenario, it might be more likely for local governments to supplement missing population and rent data, but individual users could employ local knowledge to modify the location of the city's center. Furthermore, employing this analysis with open source tools and practices allows for it to be re-run with different data.
 
-Another important concept that this study employs is using GIS in a tool-building context. User defined model building allows geographers to build tools that can test geographic theories in an empirical fashion (Wright et al. 1997). This could be seen as an effort to use GIS to strengthen our understanding of existing geographic theories, rather than use GIS in a strictly quantitative fashion. For example, if we refer to Rent by Area choropleth, we can see a a partial application of the Bid Rent Model, observing that, even though land price is more expensive per square meter near the city center, it does not decrease evenly with distance from the city center. By building user defined tools, we can begin to reject the notion of GIS as a singular entity that grows linearly, but instead as one that can perhaps be interrupted if it is employed in a non-institutional setting (Sieber 2004; Martin & Wing 2007).
+Another important concept that this study employs is using GIS in a tool-building context (Wright et al. 2997). User defined model building allows geographers to build tools that can test geographic theories in an empirical fashion (Wright et al. 1997). This could be seen as an effort to use GIS to strengthen our understanding of existing geographic theories, rather than use GIS in a strictly quantitative fashion. For example, if we refer to Rent by Area choropleth, we can see a a partial application of the Bid Rent Model, observing that, even though land price is more expensive per square meter near the city center, it does not decrease evenly with distance from the city center. By building user defined tools, we can begin to reject the notion of GIS as a singular entity that grows linearly, but instead as one that can perhaps be interrupted if it is employed in a non-institutional setting (Sieber 2004; Martin & Wing 2007).
 
-Despite the critical improvements of performing GIS analyses in an open source and user-defined setting, there are still some ideological shortcomings of this current mode of using GIS. One glaring barrier to this approach is that building models in QGIS requires a certain degree of technological literacy, and although some code-based tool building provides more room to understand the underlying processes (Singleton et al. 2016), it provides a barrier to users who may lack the time or resources to learn the software language. On a more ideological level, these analyses can further contribute to positivism as a primary method of geographic thinking (Martin & Wing 2007). Although this model-building allows for user input, it is still operating in a software that has been developed to measure human phenomena in numeric terms. Ultimately, this model is accessible and reproducible but it does not allow us to understand the area of study qualitatively or with nuance.
+Despite the critical improvements of performing GIS analyses in an open source and user-defined setting, there are still some ideological shortcomings of this current mode of using GIS. One glaring barrier to this approach is that building models in QGIS requires a certain degree of technological literacy, and although code-based tool building provides room to understand the underlying processes (Singleton et al. 2016), it also presents a barrier to users who may lack the time or resources to learn the software language. On a more ideological level, these analyses can further contribute to positivism as a primary method of geographic thinking (Martin & Wing 2007). Although this model-building allows for user input, it is still operating in a software that has been developed to measure human phenomena in numeric terms. Ultimately, this model is accessible and reproducible but it does not allow us to understand the area of study qualitatively or with nuance.
 
 #### References
 
