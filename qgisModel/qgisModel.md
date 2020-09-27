@@ -2,7 +2,7 @@
 
 ### Purpose
 
-The goal of this lab was to build a model in QGIS that could calculate and visualize the distance and direction of census tracts from the central business district of a city. Further analyses on the data were also done to understand the demographic structuruingThis can be a useful tool to test geographic theories of [urban growth](https://www.opengeography.org/ch-9-urban-geography.html). In this exercise, I started out by building a test model on data from Chicago census tracts. Once the model was up and running, I tested it's transferability on Philadelphia census tracts and updated it.
+The goal of this lab was to build a model using open source tools to calculate and visualize the distance and direction of census tracts from the central business district of a city. Further analyses on the data were also done to understand the demographic structuruingThis can be a useful tool to test geographic theories of [urban growth](https://www.opengeography.org/ch-9-urban-geography.html). In this exercise, I started out by building a test model on data from Chicago census tracts. Once the model was up and running, I tested it's transferability on Philadelphia census tracts and updated it.
 
 ### Data
 
@@ -152,20 +152,32 @@ FROM input2) as dis_dir
 #### Maps
 ##### Distance from CBD
 
-[map_image](photos/DistanceFinal.png)
+![map_image](photos/DistanceFinal.png)
 
 ##### Direction from CBD
-[map_image](photos/DirectionFinal.png)
+![map_image](photos/DirectionFinal.png)
 
 ##### Median Gross Rent 
-[map_image](photos/MedGrossRe.png)
+![map_image](photos/MedGrossRe.png)
 
 #### Plots
 
-[Distance from CBD scatter plot](plots/dis_plot.html)
+I used DataPlotly to make the following plots.
 
-[Direction from CBD polar plot](plots/dir_plot.html)
+The [distance from CBD scatter plot](plots/dist_plot.html) does not show a remarkable linear relationship between distance from CBD and median rent. Most tracts had a median rent below $1000 regardless of distance, although there is a spike in median rent price between 2,500 and 15,000 meters from the CBD.
 
-[Percent white and distance from CBD scatter plot](plots/dist_pctwhite.html)
+The [direction from CBD polar plot](plots/dir_plot.html) displays the most expensive median rent in tracts primarily to the North East of the CBD. There is also a small spike in median rent in tracts to the South East.
 
-[Percent black and distance from CBD scatter plot](plots/dist_pctblack.html)
+The [percent white and distance from CBD scatter plot](plots/dist_pctwhite.html) shows that there is a high concentration of tracts with alow proportion of white people from 5,000 to 15,000 meters from the CBD. This shows that many of the tracts just outside the city center have a low concentration of white residents. Otherwise, the distsribution of tracts with high proportions of white residents appears fairly random.
+
+The [percent black and distance from CBD scatter plot](plots/dist_pctblack.html) shows a high concentration of tracts with a high proportion of black people between 5,000 and 15,000 meters from the CBD. Thus, we might infer that there is a high concentration of black residents just outside the city center. Otherwise, there appears to be a low concentration of black residents just inside 5,000 meters and beyond 15,000 meters outside the city center.
+
+#### Discussion: Benefit of Modelling with Free and Open Source Softwares
+
+Using QGIS to model distance and direction allows us to perform GIS analyses not only for free, but also in a reproducible and user-defined setting. By building a model with software accessible to any user and sharing the data, models, and code, users can attempt to replicate the methodology in a comprehensive and scrutinous manner to check for errors (A.S. Singleton et al. 2016). Furthermore, this provides users the opportunity to integrate localized knowledge to fill in missing data or to correct innacurate data (Sieber 2004). Overall this provides an environment to users. In this specific scenario, it might be more likely for local governments to supplement missing population and rent data, but individual users could employ local knowledge to modify the location of the city's center. Furthermore, employing this analysis with open source tools and practices allows for it to be re-run with different data.
+
+Another important concept that this study employs is using GIS in a tool-building context. User defined model building allows geographers to build tools that can test geographic theories in an empirical fashion (Wright et al. 1997). This could be seen as an effort to use GIS to strengthen our understanding of existing geographic theories, rather than use GIS in a strictly quantitative fashion. For example, if we refer to Rent by Area choropleth, we can see a a partial application of the Bid Rent Model, observing that, even though land price is more expensive per square meter near the city center, it does not decrease evenly with distance from the city center. By building user defined tools, we can begin to reject the notion of GIS as a singular entity that grows linearly, but instead as one that can perhaps be interrupted if it is employed in a non-institutional setting (Sieber 2004; Martin and Wing 2007).
+
+
+
+#### References
