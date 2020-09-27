@@ -41,6 +41,7 @@ The first draft of the model incorporates the first model and then uses three fi
   transform(make_point(  @Mean_coordinate_s__OUTPUT_maxx , @Mean_coordinate_s__OUTPUT_maxy  ),
   layer_property( @citycenter ,'CRS'),'EPSG:4326'))
   ```
+  <\details>
   
 2. The direction in degrees of each tract from the city's center by converting the tracts into centroids and transforming both input's coordinate systems into World Mercator (EPSG:54004). This conversion allows for distance to be accurately preserved. 
   <details><summary> Code </summary>
@@ -86,6 +87,8 @@ The first draft of the model incorporates the first model and then uses three fi
   END
   ```
 
+<\details>
+
 ### Updating the Model with SQL Queries
 
 To update the model, I replaced the field calculator algorithms with an execute sql algorithm. While both models will perform the functions, this centralizes the three calculations into one algorithm which arguably reduces the model's complexity (although SQL queries are perhaps more difficult to correctly perform as they are text-based; there is GUI to guide the user).
@@ -102,6 +105,7 @@ To familiarize myself with the execute sql algorithim, I began by performing an 
 SELECT *, st_distance(st_centroid(st_transform(geometry, 4326)), (SELECT st_transform(geometry, 4326) from input1), TRUE) as  [% @FieldNamePrefix %]Dist
 FROM input2
 ```
+<\details>
 
 #### Final SQL
 
@@ -138,6 +142,8 @@ azimuth((SELECT st_transform(geometry, 3395) from input1), st_centroid(st_transf
 
 FROM input2) as dis_dir
 ```
+<\details>
+
 ### Results
 
 #### Maps
