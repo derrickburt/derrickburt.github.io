@@ -2,11 +2,19 @@
 
 ### Purpose
 
-The purpose of this exercise was to build a model in QGIS that could calculate and visualize the distance and direction of census tracts from the central business district of a city. This can be a useful tool to test geographic theories of [urban growth](https://www.opengeography.org/ch-9-urban-geography.html).
+The goal of this lab was to build a model in QGIS that could calculate and visualize the distance and direction of census tracts from the central business district of a city. This can be a useful tool to test geographic theories of [urban growth](https://www.opengeography.org/ch-9-urban-geography.html).
 
 ### Data
 
-Data for this project was gather from
+Data for this exercise was gathered from U.S. Census websites and compiled into a geopackage. The Philadelphia census tract shapefiles were gathered from the Census [Cartographic Boundary Files](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html). Demographic and Median Gross Rent were gathered from [Fact Finder]
+
+### Models 
+
+The follwing two models were created to perform these analyses:
+
+[Distance and Direction Model] (derrickburt.github.io/qgismodel/models/DistanceandDirectionModel.model3)
+
+[Create CBD from Tracts Model] (derrickburt.github.io/qgismodel/models/CBDasCentroid.model3)
 
 ### Original Model
 
