@@ -42,7 +42,6 @@ The first draft of the model incorporates the first model and then uses three fi
   layer_property( @citycenter ,'CRS'),'EPSG:4326'))
   ```
   <\details>
-  
 2. The direction in degrees of each tract from the city's center by converting the tracts into centroids and transforming both input's coordinate systems into World Mercator (EPSG:54004). This conversion allows for distance to be accurately preserved. 
   <details><summary> Code </summary>
   
