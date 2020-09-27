@@ -2,7 +2,7 @@
 
 ### Purpose
 
-The goal of this lab was to build a model using open source tools to calculate and visualize the distance and direction of census tracts from the central business district of a city. Further analyses on the data were also done to understand the demographic structuruingThis can be a useful tool to test geographic theories of [urban growth](https://www.opengeography.org/ch-9-urban-geography.html). In this exercise, I started out by building a test model on data from Chicago census tracts. Once the model was up and running, I tested it's transferability on Philadelphia census tracts and updated it.
+The goal of this lab was to build a model using open source tools to calculate and visualize the distance and direction of census tracts from the central business district of a city. Further analyses on the data were also done to understand the demographic structuruingThis can be a useful tool to test geographic theories of [urban growth](https://www.opengeography.org/ch-9-urban-geography.html). In this exercise, I started out by building a test model on data from Chicago census tracts. Once the model was up and running, I tested its transferability on Philadelphia census tracts and updated it.
 
 ### Data
 
