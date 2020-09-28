@@ -64,6 +64,8 @@ The direction in degrees of each tract from the city's center by converting the 
   
 The direction into 8 cardinal and intercardinal directions by taking the output from the direction algorithm and using a CASE statement to categorize degree intervals by labelling them N, NE, E, SE, SE... etc.
   
+   </details>
+  
   ```SQL
   CASE
 
@@ -93,7 +95,7 @@ The direction into 8 cardinal and intercardinal directions by taking the output 
 
   END
   ```
-  
+   </details>
 
 ### Updating the Model with SQL Queries
 
