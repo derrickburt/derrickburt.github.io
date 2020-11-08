@@ -168,10 +168,6 @@ FROM input2) as dis_dir
 
 ![map_image](photos/MedGrossRE.png)
 
-#### Median Gross Rent by Area (m. sq.)
-
-![map_image](photos/RentArea.png)
-
 #### Plots
 
 I used DataPlotly to make the following plots:
@@ -180,15 +176,15 @@ The [distance from CBD scatter plot](plots/dist_plot.html) does not show a remar
 
 The [direction from CBD polar plot](plots/dir_plot.html) displays the most expensive median rent in tracts primarily to the North East of the CBD. There is also a small spike in median rent in tracts to the South East.
 
-The [percent white and distance from CBD scatter plot](plots/dist_pctwhite.html) shows that there is a high concentration of tracts with a low proportion of white residents from 5,000 to 15,000 meters from the CBD. This shows that many of the tracts just outside the city center have a low concentration of white residents. Otherwise, the distsribution of tracts with high proportions of white residents appears fairly random.
+The [percent white and distance from CBD scatter plot](plots/dis_pctwhite.html) shows that there is a high concentration of tracts with a low proportion of white residents from 5,000 to 15,000 meters from the CBD. This shows that many of the tracts just outside the city center have a low concentration of white residents. Otherwise, the distsribution of tracts with high proportions of white residents appears fairly random.
 
-The [percent black and distance from CBD scatter plot](plots/dist_pctblack.html) shows a high concentration of tracts with a high proportion of black residents between 5,000 and 15,000 meters from the CBD. Thus, we might infer that there is a high concentration of black residents just outside the city center. Otherwise, there appears to be a low concentration of black residents just inside 5,000 meters and beyond 15,000 meters outside the city center.
+The [percent black and distance from CBD scatter plot](plots/dis_pctBlack.html) shows a high concentration of tracts with a high proportion of black residents between 5,000 and 15,000 meters from the CBD. Thus, we might infer that there is a high concentration of black residents just outside the city center. Otherwise, there appears to be a low concentration of black residents just inside 5,000 meters and beyond 15,000 meters outside the city center.
 
 ### Discussion: Benefit of Modelling with Free and Open Source Softwares
 
 Using QGIS to model distance and direction allows us to perform GIS analyses not only for free, but also in a reproducible and user-defined setting. By building a model with software accessible to any user and sharing the data, models, and code, users can attempt to replicate the methodology in a comprehensive and scrutinous manner to check for errors (Singleton et al. 2016). Furthermore, this provides users the opportunity to integrate localized knowledge to fill in missing data or to correct innacurate data (Sieber 2004). Overall this provides a flexible environment for users to modify and reapply this model. In this specific scenario, it might be more likely for local governments to supplement missing population and rent data, but individual users could employ local knowledge to modify the location of the city's center. Furthermore, employing this analysis with open source tools and practices allows for it to be re-run with different data.
 
-Another important concept that this study employs is using GIS in a tool-building context (Wright et al. 2997). User defined model building allows geographers to build tools that can test geographic theories in an empirical fashion (Wright et al. 1997). This could be seen as an effort to use GIS to strengthen our understanding of existing geographic theories, rather than use GIS in a strictly quantitative fashion. For example, if we refer to Rent by Area choropleth, we can see a a partial application of the Bid Rent Model, observing that, even though land price is more expensive per square meter near the city center, it does not decrease evenly with distance from the city center. By building user defined tools, we can begin to reject the notion of GIS as a singular entity that grows linearly, but instead as one that can perhaps be interrupted if it is employed in a non-institutional setting (Sieber 2004; Martin & Wing 2007).
+Another important concept that this study employs is using GIS in a tool-building context (Wright et al. 2997). User defined model building allows geographers to build tools that can test geographic theories in an empirical fashion (Wright et al. 1997). This could be seen as an effort to use GIS to strengthen our understanding of existing geographic theories, rather than use GIS in a strictly quantitative fashion. By building user defined tools, we can begin to reject the notion of GIS as a singular entity that grows linearly, but instead as one that can perhaps be interrupted if it is employed in a non-institutional setting (Sieber 2004; Martin & Wing 2007).
 
 Despite the critical improvements of performing GIS analyses in an open source and user-defined setting, there are still some ideological shortcomings of this current mode of using GIS. One glaring barrier to this approach is that building models in QGIS requires a certain degree of technological literacy, and although code-based tool building provides room to understand the underlying processes (Singleton et al. 2016), it also presents a barrier to users who may lack the time or resources to learn the software language. On a more ideological level, these analyses can further contribute to positivism as a primary method of geographic thinking (Martin & Wing 2007). Although this model-building allows for user input, it is still operating in a software that has been developed to measure human phenomena in numeric terms. Ultimately, this model is accessible and reproducible but it does not allow us to understand the area of study qualitatively or with nuance.
 
