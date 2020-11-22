@@ -33,10 +33,12 @@ If you do not have access to a PostGIS database already, here is a useful [set o
     <img src = "photos/parameters.png" width="600">
   </details>
   
-  ### Explore Data and Prepare for Spatial Analysis 
+### Explore Data and Prepare for Spatial Analysis 
+
+The following chunk of code will show you how to investigate your data before performing a join, perform and investigate the outcome of spatial join, filter and order data within a table, and create a virtual table from other tables.
   
-  ```SQL
-  * Check uniqueness of field*/
+```SQL
+/* Check uniqueness of field*/
 
 SELECT COUNT(DISTINCT gisjoin), COUNT(gisjoin) FROM tables1940
 
@@ -77,14 +79,169 @@ FROM tracts1940 AS a LEFT OUTER JOIN tables1940 AS b
 ON a.gisjoin = b.gisjoin
 ORDER BY medgrossrent DESC
 
-/* Order by Median Gross Rent > 0 and descending */
+/* Filter where Median Gross Rent > 0 and order in a descending manner */
 
 SELECT a.*, b.poptotal, b.white, b.medgrossrent
 FROM tracts1940 AS a LEFT OUTER JOIN tables1940 AS b
 ON a.gisjoin = b.gisjoin
 WHERE medgrossrent > 0
 ORDER BY medgrossrent DESC
+
+ /* CREATE VIEW is a slection query that appears in most respects like a table: like a virtual layer in a GIS -- pulling from other data tables that store actual data  */
+
+CREATE VIEW tracts1940pop AS
+SELECT a.*, b.poptotal, b.white, b.medgrossrent
+FROM tracts1940 AS a LEFT OUTER JOIN tables1940 AS b
+ON a.gisjoin = b.gisjoin
+ORDER BY medgrossrent DESC
 ```
   
+### Perform Distance and Direction Calculations
+
+The following chunk of code will show you how to calculate distance and direction from a central point (in QGIS, the following operations would be done by creating centroid of the tracts and then using field calculator to add a distance and direction field to the tract table).
+
+```SQL
+/* Calculate distance from CBD */
+
+SELECT *,
+DEGREES(ST_AZIMUTH(
+(SELECT ST_TRANSFORM(geom, 3395) FROM cbd),
+ST_CENTROID(ST_TRANSFORM(geom, 3395)))) AS dir 
+FROM join1940
+
+/* Calcualte distance and direction from CBD */
+
+SELECT *,
+ST_DISTANCE(
+ST_CENTROID(GEOGRAPHY(ST_TRANSFORM(geom, 4326))),
+(SELECT GEOGRAPHY(ST_TRANSFORM(geom, 4326) )FROM cbd)) AS dist,
+DEGREES(ST_AZIMUTH(
+(SELECT ST_TRANSFORM(geom, 3395) FROM cbd),
+ST_CENTROID(ST_TRANSFORM(geom, 3395)))) AS dir 
+FROM join1940
+
+/* Create view of tracts1940 with dist and direction from cbd calculated */
+
+CREATE VIEW tracts1940_disdir2 AS
+SELECT *,
+ST_DISTANCE(
+ST_CENTROID(GEOGRAPHY(ST_TRANSFORM(geom, 4326))),
+(SELECT GEOGRAPHY(ST_TRANSFORM(geom, 4326) )FROM cbd)) AS dist,
+DEGREES(ST_AZIMUTH(
+(SELECT ST_TRANSFORM(geom, 3395) FROM cbd),
+ST_CENTROID(ST_TRANSFORM(geom, 3395)))) AS dir 
+FROM tracts1940
+```
+### Reproject a Table
+
+```SQL
+/* Select new version of cbd with proper projection */
+
+SELECT id, ST_TRANSFORM(geom, 3528) AS geom
+FROM cbd
+
+/* Save properly projected cbd as a permanent table */
+
+CREATE TABLE cbd5328 AS
+SELECT id, st_transform(geom,5328) AS geom2
+FROM cbd
+```
+
+### Visualize Locally in QGIS
+
+To visualize data locally, left click the desired table and select 'Add to Canvas'. The data must be visualized like any other, updating the 'Symbology' in the layer's 'Properties'.
+
+### Fix Table Information and Geometries
+
+* A table's 'primary key' is a unique identifier (id field) that should be defined in any table. It is an essential component of a relational database that identifies a row's uniqueness (in this scenario, the primary key indicates a unique census tract). 
+* A table's geometry will specify whether or not it is a polygon, polyline, or point. A table's geometry must be specified before performing spatial analysis. 
+* Spatial indices are useful for saving time when performing spatial overlay functions (unions, intersects, differences) on larger datasets as they set a bounding box around points to prevent the function from running through the entire dataset.
+
+```SQL
+* FIXING GEOMETRY/TABLES */
+
+/* Add Primary Key */
+
+ALTER TABLE cbd5328 ADD PRIMARY KEY (id)
+
+/* Updating geometry */
+
+SELECT populate_geometry_columns('public.cbd5328'::regclass) /*1 means it works*/
+
+/* To create a spatial index, simply go to the "info" tab and select "create it" if the page says "No spatial index defined"
+
+/* See characteristics of Geometry */
+	
+SELECT *,
+St_astext(geom2),
+St_srid(geom2),
+Geometrytype(geom2),
+St_dimension(geom2),
+St_numgeometries(geom2),
+St_numpoints(geom2),
+St_isvalid(geom2)
+FROM cbd5328
+```
+
+### Buffers
+
+The following chunk of code shows how to perform a 5kmm buffer from the CBD and a save it as it's own table. The following code also incorporates queries to update geometries.
+
+```SQL
+/* Buffer 5km from cbd5328 */
+
+SELECT id, ST_BUFFER(geom2, 5000) AS geom
+FROM cbd5328
+
+/* Create View of Buffer */
+
+CREATE TABLE cbd5km AS
+SELECT id, ST_BUFFER(geom2, 5000) AS buffzone
+FROM cbd5328
+
+/* Update geometry */
+
+SELECT populate_geometry_columns('public.cbd5km'::regclass) /*1 means it works*/
+
+/* See characteristicsof Geometry */
+
+SELECT *,
+St_astext(geom),
+St_srid(geom),
+Geometrytype(geom),
+St_dimension(geom),
+St_numgeometries(geom),
+St_numpoints(geom),
+St_isvalid(geom)
+FROM cbd5km
+
+/* Select all tracts that are w/in 5km of cbd by adding intersection*/
+
+SELECT *
+FROM join1940
+WHERE ST_INTERSECTS(geom, (SELECT geom FROM cbd5km))
+
+/* Try query with buffer calculation */
+
+SELECT *
+FROM join1940
+WHERE ST_INTERSECTS(geom,(SELECT ST_BUFFER(geom2, 5000) from cbd5328))
 
 
+/* Create table from intersect query with buffer*/
+
+CREATE TABLE cbd1940 AS
+SELECT *
+FROM join1940
+WHERE ST_INTERSECTS(geom,(SELECT ST_BUFFER(geom2, 5000) from cbd5328))
+
+/* Update geometry */
+
+SELECT populate_geometry_columns('public.cbd5km'::regclass) /*1 means it works*/
+```
+
+This map visualizes both the buffer query and the intersect on a buffer query. This visualization can be done by adding the tables to the canvas.
+
+<img align="right" width="100" height="100" src="photos/bufferOutput.png">
+
+### Aggregate Functions
