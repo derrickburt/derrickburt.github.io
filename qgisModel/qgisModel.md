@@ -39,7 +39,7 @@ The distance of each tract's centroid from the city center by converting the tra
 
   <details><summary> Code </summary>
   
-  ```
+  ```SQL
   distance(
   transform(centroid($geometry),layer_property( @inputfeatures2 ,'CRS'),'EPSG:4326'), 
 
@@ -52,7 +52,7 @@ The direction in degrees of each tract from the city's center by converting the 
 
   <details><summary> Code </summary>
   
-  ```
+  ```SQL
   degrees(azimuth(
   transform( make_point(@Mean_coordinate_s__OUTPUT_maxx ,@Mean_coordinate_s__OUTPUT_maxy),
   layer_property( @citycenter, 'CRS'),'EPSG:54004'),
@@ -64,9 +64,10 @@ The direction in degrees of each tract from the city's center by converting the 
   
 The direction into 8 cardinal and intercardinal directions by taking the output from the direction algorithm and using a CASE statement to categorize degree intervals by labelling them N, NE, E, SE, SE... etc.
   
-   </details>
-  
-  ```SQL
+<details>
+<summary>  Code </summary>
+    
+```SQL
   CASE
 
   WHEN attribute(concat(@FieldNamePrefix, 'Dir')) <= 22.5 THEN 'N'
@@ -95,7 +96,7 @@ The direction into 8 cardinal and intercardinal directions by taking the output 
 
   END
   ```
-   </details>
+  </details>
 
 ### Updating the Model with SQL Queries
 
