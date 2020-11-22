@@ -283,7 +283,7 @@ ST_UNION(ST_TRANSFORM(geom, 3528))::geometry(multipolygon, 3528) as geom
 FROM cbd1940
 ```
 
-The following map visualizes the cbdunion2 output from
+The following map visualizes the cbdunion2 output.
 
 <p align="center">
 <img height="700" src="photos/unionOutput.png">
