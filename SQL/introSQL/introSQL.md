@@ -14,3 +14,19 @@ The following softwares were used to complete this exercise:
 ### Data
 
 The data for this exercise includes of a geopackage of [1940 Chicago Census Tracts](data/chicagoTracts.gpkg) and a .csv file of [1940 Chicago Population by Tracts](data/popHousing1940.csv). These queries can be easily modified to analyze geographic data from a different area, as long as the shapefiles and the population data have a matching attribute field (pertaining to the geography) to join on.
+
+### Using PGAdmin 4 on a Mac
+
+If you do not have access to a PostGIS database already, here is a useful [set of directions](https://www.enterprisedb.com/postgres-tutorials/connecting-postgresql-using-psql-and-pgadmin) to install PG Admin 4 and running it with a local database (for Linux, Windows, or Mac).
+
+### Connecting to a PostGIS from QGIS and Loading Data
+
+To connect to the database fromm QGIS, find the **Database menu** and select **DB Manager**.
+
+![screen_image](photos/connectDatabase.png)
+
+Import the downloaded geopackage and .csv into the database by selecting the **Import Layer/File...** button.
+
+![screen_image](photos/importing.png)
+
+
