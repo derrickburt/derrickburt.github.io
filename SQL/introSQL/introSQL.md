@@ -22,9 +22,7 @@ If you do not have access to a PostGIS database already, here is a useful [set o
 ### Connecting to PostGIS in QGIS and Loading Data
 
 <details><summary> To connect to the database fromm QGIS, find the 'Database' menu and select 'DB Manager'. </summary>
-	<p align ="center">
     <img asrc = "photos/connectDatabase.png" width="600">
-	</p>
   </details>
 
 <details><summary> Import the downloaded geopackage and .csv into the database by selecting the 'Import Layer/File...' button. </summary>
@@ -244,6 +242,8 @@ SELECT populate_geometry_columns('public.cbd5km'::regclass) /*1 means it works*/
 
 This map visualizes both the buffer query and the intersect on a buffer query. This visualization can be done by adding the tables to the canvas.
 
-<img align="center" height="600" src="photos/bufferOutput.png">
+<p align="center">
+<img height="700" src="photos/bufferOutput.png">
+</p>
 
 ### Aggregate Functions
