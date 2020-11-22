@@ -23,11 +23,13 @@ If you do not have access to a PostGIS database already, here is a useful [set o
 
 <details><summary> To connect to the database fromm QGIS, find the **Database menu** and select **DB Manager**. </summary>
 
-<img src = "photos/connectDatabase.png" width="600" align="center">
+<img src = "photos/connectDatabase.png" width="600">
 </details>
 
-Import the downloaded geopackage and .csv into the database by selecting the **Import Layer/File...** button.
+<details><summary> Import the downloaded geopackage and .csv into the database by selecting the **Import Layer/File...** button. </summary>
 
-![screen_image](photos/importing.png)
+<img src = "photos/importing.png" width="600" align="center">
+
+<details><summary> Select the desired file from the **input** dropdown
 
 
