@@ -19,7 +19,7 @@ The data for this exercise includes of a geopackage of [1940 Chicago Census Trac
 
 If you do not have access to a PostGIS database already, here is a useful [set of directions](https://www.enterprisedb.com/postgres-tutorials/connecting-postgresql-using-psql-and-pgadmin) to install PG Admin 4 and running it with a local database (for Linux, Windows, or Mac).
 
-### Connecting to a PostGIS from QGIS and Loading Data
+### Connecting to PostGIS in QGIS and Loading Data
 
 <details><summary> To connect to the database fromm QGIS, find the 'Database' menu and select 'DB Manager'. </summary>
     <img src = "photos/connectDatabase.png" width="600">
@@ -29,10 +29,62 @@ If you do not have access to a PostGIS database already, here is a useful [set o
     <img src = "photos/importing.png" width="600">
   </details>
 
-<details><summary> Select the correct file and import using the following parameters </summary>
+<details><summary> Select the correct file and import using the following parameters and refresh to see that it correctly loaded </summary>
     <img src = "photos/parameters.png" width="600">
   </details>
   
+  ### Explore Data and Prepare for Spatial Analysis 
+  
+  ```SQL
+  * Check uniqueness of field*/
+
+SELECT COUNT(DISTINCT gisjoin), COUNT(gisjoin) FROM tables1940
+
+/* Left out Join tables1940 to tracts1940*/
+
+SELECT*
+FROM tracts1940 AS a LEFT OUTER JOIN tables1940 as b
+ON a.gisjoin =b.gisjoin
+
+SELECT*
+FROM tracts1940 AS a LEFT OUTER JOIN tables1940 AS b
+ON a.gisjoin = b.gisjoin
+
+/* Check how many are tracts1940 unmatched to table 1940*/
+
+SELECT*
+FROM tracts1940 AS a LEFT OUTER JOIN tables1940 AS b
+ON a.gisjoin = b.gisjoin
+WHERE a.gisjoin IS NULL
+
+/* Check how many tables1940 are unmatched to tracts1940*/
+
+SELECT*
+FROM tracts1940 AS a RIGHT OUTER JOIN tables19440 AS b
+ON a.gisjoin = b.gisjoin
+WHERE b.gisjoin IS NULL
+
+/* Customize the Fields we want to join -- a.* means to get all of the columns from table a, which is tracts1940 */
+
+SELECT a.*, b.poptotal, b.white, b.medgrossrent
+FROM tracts1940 AS a LEFT OUTER JOIN AS b
+ON a.gisjoin = b.gisjoin
+
+/* Order by Median Gross Rent descending */
+
+SELECT a.*, b.poptotal, b.white, b.medgrossrent
+FROM tracts1940 AS a LEFT OUTER JOIN tables1940 AS b
+ON a.gisjoin = b.gisjoin
+ORDER BY medgrossrent DESC
+
+/* Order by Median Gross Rent > 0 and descending */
+
+SELECT a.*, b.poptotal, b.white, b.medgrossrent
+FROM tracts1940 AS a LEFT OUTER JOIN tables1940 AS b
+ON a.gisjoin = b.gisjoin
+WHERE medgrossrent > 0
+ORDER BY medgrossrent DESC
+```
   
 
 
