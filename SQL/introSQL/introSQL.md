@@ -248,8 +248,10 @@ This map visualizes both the buffer query and the intersect on a buffer query. T
 
 ### Aggregate and Summary Functions
 
+The following chunk of code shows how to perform aggregate geometries by using Unions or Intersects while also outputting statistical summaries from those functions. 
+
 ```SQL 
-* Find mean, min, max, and total (tracts) of rent from tracts*/
+/* Find mean, min, max, and total (tracts) of rent from tracts*/
 
 SELECT COUNT(id) AS countID, 
 MIN(medgrossrent) as minRent, 
@@ -259,7 +261,7 @@ FROM cbd1940
 
 /* Aggregate function for geometries*/
 
-CREATE VIEW cbdUnion AS
+CREATE VIEW cbdunion AS
 SELECT 1 as id, 
 COUNT(id) AS countID, 
 MIN(medgrossrent) as minRent, 
@@ -269,9 +271,9 @@ ST_UNION(geom) as geom
 FROM cbd1940
 
 
-/* Aggregate function and reporoject*/
+/* Aggregate function and reproject*/
 
-CREATE VIEW cbdUnion2 AS
+CREATE TABLE cbdunion2 AS
 SELECT 1 as id, 
 COUNT(id) AS countID, 
 MIN(medgrossrent) as minRent, 
@@ -281,4 +283,8 @@ ST_UNION(ST_TRANSFORM(geom, 3528))::geometry(multipolygon, 3528) as geom
 FROM cbd1940
 ```
 
+The following map visualizes the cbdunion2 output from
 
+<p align="center">
+<img height="700" src="photos/unionOutput.png">
+</p>
