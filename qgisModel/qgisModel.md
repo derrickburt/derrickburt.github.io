@@ -37,7 +37,7 @@ The first draft of the model incorporates the algorithms from the CBD model and 
 The distance of each tract's centroid from the city center by converting the tracts into centroids and then transforming both input's coordinate systems into    World Geodetic System 1984 (WGS84, EPSG:4326). This conversion allows for an ellipsoidal calculation that preserves accurate distance. In this model, the     
    distance  is calculated in decimal degrees.
 
-  <details><summary> Code </summary>
+
   
   ```SQL
   distance(
@@ -46,11 +46,11 @@ The distance of each tract's centroid from the city center by converting the tra
   transform(make_point(  @Mean_coordinate_s__OUTPUT_maxx , @Mean_coordinate_s__OUTPUT_maxy  ),
   layer_property( @citycenter ,'CRS'),'EPSG:4326'))
   ```
-  </details>
+ 
   
 The direction in degrees of each tract from the city's center by converting the tracts into centroids and transforming both inputs' coordinate systems into World Mercator (EPSG:54004). This conversion allows for distance to be accurately preserved. 
 
-  <details><summary> Code </summary>
+
   
   ```SQL
   degrees(azimuth(
@@ -60,14 +60,13 @@ The direction in degrees of each tract from the city's center by converting the 
   transform(centroid($geometry),layer_property(@inputfeatures2, 'CRS'), 'EPSG:54004')))
   ```
   
-  </details>
+
   
 The direction into 8 cardinal and intercardinal directions by taking the output from the direction algorithm and using a CASE statement to categorize degree intervals by labelling them N, NE, E, SE, SE... etc.
   
-<details>
-<summary>  Code </summary>
+
     
-```SQL
+   ```SQL
   CASE
 
   WHEN attribute(concat(@FieldNamePrefix, 'Dir')) <= 22.5 THEN 'N'
@@ -96,33 +95,31 @@ The direction into 8 cardinal and intercardinal directions by taking the output 
 
   END
   ```
-  </details>
+ 
 
 ### Updating the Model with SQL Queries
 
 To update the model, I replaced the field calculator algorithms with an execute sql algorithm. While both models will perform the functions, this centralizes the three calculations into one algorithm which arguably reduces the model's complexity (although SQL queries are perhaps more difficult to correctly perform as they are text-based; there is GUI to guide the user).
 
-#### First SQL 
+#### First SQL: Replacing Distance Algorithm with SQL Query
 
 ![model_image](photos/SQLmodel.png)
 
 To familiarize myself with the execute sql algorithim, I began by performing an sql query to calculate the distance from the tracts. Additionally, because the QGIS version for Mac OS uses an older version of GDAL (2.4.1), I needed to reproject both inputs before transforming them in the SQL query. This enables the SQL to read them in their correct coordinate systems and outputs a distance measurement in meters instead of decimal degrees. If using this model on a Windows OS, the reproject algorithms may be redundant.
 
-<details><summary> Code </summary>
-  
+ 
 ```SQL
 SELECT *, st_distance(st_centroid(st_transform(geometry, 4326)), (SELECT st_transform(geometry, 4326) from input1), TRUE) as  [% @FieldNamePrefix %]Dist
 FROM input2
 ```
-</details>
 
-#### Final SQL
+#### Final SQL: Replacing All Algorithms with SQL Query
 
 ![model_image](photos/ModelSQL2.png)
 
 To update the SQL version of the model, I added the two direction algorithms to the SQL query. Additionally, I added an 'extract by expression' algorithm that removes unpopulated tracts from the calculation. While I added a vector field inout to the model that allows for a user defined input for the extract expression, it is currently not working. This means, for now, that the user will have to rename their total population field in the attribute table of the census tracts to "Total".
 
-<details><summary> Code </summary>
+
   
 ```SQL
 SELECT dis_dir. *, 
@@ -151,7 +148,7 @@ azimuth((SELECT st_transform(geometry, 3395) from input1), st_centroid(st_transf
 
 FROM input2) as dis_dir
 ```
-</details>
+
 
 ### Results
 
