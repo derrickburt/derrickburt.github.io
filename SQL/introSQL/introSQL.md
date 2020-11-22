@@ -22,7 +22,7 @@ If you do not have access to a PostGIS database already, here is a useful [set o
 ### Connecting to PostGIS in QGIS and Loading Data
 
 <details><summary> To connect to the database fromm QGIS, find the 'Database' menu and select 'DB Manager'. </summary>
-    <img asrc = "photos/connectDatabase.png" width="600">
+    <img src = "photos/connectDatabase.png" width="600">
   </details>
 
 <details><summary> Import the downloaded geopackage and .csv into the database by selecting the 'Import Layer/File...' button. </summary>
@@ -246,4 +246,39 @@ This map visualizes both the buffer query and the intersect on a buffer query. T
 <img height="700" src="photos/bufferOutput.png">
 </p>
 
-### Aggregate Functions
+### Aggregate and Summary Functions
+
+```SQL 
+* Find mean, min, max, and total (tracts) of rent from tracts*/
+
+SELECT COUNT(id) AS countID, 
+MIN(medgrossrent) as minRent, 
+AVG(medgrossrent) as avgRent, 
+MAX(medgrossrent) as maxRent
+FROM cbd1940
+
+/* Aggregate function for geometries*/
+
+CREATE VIEW cbdUnion AS
+SELECT 1 as id, 
+COUNT(id) AS countID, 
+MIN(medgrossrent) as minRent, 
+AVG(medgrossrent) as avgRent, 
+MAX(medgrossrent) as maxRent, 
+ST_UNION(geom) as geom
+FROM cbd1940
+
+
+/* Aggregate function and reporoject*/
+
+CREATE VIEW cbdUnion2 AS
+SELECT 1 as id, 
+COUNT(id) AS countID, 
+MIN(medgrossrent) as minRent, 
+AVG(medgrossrent) as avgRent, 
+MAX(medgrossrent) as maxRent, 
+ST_UNION(ST_TRANSFORM(geom, 3528))::geometry(multipolygon, 3528) as geom
+FROM cbd1940
+```
+
+
