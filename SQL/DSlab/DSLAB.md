@@ -31,7 +31,7 @@ For Mac user, this set of [directions](scipts/osm2pgsqlMACOS.txt) will teach you
 I will provide step-by-step directions of the sql code used in this analysis, but here is the entire [script](scripts/queriesDS.sql)
 
 <p align="center">
-  <img height="600" src="photos/stopsAndWards.png">
+ <img height="600" src="photos/stopsAndWards.png">
   </p>
 
 #### 1) Prepare residential polygons and points for analysis 
