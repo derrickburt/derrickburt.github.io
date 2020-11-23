@@ -45,7 +45,7 @@ The distance of each tract's centroid from the city center by converting the tra
 
 
   
-  ```SQL
+  ```sql
   distance(
   transform(centroid($geometry),layer_property( @inputfeatures2 ,'CRS'),'EPSG:4326'), 
 
@@ -72,7 +72,7 @@ The direction into 8 cardinal and intercardinal directions by taking the output 
   
 
     
-   ```SQL
+   ```sql
   CASE
 
   WHEN attribute(concat(@FieldNamePrefix, 'Dir')) <= 22.5 THEN 'N'
@@ -114,7 +114,7 @@ To update the model, I replaced the field calculator algorithms with an execute 
 To familiarize myself with the execute sql algorithim, I began by performing an sql query to calculate the distance from the tracts. Additionally, because the QGIS version for Mac OS uses an older version of GDAL (2.4.1), I needed to reproject both inputs before transforming them in the SQL query. This enables the SQL to read them in their correct coordinate systems and outputs a distance measurement in meters instead of decimal degrees. If using this model on a Windows OS, the reproject algorithms may be redundant.
 
  
-```SQL
+```sql
 SELECT *, st_distance(st_centroid(st_transform(geometry, 4326)), (SELECT st_transform(geometry, 4326) from input1), TRUE) as  [% @FieldNamePrefix %]Dist
 FROM input2
 ```
@@ -127,7 +127,7 @@ To update the SQL version of the model, I added the two direction algorithms to 
 
 
   
-```SQL
+```sql
 SELECT dis_dir. *, 
 
 CASE
