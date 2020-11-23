@@ -37,7 +37,7 @@ If you do not have access to a PostGIS database already, here is a useful [set o
 
 The following chunk of code will show you how to investigate your data before performing a join, perform and investigate the outcome of spatial join, filter and order data within a table, and create a virtual table from other tables.
   
-```SQL
+```sql
 /* Check uniqueness of field*/
 
 SELECT COUNT(DISTINCT gisjoin), COUNT(gisjoin) FROM tables1940
@@ -100,7 +100,7 @@ ORDER BY medgrossrent DESC
 
 The following chunk of code will show you how to calculate distance and direction from a central point (in QGIS, the following operations would be done by creating centroid of the tracts and then using field calculator to add a distance and direction field to the tract table).
 
-```SQL
+```sql
 /* Calculate distance from CBD */
 
 SELECT *,
@@ -134,7 +134,7 @@ FROM tracts1940
 ```
 ### Reproject a Table
 
-```SQL
+```sql
 /* Select new version of cbd with proper projection */
 
 SELECT id, ST_TRANSFORM(geom, 3528) AS geom
@@ -157,7 +157,7 @@ To visualize data locally, left click the desired table and select 'Add to Canva
 * A table's geometry will specify whether or not it is a polygon, polyline, or point. A table's geometry must be specified before performing spatial analysis. 
 * Spatial indices are useful for saving time when performing spatial overlay functions (unions, intersects, differences) on larger datasets as they set a bounding box around points to prevent the function from running through the entire dataset.
 
-```SQL
+```sql
 * FIXING GEOMETRY/TABLES */
 
 /* Add Primary Key */
@@ -187,7 +187,7 @@ FROM cbd5328
 
 The following chunk of code shows how to perform a 5kmm buffer from the CBD and a save it as it's own table. The following code also incorporates queries to update geometries.
 
-```SQL
+```sql
 /* Buffer 5km from cbd5328 */
 
 SELECT id, ST_BUFFER(geom2, 5000) AS geom
@@ -250,7 +250,7 @@ This map visualizes both the buffer query and the intersect on a buffer query. T
 
 The following chunk of code shows how to perform aggregate geometries by using Unions or Intersects while also outputting statistical summaries from those functions. 
 
-```SQL 
+```sql
 /* Find mean, min, max, and total (tracts) of rent from tracts*/
 
 SELECT COUNT(id) AS countID, 
