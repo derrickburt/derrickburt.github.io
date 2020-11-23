@@ -168,7 +168,7 @@ ALTER TABLE cbd5328 ADD PRIMARY KEY (id)
 
 SELECT populate_geometry_columns('public.cbd5328'::regclass) /*1 means it works*/
 
-/* To create a spatial index, simply go to the "info" tab and select "create it" if the page says "No spatial index defined"
+/* To create a spatial index, simply go to the "info" tab and select "create it" if the page says "No spatial index defined" */
 
 /* See characteristics of Geometry */
 	
