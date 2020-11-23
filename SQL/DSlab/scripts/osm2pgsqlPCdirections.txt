@@ -1,0 +1,40 @@
+#Loading OSM Data into PostGIS#
+
+Please consider which data layer(s) and columns you’ll need from OpenStreetMap before completing this section. The tool in this section will only import features with the tags you ask for, and those tags will become columns in a PostGIS table.
+
+1)	Someone has programmed a small command-line tool to parse through OpenStreetMap files and load them into a PostGIS database. 
+a)	OSM2PGSQL on GitHub: https://github.com/openstreetmap/osm2pgsql 
+b)	Hacker's guide to OSM2PGSQL https://www.volkerschatz.com/net/osm/osm2pgsql-usage.html 
+c)	Download for windows: https://ci.appveyor.com/project/openstreetmap/osm2pgsql
+d)	Download for macOS: use Homebrew, on which osm2pgsql is a predefined package: https://brew.sh/ 
+
+2)	Go to the K:\ network drive  (\\splinter\courses) and to the gg323 folder
+
+3)	Copy the osm_script folder to your own W:\ drive
+
+4)	Open the smallmap.osm file in Notepad ++
+a)	  XML tags.
+b)	The more complete Dar es Salaam file is too large (1.5 gb) even to open in Notepad ++ , and I've left it on the K:\ drive so that we can all use it without duplicating…
+
+5)	Edit the convertOSM.bat file in Notepad ++
+a)	Change the database name to your database, and the user name to your user name
+b)	All of the parameters are explained in comments at the end of the document.
+c)	Save your changes.
+
+6)	Open the dsm.style file in Notepad++. This file instructs osm2pgsql which types of features to load, and which tags to use.
+a)	In case you need to add any additional tags as columns in the database, you’d need to edit the dsm.style file. For example, we talked about whether drains were blocked or not, so I added a line to ingest the blockage information:
+node,way   blockage     text         linear
+b)	You can replace node,way with node if you only want points, or way if you only want lines or polygons
+c)	You can replace blockage with new tag names.
+d)	You can replace linear with polygon if you only want this tag for polygons. 
+ 
+7)	Run the convertOSM.bat script.
+a)	It will prompt you for a password, and the cursor will not move as you type. Just type your password and press enter…
+b)	The script with parse through the dsm_osm.osm file, and load relevant data into your PostGIS database!
+c)	The data will be loaded in WGS 1984 geographic coordinates (epsg:4326). You’ll want to transform most data into UTM Zone 36S, EPSG code 32727
+
+8)	How did I download the osm file?
+a)	At https://www.openstreetmap.org , zoom and pan the map to the extent of data you wish to download
+b)	 Use the Export button  
+c)	Click the Overpass API link to download from a mirror of the OpenStreetMap database (using a mirror offloads the work of exporting to alternative servers, so that the main server can keep doing its thing: editing data and serving it up as OSM tiles!
+d)	Make sure the downloaded file is saved as a .osm file, or just rename it afterwards.

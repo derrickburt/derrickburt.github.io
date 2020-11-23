@@ -1,0 +1,27 @@
+#OPEN TERMINAL AND INSTALL HOMEBREW#
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)". 
+
+#HIT ENTER, TYPE PASSWORD, AND THEN HIT ENTER AGAIN AFTER PROMPTED#
+
+#INSTALL OSM2PGSQL WITH THE FOLLWING TERMINAL COMMAND#
+
+brew install osm2pgsql
+
+#CONNECT TO POSTGIS DATABASE IN TERMINAL#
+	## SYNTAX HELP "createdb --help" ##
+
+psql -h host  -U username  -d database -W capital W for password  
+
+#ONCE YOU HAVE INSTALLED osm2pgsql, BE SURE TO SAVE THE dsm.style AND dsm_osm.osm / small_map.osm IN THE FOLDER NAMED osm2pgsql ON YOUR COMPUTER#
+
+#DOWNLOAD AND IMPORT SUBSET OSM DATA INTO POSTGIS#
+
+osm2pgsql -H host -P port -U username  -d database -W capital W for password -c -d database -S stylefilepath osmsubsetfilepath
+
+#DOWNLOAD AND IMPORT ALL OSM DATA INTO POSTGIS#
+
+osm2pgsql -H host -P port -U username  -d database -W capital W for password -c -d database -S stylefilepath osmsubsetfilepath
+
+
+
