@@ -8,7 +8,7 @@
 </p>
 
 <p align="right">
-<img height ="200" src="ramanihuria_logo.jpg">
+<img height ="200" src="ramanihuria_logo.png">
 </p>
 
 Tanzania's [Resilience Academy](https://resilienceacademy.ac.tz/about-us/) is a partnership between four Tanzanian university's that aims to build urban climate resilience by expanding climate data, establishing mapping initiatives, digital learning, and research initiatives. [Ramani Huria](https://ramanihuria.org/en/), one of the Resilience Academy's initiatives, is a community mapping program that uses Open Street Map to produce highly detailed spatial data throughout Dar es Salaam to support flood resiliency and urban planning.
