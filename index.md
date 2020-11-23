@@ -2,7 +2,7 @@
 
 ### [Resilience Academy in Dar es Salaam: Analyzing Public Transportation Access in PostGIS](SQL/DSlab/DSLAB.md)
 
-### [Introduction to SQL](SQL/introSQL/introSQL.md)
+### [Introduction to Spatial SQL with PostgreSQL](SQL/introSQL/introSQL.md)
 
 ### [Modelling Distance and Direction in QGIS](qgisModel/qgisModel.md)
 
