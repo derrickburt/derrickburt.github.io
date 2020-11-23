@@ -1,4 +1,4 @@
-# Resilience Academy in Dar Es Salaam: 
+# Resilience Academy in Dar es Salaam: 
 ## Visualizing Public Transportation Access with Spatial SQL and OpenStreetMap
 
 ### Background 
@@ -29,6 +29,10 @@ For Mac user, this set of [directions](scipts/osm2pgsqlMACOS.txt) will teach you
 ### Analysis
 
 I will provide step-by-step directions of the sql code used in this analysis, but here is the entire [script](scripts/queriesDS.sql)
+
+<p align="center">
+  <img height="600" src="photos/stopsAndWards.png">
+  </p>
 
 #### 1) Prepare residential polygons and points for analysis 
 
@@ -135,6 +139,10 @@ WHERE res_access = 1
 SELECT populate_geometry_columns('public.res_within_stopzone'::regclass);
 ALTER TABLE res_within_stopzone ADD PRIMARY KEY (osm_id)
 ```
+<p align="center">
+  <img height="600" src="photos/bufferZones.png">
+  </p>
+
 
 #### 6) Join the residential points within the stop zone to stopwards, count totals, and calculate percentages
 
@@ -157,3 +165,10 @@ ALTER TABLE subwards_final ADD COLUMN pct_access DOUBLE PRECISION;
 UPDATE subwards_final
 SET pct_access = (stops_access * 1.0/total_ct) * 1000;
 ```
+<p align="center">
+  <img height="600" src="photos/pctZones.png">
+  </p>
+
+<p align="center">
+  <img height="600" src="photos/ctZones.png">
+  </p>
