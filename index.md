@@ -1,6 +1,6 @@
 ## This is a portfolio of GIS projects completed for an Open Source GIS course at Middlebury College. You can view my github profile [here](https://github.com/derrickburt).
 
-### [Resilience Academy in Dar es Salaam: Analyzing Public Transportation Access in PostGIS](SQL/DSlab/DSLAB/.md)
+### [Resilience Academy in Dar es Salaam: Analyzing Public Transportation Access in PostGIS](SQL/DSlab/DSLAB.md)
 
 ### [Introduction to SQL](SQL/introSQL/introSQL.md)
 
