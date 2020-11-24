@@ -16,7 +16,7 @@ In this post, readers will be provided with directions and code to both acquire 
 ### Data
 
 #### Resilience Academy
-The subwards and public transportation stops can be found on the Resilience Academy's web feature service. This can be accessed from QGIS by locating #WFS# in the #Browser#, right-clicking to add a 'New Connection...' and entering this url: https://geonode.resilienceacademy.ac.tz/geoserver/ows. Both the subwards and the public transportation stops can be loaded into a PostGIS database by selecting 'Add Layer to Project' and then loading them into a database using the directions outlined in the 'Connecting to PostGIS in QGIS and Loading Data' sectiong of my last [blog post](https://github.com/derrickburt/derrickburt.github.io/blob/master/SQL/introSQL/introSQL.md).
+The subwards and public transportation stops can be found on the Resilience Academy's web feature service. This can be accessed from QGIS by locating 'WFS' in the 'Browser', right-clicking to add a 'New Connection...' and entering this url: https://geonode.resilienceacademy.ac.tz/geoserver/ows. Both the subwards and the public transportation stops can be loaded into a PostGIS database by selecting 'Add Layer to Project' and then loading them into a database using the directions outlined in the 'Connecting to PostGIS in QGIS and Loading Data' sectiong of my last [blog post](https://github.com/derrickburt/derrickburt.github.io/blob/master/SQL/introSQL/introSQL.md).
 
 ### Loading OpenStreetMap data into PostGIS with OSM2PGSQL (Directions provided for Mac and Windows)
 
@@ -180,3 +180,6 @@ To allow for a scalable and interactive visualization of this analysis, I have m
 ### Results 
 
 ### Resources
+
+Mkalawa C.C. & Haixiao, P. (2014). Dar es Salaam city temporal growth and its influence on transportation. *Urban, Planning and Transport Research, 2:1, 423-446, DOI: 10.1080/21650020.2014.978951
+
