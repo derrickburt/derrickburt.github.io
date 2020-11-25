@@ -166,11 +166,11 @@ UPDATE subwards_final
 SET pct_access = (stops_access * 1.0/total_ct) * 1000;
 ```
 <p align="center">
-  <img height="600" src="photos/pctZones1.png">
+  <img height="600" src="photos/pctZones2.png">
   </p>
 
 <p align="center">
-  <img height="600" src="photos/ctZones1.png">
+  <img height="600" src="photos/ctZones2.png">
   </p>
   
 ### Leaflet Visualization
