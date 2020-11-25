@@ -13,7 +13,7 @@ The goal of this lab is to utilize the data produced by Ramani Huria to quantify
 
 In this post, readers will be provided with directions and code to both acquire the data and reproduce the analysis.
 
-### Data
+### Accessing Data
 
 #### Resilience Academy
 The subwards and public transportation stops can be found on the Resilience Academy's web feature service. This can be accessed from QGIS by locating 'WFS' in the 'Browser', right-clicking to add a 'New Connection...' and entering this url: https://geonode.resilienceacademy.ac.tz/geoserver/ows. Both the subwards and the public transportation stops can be loaded into a PostGIS database by selecting 'Add Layer to Project' and then loading them into a database using the directions outlined in the 'Connecting to PostGIS in QGIS and Loading Data' sectiong of my last [blog post](https://github.com/derrickburt/derrickburt.github.io/blob/master/SQL/introSQL/introSQL.md).
@@ -175,11 +175,16 @@ SET pct_access = (stops_access * 1.0/total_ct) * 1000;
   
 ### Leaflet Visualization
 
-To allow for a scalable and interactive visualization of this analysis, I have made a [leaflet web map](dsmmap/index.html). Di
+To allow for a scalable and interactive visualization of this analysis, I have made a [leaflet web map](dsmmap/index.html).
 
-### Results 
+### Discussion
+
+Perhaps the most immediate takeway analysis rather intuitive; the subwards with the highest proportions of residences within quarter mile zones of public transportation stops are those that appear to be situated along the bus routes. The subwards on the fringe of the central region of Dar es Salaam, those further away from the public transportation routes and along the coast, have shockingly low (often under 5%) proximate access to public transportation stops. Yet, some of these subwards are home to as many as 2,500 to 3,500 residential buildings. These disparities in transportation access are likely explained by the inability of urban planners to keep up with the city's population growth (Mkalawa and Haixiao 2014). A more comprehensive analysis of these trends should explore the spatial patterns of population growth to see if the subward's with poorer access to public transportation stops are those which have seen the most growth. 
+
+Another important aspect that should be considered when understandingt his analysis is the source of the data and acknowledge both the impressive depth at which it highlights certain portions of Dar es Salaam and simultaneously a lack of breadth in which much of the city's outskirts are left out of this analysis. It is clear from the maps that the concentration of reliable data in the city's center. While it is likely that there is greater population density in the center of the city Mkalawa and Haixiao 2014), it is clear that the data collection efforts of Ramani Huria, as comprehensive as they are, have remained within the more central location of the city. While it is valuable to have free access to an impressively detailed set of data, we should recognize this data as a work in progress and not a final and static representation of the city. Often times the quality of data can be taken for granted or simply assumed (Schuurman 2008). I do not mean to imply that Ramani Huria has done a poor job with their data collection but instead highlight the aspects of the data that are not shown in the maps produced by this workflow. Because the scale of this project is massive, there are some inconsitencies (such as a variation in the attributes and tags attached to building shapefiles or the issue of buildings being counted twice) that should be acknowledged so that we are honest in the (in)accuracies of our representations. Thus, even when using institutionally-derived data, it is important to interrogate the methodologies of the data collection and be transparent about its limitations.
 
 ### Resources
 
 Mkalawa C.C. & Haixiao, P. (2014). Dar es Salaam city temporal growth and its influence on transportation. *Urban, Planning and Transport Research, 2:1, 423-446, DOI: 10.1080/21650020.2014.978951
 
+Schuurman, N. (2008). Database ethnographies using social science methodologies to enhance data analysis and interpretation. *Geography Compass, 2(5), 1529-1548. https://doi.org/10.1111/j.1749-8198.2008.00150.x
