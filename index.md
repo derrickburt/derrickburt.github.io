@@ -1,6 +1,10 @@
 ## This is a portfolio of GIS projects completed for an Open Source GIS course at Middlebury College. You can view my github profile [here](https://github.com/derrickburt).
 
+### [Spatial and Temporal Analysis of Hurricane Dorian Tweets](twitter/twitter.md)
+
 ### [Reproducibility and Replicability of Malawi Vulnerability Analysis](malawi/malawi.md)
+
+### [Making a Leaflet Web Map From QGIS]
 
 ### [Resilience Academy in Dar es Salaam: Analyzing Public Transportation Access in PostGIS](SQL/DSlab/DSLAB.md)
 
