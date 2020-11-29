@@ -2,13 +2,13 @@
 
 ### [Spatial and Temporal Analysis of Hurricane Dorian Tweets](twitter/twitter.md)
 
-### [Exploring Reproducibility and Replicability in GIS Vulnerability Research](malawi/malawi.md)
+### [Exploring Reproducibility and Replicability in GIS Vulnerability Research](malawi/index.md)
 
 ### [Making a Leaflet Web Map From QGIS](leaflet/leaflet.md)
 
-### [Resilience Academy in Dar es Salaam: Analyzing Public Transportation Access in PostGIS](opengis/SQL/DSlab/DSLAB.md)
+### [Resilience Academy in Dar es Salaam: Analyzing Public Transportation Access in PostGIS](sql/DSlab/DSLAB.md)
 
-### [Introduction to Spatial SQL with PostGIS/PostgreSQL](opengis/SQL/introSQL/introSQL.md)
+### [Introduction to Spatial SQL with PostGIS/PostgreSQL](sql/introSQL/introSQL.md)
 
 ### [Modelling Distance and Direction in QGIS](qgisModel/qgisModel.md)
 
