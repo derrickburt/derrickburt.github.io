@@ -55,8 +55,8 @@ The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert th
 
 
 <details>
-<summary>Identify urban areas from DHS clusters and join to DHS survey data:</summary>
-<p>
+	<summary>Identify urban areas from DHS clusters and join to DHS survey data:</summary>
+	<p>
 	
 ```sql
 /* codes
@@ -130,8 +130,8 @@ HV207=9;
 </details>	
 
 <details>
-<summary>Combine different livestock into one column and show with percent rank:</summary>
-<p>	
+	<summary>Combine different livestock into one column and show with percent rank:</summary>
+	<p>	
 
 ```sql
 /*count livestock*/
@@ -152,6 +152,8 @@ dhshh1010
 Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions of the methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding the fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these classifications. Further, 5 of the 12 household variables were represented either a 0 or 1 score, and there was no explanation as to how these variables were weighted nor any justification for the decision to use quintiles.
 
 <details>
+	<summary> Code: </summary>
+	<p>
 
 ```sql
 /* Standardizing to scale of 1 (low capacity) to 5 (high capacity) */
@@ -204,8 +206,13 @@ UPDATE dhshh10 set urbanruralscore =
 		ELSE 3
 	END;
 ```
+</p>
+</details>
 
-From here, the scores were weighted from a scale of .4 to 2.0 scale so that the final household resilience calculation (including the other elements) would scale from 0 to 5.
+<details>
+	<summary>From here, the scores were weighted from a scale of .4 to 2.0 scale so that the final household resilience calculation (including the other
+		elements) would scale from 0 to 5.</summary>
+	<p>
 
 ```sql 
 /* Create a composite household capacity score, on scale from 0.4 to 2 */
@@ -239,6 +246,8 @@ SELECT ST_AsRaster(mwita.geom, (select rast from drought limit 1), '32BF', mwita
 FROM mwita
 where capacity is not null
 ```
+</p>
+</details>
 
 Below is our replication of [Figure 4](photos/MalcombFig4.png). Despite being created from the same exact data, It has not been reproduced exactly as the variables are scored with a different scale and show different geographic patterns in vulnerability; our map shows bigger clustsrs of more vulnerable (lower capacity) TAs in central Malawi
 
