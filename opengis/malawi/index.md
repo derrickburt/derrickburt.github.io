@@ -281,6 +281,14 @@ With the three rasters properly clipped and classified, the following calculatio
 
 ### Discussion
 
+Both of the figures we attempted to produce have some notable distinctions from those published in Malcomb et al. Our reproduction of Figure 4, depsite having the same exact data and attempting to replicate the bits of their methodology that was explained, have neither the same range of scores nor the same distribution of capacity scores. Figure 5, even if we were able to incorporate the FEWSnet sensitivity data, is also skewed by our results from the household scores. Even though we can see similar vulnerability patterns in the south and central regions, most of the northern porition of our figure is quite different from that of Malcomb's.
+
+Although the authors' claim they employ a "transparent and easily replicable methodlogy" in this study (Malcomb et al. 2014), I argue that this research is not reproducible. While policy makers and local actors in sub-Saharan Africa might be able to borrow the author's framework of using multi-criteria vulnerability indicators to visualize climmate capacity, we could not reproduce the results of this research using the same inputs to yield the same outputs (National Academies of Sciences, Engineering, and Medicine 2019). The impediments to this paper's reproducibility may be explained both by the authors' incomplete or limited sharing of their methodology as well as the general structure of academic research that does not allow for publications, as well as their methods and research, to be updated (Sui 2014). I will examine some of the components that prevent this research from being fully reproducible.
+
+First, because we were missing all of the FEWSnet sensitivity data, we would have only been able to produce 80% of the authors' final results. This cannot be seen as an error on the part of the authorship, but we might rather intrepret this as a shortcoming of the institutional structures of geographic publishing. If there were to be a true community that supported open publication, then perhaps the industry itself could provide an archival network of any relevant data needed to reproduce any given study (Sui 2014).
+
+Even if we had been able to acquire all the relevant data, there were still holes in the methods section that left us in the dark when it came to understanding important decision-making in the data analysis process. Perhaps the most specific
+
 ### Resources
 
 Hinkel, J. (2011). “Indicators of vulnerability and adaptive capacity”: towards a clarification of the science–policy interface. Global Environmental Change, 21(1), 198-208. https://doi.org/10.1016/j.gloenvcha.2010.08.002
@@ -291,4 +299,4 @@ National Academies of Sciences, Engineering, and Medicine. 2019. Reproducibility
 
 Sui, D. 2014. Opportunities and impediments for Open GIS. *Transactions in GIS,* 18(1); 1-24. doi: 10.1111/tgis.12075
 
-Tate, 
+Tate, E. (2012). Social vulnerability indices: a comparative assessment using uncertainty and sensitivity analysis. Natural Hazards, 63(2), 325-347. https://doi.org/10.1007/s11069-012-0152-2, 
