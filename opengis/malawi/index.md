@@ -55,9 +55,9 @@ The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert th
 
 
 <details>
-<summary> Identify household codes and cleaning the data to convert into quintiles:</summary>
+<summary> Identify urban areas from DHS clusters and join to DHS survey data:</summary>
   
-</pre>$
+</pre>
 ```sql
 /* codes
 household id: hhid
@@ -98,6 +98,37 @@ select st_union(st_makevalid(geom))::geometry('multipolygon',4326) from mwita;
 ```
 </pre>
 </details>
+
+<details>
+<summary> Clean  to get rid of null values or missing data: </summary>
+  </pre>
+```sql--originally having 24825 records
+DELETE FROM dhshh1010 WHERE
+hv246a=98 or
+hv246a=99 or
+hv246d=98 or
+hv246d=99 or
+hv246e=98 or
+hv246e=99 or
+hv246g=98 or
+hv246g=99 or 
+hv219=9 or
+hv243a=9 or
+hv245=99 or
+hv206=9 or
+hv204=999 or
+hv204=998 or
+hv226=99 or		 --no cooking data
+hv226=95 or 	    --no cooking
+hv226=96 or		   --cooking with 'other' fuel
+HV207=9;
+--deleted 156 household records with missing data for our purposes
+--resulting in ## records
+```
+</pre>
+</details>
+
+
 
 
 
