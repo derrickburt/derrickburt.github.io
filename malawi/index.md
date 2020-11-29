@@ -8,15 +8,7 @@ Applying these practices to climate change vulnerability research can be complic
 
 ### Purpose
 
-The goal of this exercise is to reproduce and evaluate the methodologies Malcomb et al. has used to define and visualize climate vulnerability in Malawi. First, we will examine the methodology of Malcomb et al.'s analysis and use it to reproduce [Figure 4](photos/MalcombFig4/png) and [Figure 5](photos/MalcombFig5.png) from the research paper. Then, we will reflect upon the authors' methodological approach, bringing in literature on vulnerability analysis.
-
-### Software
-
-The following softwares were used to complete this exercise:
-
-* [QGIS 3.10](https://qgis.org/en/site/forusers/download.html)
-* [PostgreSQL with PGAdmin 4 v4.26](https://www.pgadmin.org/download/pgadmin-4-macos/)
-* [RStudio](https://rstudio.com/products/rstudio/download/)
+The goal of this exercise is to reproduce and evaluate the methodologies Malcomb et al. has used to define and visualize climate vulnerability in Malawi. First, we will examine the methodology of Malcomb et al.'s analysis and use it to reproduce [Figure 4](photos/MalcombFig4.png) and [Figure 5](photos/MalcombFig5.png) from the research paper. Then, we will reflect upon the authors' methodological approach, bringing in literature on vulnerability analysis.
 
 ### Malcomb et al. Methodology for Household Resilience in Malawi
 
@@ -26,7 +18,7 @@ In their paper, Malcomb, Weaver, and Krakowka outline a new approach to modellin
 
 #### Methodology
 
-Malcomb et al. use a multi-criteria weighted analysis to analyze and visualize social, economic, cultural, and environmental [vulnerability indicators](photos/indicators.png). These vulnerability indicators were divided into three sub-categories: adaptive capacity (composed of both assets and access), livelihood sensitivity, and physical exposure. Each of these vulnerability indicators were rescaled into quintiles: a 0 (worst) to 5 (best) scoring system. The author's used the following weighting scheme to produce a household resilience score for each Traditional Authority (TA: the scale of analysis, an administrative boundary just below districts): *Household Resilence = Adaptive Capacity(.4) + Livelihood Sensitivity(.2) + Physical Exposure (.2)*. 
+Malcomb et al. use a multi-criteria weighted analysis to analyze and visualize social, economic, cultural, and environmental [vulnerability indicators](photos/indicators.png). These vulnerability indicators were divided into three sub-categories: adaptive capacity (composed of both assets and access), livelihood sensitivity, and physical exposure. Each of these vulnerability indicators were rescaled into quintiles: a 0 (worst) to 5 (best) scoring system. The authors used the following weighting scheme to produce a household resilience score for each Traditional Authority (TA: the scale of analysis, an administrative boundary just below districts): *Household Resilence = Adaptive Capacity(.4) + Livelihood Sensitivity(.2) + Physical Exposure (.2)*. 
 
 <p align="center">
   <img height="600" src="photos/malcombMethodology.png">
@@ -34,7 +26,35 @@ Malcomb et al. use a multi-criteria weighted analysis to analyze and visualize s
 
 ### Reproducing Malcomb's Methodology and Figures
 
+### Software
+
+The following softwares were used to complete this exercise:
+
+* [QGIS 3.10](https://qgis.org/en/site/forusers/download.html)
+* [PostgreSQL with PGAdmin 4 v4.26](https://www.pgadmin.org/download/pgadmin-4-macos/)
+* [RStudio](https://rstudio.com/products/rstudio/download/)
+
 #### Data
+
+We used the following data to reproduce Malcomb et al.'s methodology:
+
+* [DHS Malawi Household Surveys](https://dhsprogram.com/methodology/Survey-Types/DHS.cfm): Access to this data requires an account and a formal request based on project
+* [DHS Cluster Points](https://dhsprogram.com/methodology/GPS-Data-Collection.cfm): Household groupings where surveys were collected
+* [DHS Survey Boundaries](http://spatialdata.dhsprogram.com/boundaries/#view=table&countryId=MW)
+* [Flood and Drought Rasters](data/UNEP_rasters) from [UNEP GLobal Risk Data Platform](https://preview.grid.unep.ch/index.php?preview=map&lang=eng)
+* [Livelihood Zones](data/LivelihoodZones.zip) from [FEWSnet](https://fews.net/fews-data/335)
+* [Traditional Authority Shapefile](data/TA.zip): Gathered from [GADM](https://gadm.org/)
+* [OSM Malawi Lakes](data/MajorLakes.zip) from [MASDAP](http://www.masdap.mw/layers/geonode:major_lakes)
+* [National Parks](data/NationalParks.zip) from [Protected Planet](https://www.protectedplanet.net/country/MWI)
+
+#### Calculating Adapative Capacity Scores
+
+To get the DHS data into a PostGIS database, we used this [R script](scripts/rtranscript.r) written by Professor Holler. This script is meant to write SPSS files into a Postgres database, so be sure to downlaod the DHS data as an SPSS file (if you have access).
+
+The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert the DHS household criteria into composite capacity scores. I will provide a commented walk-through of the code and emphasize areas that problematize the reproducibility Malcomb et al.'s methodology.
+
+The fol
+
 
 ### Results
 
@@ -49,3 +69,5 @@ Malcomb, D. W., Weaver, E. A., & Krakowka, A. R. (2014). Vulnerability modeling 
 National Academies of Sciences, Engineering, and Medicine. 2019. Reproducibility and Replicability in Science. Washington, DC: The National Academies Press. doi: https://doi.org/10.17226/25303.
 
 Sui, D. 2014. Opportunities and impediments for Open GIS. *Transactions in GIS,* 18(1); 1-24. doi: 10.1111/tgis.12075
+
+Tate, 
