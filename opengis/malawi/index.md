@@ -53,7 +53,54 @@ To get the DHS data into a PostGIS database, we used this [R script](scripts/rtr
 
 The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert the DHS household criteria into composite capacity scores. I will provide a commented walk-through of the code and emphasize areas that problematize the reproducibility Malcomb et al.'s methodology.
 
-The fol
+
+<details>
+<summary> Identify household codes and cleaning the data to convert into quintiles:</summary>
+  
+</pre>$
+```sql
+/* codes
+household id: hhid
+cluster id:
+livestock: HV246a + hv246a + hv246d + hv246e + hv246g
+sick: hv248
+land: hv245
+wealth: hv271, or should it have been hv270 (already on scale of 5?)
+orphans: hv251
+watertime: hv204
+electricity: hv206
+cookingfuel: hv226
+gender: hv219
+cellphone: hv243a
+radio: hv207
+urban: joined from DHS clusters
+*/
+
+/* Identify the TA each cluster is in to find which clusters are urban or rural and join to dhs table */
+update mwita set geom = 
+st_makevalid(geom)
+where not st_isvalid(geom)
+
+alter table dhsclusters add column ta_id integer;
+update dhsclusters set ta_id = mwita.id from mwita where st_intersects(mwita.geom, dhsclusters.geom);
+
+select count(name2_), count(distinct name2_) from mwita;
+--the TA names are not unique! Use the ID instead...
+
+alter table dhshh1010 add column ta_id integer;
+update dhshh1010 set ta_id = dhsclusters.ta_id from dhsclusters where dhsclusters.dhsclust = dhshh1010.hv001;
+
+alter table dhshh10 add column urbanrural varchar(1);
+update dhshh10 set urbanrural = dhsclusters.urban_rura from dhsclusters where dhsclusters.dhsclust = dhshh10.hv001;
+
+create table mwi as
+select st_union(st_makevalid(geom))::geometry('multipolygon',4326) from mwita;
+```
+</pre>
+</details>
+
+
+
 
 
 ### Results
