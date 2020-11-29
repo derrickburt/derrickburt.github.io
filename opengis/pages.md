@@ -2,7 +2,7 @@
 
 ### [Spatial and Temporal Analysis of Hurricane Dorian Tweets](twitter/twitter.md)
 
-### [Exploring Reproducibility and Replicability in GIS Vulnerability Research](malawi/malawi.md)
+### [Exploring Reproducibility and Replicability in GIS Vulnerability Research](malawi/index.md)
 
 ### [Making a Leaflet Web Map From QGIS](leaflet/leaflet.md)
 
