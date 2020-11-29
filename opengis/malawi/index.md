@@ -56,7 +56,7 @@ The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert th
 
 <details>
 <summary>Identify urban areas from DHS clusters and join to DHS survey data:</summary>
-<pre>
+<p>
 	
 ```sql
 /* codes
@@ -96,10 +96,12 @@ update dhshh10 set urbanrural = dhsclusters.urban_rura from dhsclusters where dh
 create table mwi as
 select st_union(st_makevalid(geom))::geometry('multipolygon',4326) from mwita;
 ``` 
-</pre>
+</p>
 </details>
 
-Get rid of null values or missing data:
+<details>
+<summary>Get rid of null values or missing data:</summary>
+<p>
 ```sql--originally having 24825 records
 DELETE FROM dhshh1010 WHERE
 hv246a=98 or
@@ -123,6 +125,8 @@ HV207=9;
 --deleted 156 household records with missing data for our purposes
 --resulting in ## records
 ```
+</p>
+</details>	
 
 <details>
 <summary>Combine different livestock into one column and show with percent rank:</summary>
@@ -141,7 +145,7 @@ ntile(5) over(order by hhlivestock asc) as ntile5
 from
 dhshh1010
 ```
-</pre>
+</p>
 </details>
 
 Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions of the methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding the fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these classifications. Further, 5 of the 12 household variables were represented either a 0 or 1 score, and there was no explanation as to how these variables were weighted nor any justification for the decision to use quintiles.
