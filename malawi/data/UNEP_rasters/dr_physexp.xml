@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><metadata><mdFileID>41432167</mdFileID><mdLang><languageCode value="en"/></mdLang><mdChar><CharSetCd value="004"/></mdChar><mdContact><rpIndName>Andrea De Bono</rpIndName><rpOrgName></rpOrgName><rpCntInfo><cntPhone><voiceNum>(+41 22) 917 82 40</voiceNum><faxNum>+41 22 917 82 40</faxNum></cntPhone><cntAddress><delPoint>11, ch. des Anémones</delPoint><city>Châtelaine</city><adminArea>Genève</adminArea><postCode>1219</postCode><country>CH</country><eMailAdd>Andrea.De-Bono@grid.unep.ch</eMailAdd></cntAddress><cntOnlineRes><linkage>http://www.grid.unep.ch</linkage></cntOnlineRes></rpCntInfo><role><RoleCd value="007"/></role></mdContact><mdDateSt>2009-04-22</mdDateSt><mdStanName>ISO19115 Geographic Information - Metadata</mdStanName><mdStanVer>DIS</mdStanVer><spatRepInfo><GridSpatRep><numDims>2</numDims><axDimProps><Dimen><dimName><DimNameTypCd value="007"/></dimName><dimSize>---</dimSize></Dimen></axDimProps><cellGeo><CellGeoCd value="002"/></cellGeo></GridSpatRep></spatRepInfo><refSysInfo><MdCoRefSys><projection><identCode>---</identCode></projection><ellipsoid><identCode>WGS 84</identCode></ellipsoid></MdCoRefSys></refSysInfo><dataIdInfo><idCitation><resTitle>Physical exposition to droughts events 1980-2001</resTitle><resRefDate><refDate>2009-05-17</refDate></resRefDate></idCitation><idAbs>This dataset includes an estimate of global drought annual repartition based on Standardized Precipitation Index. 
+
+
+It is based on three sources:
+1) A global monthly gridded precipitation dataset obtained from the Climatic Research Unit (University of East Anglia).
+
+
+2) A GIS modeling of global Standardized Precipitation Index based on Brad Lyon (IRI, Columbia University) methodology.
+
+
+3) A population grid for the year 2007, provided by LandScanTM Global Population Database (Oak Ridge, TN: Oak Ridge National Laboratory).
+
+
+Unit is expected average annual population (2007 as the year of reference) exposed (inhabitants) .
+
+
+This product was designed by UNEP/GRID-Europe for the Global Assessment Report on Risk Reduction (GAR). 
+It was modeled using global data.
+
+
+Credit: GIS processing UNEP/GRID-Europe.</idAbs><idPoC><rpIndName>Pascal Peduzzi</rpIndName><rpOrgName>UNEP/DEWA/GRID-Europe</rpOrgName><rpCntInfo><cntPhone><voiceNum>(+41 22) 917 82 37</voiceNum><faxNum>+41 22 917 8029</faxNum></cntPhone><cntAddress><delPoint>11, ch. des Anémones</delPoint><city>Châtelaine</city><adminArea>Genève</adminArea><postCode>1219</postCode><country>CH</country><eMailAdd>Pascal.Peduzzi@grid.unep.ch</eMailAdd></cntAddress><cntOnlineRes><linkage>http://www.grid.unep.ch</linkage></cntOnlineRes></rpCntInfo><role><RoleCd value="006"/></role></idPoC><spatRpType><SpatRepTypCd value="003"/></spatRpType><dataLang><languageCode value="en"/></dataLang><dataChar><CharSetCd value="004"/></dataChar><tpCat><TopicCatCd value="009"/></tpCat><geoBox><exTypeCode>1</exTypeCode><westBL>-180</westBL><eastBL>180</eastBL><southBL>-58</southBL><northBL>85.035945</northBL></geoBox><dataExt><tempEle><TempExtent><exTemp><TM_GeometricPrimitive><TM_Period><begin>1980-01-01</begin><end></end></TM_Period></TM_GeometricPrimitive></exTemp></TempExtent></tempEle></dataExt></dataIdInfo><distInfo><distFormat><formatName></formatName></distFormat><distTranOps><onLineSrc><linkage></linkage></onLineSrc></distTranOps></distInfo><dqInfo><dataLineage><statement>-</statement></dataLineage></dqInfo></metadata>

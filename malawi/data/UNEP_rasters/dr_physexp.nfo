@@ -1,0 +1,43 @@
+File name: dr1010ipey
+
+Format: raster
+
+Dataset title:  Physical exposition to droughts events 1980-2001
+	
+Dataset responsible party:
+  Name: Pascal Peduzzi
+  Organisation: UNEP/DEWA/GRID-Europe
+  Phone: (+41 22) 917 82 37 & Fax: +41 22 917 8029
+  Address: 11, ch. des Anémones
+  City: Châtelaine / State: Genève / Postal Code: 1219
+  Country: CH
+  Email: Pascal.Peduzzi@unepgrid.ch
+  Role: Head of Early Warning Unit
+	
+Dataset language: en
+	
+Abstract: This dataset includes an estimate of global drought annual
+  repartition based on Standardized Precipitation Index. It is based on three
+  sources: 1) A global monthly gridded precipitation dataset obtained from the
+  Climatic Research Unit (University of East Anglia). 2) A GIS modeling of
+  global Standardized Precipitation Index based on Brad Lyon (IRI, Columbia
+  University) methodology. 3) A Global Domestic Product grid for the year 2010,
+  provided by the World Bank. Unit is expected average annual GDP (2010 as the
+  year of reference) exposed in (US $ x 1000, year 2000 equivalent). This
+  product was designed by UNEP/GRID-Europe for the Global Assessment Report on
+  Risk Reduction (GAR). It was modeled using global data.
+  Credit: GIS processing UNEP/GRID-Europe.
+
+Reference system: GCS_WGS_1984
+	
+On-line resource: http://preview.grid.unep.ch
+	
+Metadata responsible party:
+  Name: Bruno Chatenoux
+  Organisation: UNEP/DEWA/GRID-Europe
+  Phone: (+41 22) 917 83 46 & Fax: +41 22 917 8029
+  Address: 11, ch. des Anémones
+  City: Châtelaine / State: Genève / Postal Code: 1219
+  Country: CH
+  Email: Bruno Chatenoux@unepgrid.ch
+  Role: Consultant
