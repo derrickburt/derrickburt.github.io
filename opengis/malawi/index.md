@@ -124,7 +124,10 @@ HV207=9;
 --resulting in ## records
 ```
 
-Combine different livestock into one column and show with percent rank:
+<details>
+<summary>Combine different livestock into one column and show with percent rank:</summary>
+<pre>	
+
 ```sql
 /*count livestock*/
 ALTER TABLE dhshh1010 ADD COLUMN hhlivestock INTEGER;
@@ -138,6 +141,8 @@ ntile(5) over(order by hhlivestock asc) as ntile5
 from
 dhshh1010
 ```
+</pre>
+</details>
 
 Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions of the methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding the fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these classifications. Further, 5 of the 12 household variables were represented either a 0 or 1 score, and there was no explanation as to how these variables were weighted nor any justification for the decision to use quintiles.
 
