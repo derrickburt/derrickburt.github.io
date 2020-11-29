@@ -1,0 +1,37 @@
+File name: fl1010irmt
+
+Format: raster
+
+Dataset title: Global estimated risk index for flood hazard
+	
+Dataset responsible party:
+  Name: Pascal Peduzzi
+  Organisation: UNEP/DEWA/GRID-Europe
+  Phone: (+41 22) 917 82 37 & Fax: +41 22 917 8029
+  Address: 11, ch. des Anémones
+  City: Châtelaine / State: Genève / Postal Code: 1219
+  Country: CH
+  Email: Pascal.Peduzzi@unepgrid.ch
+  Role: Head of Early Warning Unit
+	
+Dataset language: en
+	
+Abstract: This dataset includes an estimate of the global risk induced by
+  flood hazard. Unit is estimated risk index from 1 (low) to 5 (extreme).
+  This product was designed by UNEP/GRID-Europe for the Global Assessment
+  Report on Risk Reduction (GAR). It was modeled using global data.
+  Credit: UNEP/GRID-Europe.
+
+Reference system: GCS_WGS_1984
+	
+On-line resource: http://preview.grid.unep.ch
+	
+Metadata responsible party:
+  Name: Bruno Chatenoux
+  Organisation: UNEP/DEWA/GRID-Europe
+  Phone: (+41 22) 917 83 46 & Fax: +41 22 917 8029
+  Address: 11, ch. des Anémones
+  City: Châtelaine / State: Genève / Postal Code: 1219
+  Country: CH
+  Email: Bruno Chatenoux@unepgrid.ch
+  Role: Consultant
