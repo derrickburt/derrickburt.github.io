@@ -123,8 +123,8 @@ hv226=99 or		 --no cooking data
 hv226=95 or 	    --no cooking
 hv226=96 or		   --cooking with 'other' fuel
 HV207=9;
---deleted 156 household records with missing data for our purposes
---resulting in ## records
+/*deleted 156 household records with missing data for our purposes
+resulting in ## records*/
 ```
 </p>
 </details>	
@@ -149,10 +149,12 @@ dhshh1010
 </p>
 </details>
 
-Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions of the methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding the fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these classifications. Further, 5 of the 12 household variables were represented either a 0 or 1 score, and there was no explanation as to how these variables were weighted nor any justification for the decision to use quintiles.
-
 <details>
-	<summary> Code: </summary>
+	<summary> Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions of the
+		methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding the
+		fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these classifications.
+		Further, 5 of the 12 household variables were represented either a 0 or 1 score, and there was no explanation as to how these variables were
+		weighted nor any justification for the decision to use quintiles. </summary>
 	<p>
 
 ```sql
