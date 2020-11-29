@@ -237,14 +237,19 @@ We could not calculate the livelihood sensitivity scores (from FEWSnet) because 
 We performed the raster calculations with with QGIS model builder and [GRASS tools](https://docs.qgis.org/2.18/en/docs/user_manual/grass_integration/grass_integration.html) in QGIS instead of using PostgreSQL. It is possible to load raster data into a postgres database with ```raster2pgsql``` (if you have installed postgis with homebrew, it will already be on your computer). We used model builder to allow us to clip, reproject, and resample our two input rasters (drought and flood) and rasterize our adaptive capacity scores to allow for a final calculation.
 
 The [model](models/vulnerability_2.5res.model3), modified from an original version constructed by Professor Holler, does the following: 
+
 *(Refer to this [image of the model](photos/modelimage.png) for a visual aid.)
 
 * Takes the adapative capacity scores, uses ```extract by expression``` to remove null values, and use ```clip``` to crop by livelihood zones to produce capacityLand
 * Takes the adaptive capacity scores, uses ```extract by expression``` to remove null values, and uses ```rasterize``` to produce capacityGrid (this rasterized layer will be used to clip other rasters)
 * Adds a 'cell size' input so that the user can choose a cell size (the default is 0.041667 decimal degrees, or 2.5m)
-* Takes the flood layer, uses ```warp cell size``` to change cell size based on the input, then masks the layer by capacityGrid
-* Takes the flood layer, uses ```warp cell size``` to change cell size based on the input, then masks the layer by capacityGrid
+* Takes the flood layer, uses ```warp cell size``` to change cell size based on the input, then masks the layer by capacityGrid to produce floopClip
+* Takes the flood layer, uses ```warp cell size``` to change cell size based on the input, then masks the layer by capacityGrid to produce droughtClip
 
+After this step, we are almost ready to calculate the three rasters to get a final raster of the household resilience scores, but we first need to recalculate the flood and drought rasters into quintiles. The floodClip layer is already on a 0 to 4 scale, and can be converted to a 1 to 5 scale in raster calculator. The drought clip can be reclassified with GRASS tools using two steps:
+
+1. Input the layer into ```r.quantile``` using these [paramaters](photos/DrRecordPmtrs.png): be sure to check the "generate recode rules..." box and output the file as a .html
+2. Input the drought layer in ```r.recode``` using the .html output as the "File containing recode rules"
 
 #### Final Calculation (Fig. 5) in QGIS Model Builder
 
