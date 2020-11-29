@@ -57,7 +57,7 @@ The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert th
 <details>
 <summary>Identify urban areas from DHS clusters and join to DHS survey data:</summary>
 	
-</pre>
+<pre$>
 ```sql
 /* codes
 household id: hhid
