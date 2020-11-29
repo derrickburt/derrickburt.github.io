@@ -251,7 +251,14 @@ After this step, we are almost ready to calculate the three rasters to get a fin
 1. Input the layer into ```r.quantile``` using these [paramaters](photos/DrRecordPmtrs.png): be sure to check the "generate recode rules..." box and output the file as a .html
 2. Input the drought layer in ```r.recode``` using the .html output as the "File containing recode rules"
 
-#### Final Calculation (Fig. 5) in QGIS Model Builder
+#### Combining Indicators to Calculate Final Resilience Score (Fig. 5)
+
+With the three rasters properly clipped and classified, the following calculation in raster calculator (along with symbologizing to 'singleband pseudocolor' gave our (attempted) replicationg of Malcomb's [Figure 5](photos/MalcombFig5.png):
+
+<p align="center">
+  <img height="800" src="photos/Fig5.png">
+  </p>
+
 
 ### Discussion
 
