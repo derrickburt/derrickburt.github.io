@@ -51,12 +51,9 @@ We used the following data to reproduce Malcomb et al.'s methodology:
 
 To get the DHS data into a PostGIS database, we used this [R script](scripts/rtranscript.r) written by Professor Holler. This script is meant to write SPSS files into a Postgres database, so be sure to downlaod the DHS data as an SPSS file (if you have access).
 
-The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert the DHS household criteria into composite capacity scores. I will provide a commented walk-through of the code and emphasize areas that problematize the reproducibility Malcomb et al.'s methodology.
+The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert the DHS household criteria into composite capacity scores. I will provide a commented walk-through of the code and emphasize areas that problematize the reproducibility Malcomb et al.'s methodology
 
-
-<details>
-<summary> Identify urban areas from DHS clusters and join to DHS survey data:</summary>
-  </pre>
+Identify urban areas from DHS clusters and join to DHS survey data:
 ```sql
 /* codes
 household id: hhid
@@ -95,12 +92,8 @@ update dhshh10 set urbanrural = dhsclusters.urban_rura from dhsclusters where dh
 create table mwi as
 select st_union(st_makevalid(geom))::geometry('multipolygon',4326) from mwita;
 ``` 
-</pre>
-</details>
 
-<details>
-<summary> Clean  to get rid of null values or missing data: </summary>
-  </pre>
+Get rid of null values or missing data:
 ```sql--originally having 24825 records
 DELETE FROM dhshh1010 WHERE
 hv246a=98 or
@@ -124,12 +117,116 @@ HV207=9;
 --deleted 156 household records with missing data for our purposes
 --resulting in ## records
 ```
-</pre>
-</details>
 
+Combine different livestock into one column and show with percent rank:
+```sql
+/*count livestock*/
+ALTER TABLE dhshh1010 ADD COLUMN hhlivestock INTEGER;
+UPDATE dhshh1010 SET hhlivestock = hv246a + hv246d + hv246e + hv246g;
 
+/*illustrate with percent_rank() and ntile()*.
+select hhlivestock,
+(percent_rank() OVER(ORDER BY hhlivestock asc) * 4) + 1 as pctRtimes4plus1,
+percent_rank() OVER(ORDER BY hhlivestock asc) as pctRank,
+ntile(5) over(order by hhlivestock asc) as ntile5
+from
+dhshh1010
+```
 
+Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions of the methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding the fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these classifications. Further, 5 of the 12 household variables were represented either a 0 or 1 score, and there was no explanation as to how these variables were weighted nor any justification for the decision to use quintiles.
 
+```sql
+/* Standardizing to scale of 1 (low capacity) to 5 (high capacity) */
+/*  ORDER BY DESC will make high values to recieve a low score
+	ORDER BY ASC will make low values to receive a low score  */
+
+ALTER TABLE dhshh10 ADD COLUMN livestock REAL;
+UPDATE dhshh1010 set livestock = pctr FROM
+(SELECT hhid as shhid, percent_rank() OVER(ORDER BY hhlivestock asc) * 4 + 1 as pctr FROM dhshh10 ) as subq
+where hhid=shhid;
+
+ALTER TABLE dhshh1010 ADD COLUMN sick REAL;
+UPDATE dhshh1010 set sick=pctr from
+(SELECT hhid as shhid, percent_rank() OVER(ORDER BY hv248 desc) * 4 + 1 as pctr FROM dhshh10 ) as subq
+where hhid=shhid;
+--ORDER THIS DESC because if MANY people were sick they need a LOW capacity score
+
+ALTER TABLE dhshh1010 ADD COLUMN land REAL;
+UPDATE dhshh1010 set land=pctr from
+(SELECT hhid as shhid, percent_rank() OVER(ORDER BY hv245 asc) * 4 + 1 as pctr FROM dhshh10 ) as subq
+where hhid=shhid;
+--See code to observe how the rest of the non-binary variables were reclassified
+
+/* The following code shows how the binary (0 or 1) variables were given their scores */
+ALTER TABLE dhshh10 ADD COLUMN sexcat REAL;
+UPDATE dhshh10 set sexcat=
+	CASE
+		WHEN hv219 = 1 THEN 5
+		ELSE 1
+	END;
+
+ALTER TABLE dhshh10 ADD COLUMN cellphone REAL;
+UPDATE dhshh10 set cellphone=
+	CASE
+		WHEN hv243a = 1 THEN 5
+		ELSE 1
+	END;
+
+ALTER TABLE dhshh10 ADD COLUMN radio REAL;
+UPDATE dhshh10 set radio=
+	CASE
+		WHEN hv207 = 1 THEN 5
+		ELSE 1
+	END;
+
+ALTER TABLE dhshh10 ADD COLUMN urbanruralscore REAL;
+UPDATE dhshh10 set urbanruralscore =
+	CASE
+		WHEN urbanrural = 'U' THEN 4
+		ELSE 3
+	END;
+```
+
+From here, the scores were weighted from a scale of .4 to 2.0 scale so that the final household resilience calculation (including the other elements) would scale from 0 to 5.
+
+```sql 
+/* Create a composite household capacity score, on scale from 0.4 to 2 */
+ALTER TABLE dhshh10 ADD COLUMN capacity REAL;
+UPDATE dhshh10 SET capacity =
+(livestock*0.04+
+sick*0.03+
+land*0.06+
+wealth*0.04+
+orphans*0.03+
+water*0.04+
+electricity*0.03+
+cooking*0.02+
+sexcat*0.02+
+cellphone*0.04+
+radio*0.03+
+urbanruralscore*0.02);
+
+CREATE VIEW tacapacity AS
+SELECT ta_id, count(capacity) as hhcount, avg(capacity) as capacityavg, min(capacity) as capacitymin, max(capacity) as capacitymax, stddev(capacity) as capacitystddev
+FROM dhshh10
+GROUP BY ta_id;
+
+ALTER TABLE mwita ADD COLUMN capacity REAL;
+UPDATE mwita SET capacity = capacityavg
+FROM tacapacity
+WHERE tacapacity.ta_id = mwita.id
+
+CREATE TABLE capacity AS 
+SELECT ST_AsRaster(mwita.geom, (select rast from drought limit 1), '32BF', mwita.capacity, -9999) as rast
+FROM mwita
+where capacity is not null
+```
+
+Below is our replication of [Figure 4](photos/MalcombFig4.png). Despite being created from the same exact data, It has not been reproduced exactly as the variables are scored with a different scale and that difference is not merely one in magnitude but
+
+<p align="center">
+  <img height="600" src="photos/Fig4.png">
+  </p>
 
 
 
