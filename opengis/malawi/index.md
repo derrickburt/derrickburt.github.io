@@ -26,7 +26,7 @@ Malcomb et al. use a multi-criteria weighted analysis to analyze and visualize s
 
 ### Reproducing Malcomb's Methodology and Figures
 
-### Software
+#### Software
 
 The following softwares were used to complete this exercise:
 
@@ -47,7 +47,7 @@ We used the following data to reproduce Malcomb et al.'s methodology:
 * [OSM Malawi Lakes](data/MajorLakes.zip) from [MASDAP](http://www.masdap.mw/layers/geonode:major_lakes)
 * [National Parks](data/NationalParks.zip) from [Protected Planet](https://www.protectedplanet.net/country/MWI)
 
-#### Calculating Adapative Capacity Scores
+#### Calculating Adapative Capacity Scores (Fig 4)
 
 To get the DHS data into a PostGIS database, we used this [R script](scripts/rtranscript.r) written by Professor Holler. This script is meant to write SPSS files into a Postgres database, so be sure to downlaod the DHS data as an SPSS file (if you have access).
 
@@ -222,15 +222,31 @@ FROM mwita
 where capacity is not null
 ```
 
-Below is our replication of [Figure 4](photos/MalcombFig4.png). Despite being created from the same exact data, It has not been reproduced exactly as the variables are scored with a different scale and that difference is not merely one in magnitude but
+Below is our replication of [Figure 4](photos/MalcombFig4.png). Despite being created from the same exact data, It has not been reproduced exactly as the variables are scored with a different scale and show different geographic patterns in vulnerability; our map shows bigger clustsrs of more vulnerable (lower capacity) TAs in central Malawi
 
 <p align="center">
-  <img height="600" src="photos/Fig4.png">
+  <img height="800" src="photos/Fig4.png">
   </p>
 
+#### Calculating Sensitivity
+
+We could not calculate the livelihood sensitivity scores (from FEWSnet) because this data is no longer available. This means 20% of our final household resilience score is missing if we compare to Malcomb's.
+
+#### Calculating Physical Exposure with GRASS Tools and QGIS Model Builder
+
+We performed the raster calculations with with QGIS model builder and [GRASS tools](https://docs.qgis.org/2.18/en/docs/user_manual/grass_integration/grass_integration.html) in QGIS instead of using PostgreSQL. It is possible to load raster data into a postgres database with ```raster2pgsql``` (if you have installed postgis with homebrew, it will already be on your computer). We used model builder to allow us to clip, reproject, and resample our two input rasters (drought and flood) and rasterize our adaptive capacity scores to allow for a final calculation.
+
+The [model](models/vulnerability_2.5res.model3), modified from an original version constructed by Professor Holler, does the following: 
+*(Refer to this [image of the model](photos/modelimage.png) for a visual aid.)
+
+* Takes the adapative capacity scores, uses ```extract by expression``` to remove null values, and use ```clip``` to crop by livelihood zones to produce capacityLand
+* Takes the adaptive capacity scores, uses ```extract by expression``` to remove null values, and uses ```rasterize``` to produce capacityGrid (this rasterized layer will be used to clip other rasters)
+* Adds a 'cell size' input so that the user can choose a cell size (the default is 0.041667 decimal degrees, or 2.5m)
+* Takes the flood layer, uses ```warp cell size``` to change cell size based on the input, then masks the layer by capacityGrid
+* Takes the flood layer, uses ```warp cell size``` to change cell size based on the input, then masks the layer by capacityGrid
 
 
-### Results
+#### Final Calculation (Fig. 5) in QGIS Model Builder
 
 ### Discussion
 
