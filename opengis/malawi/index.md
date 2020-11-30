@@ -55,9 +55,9 @@ The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert th
 
 
 <details>
-	<summary>Identify urban areas from DHS clusters and join to DHS survey data:</summary>
-	<pre>
-/* codes
+<summary>Identify urban areas from DHS clusters and join to DHS survey data:</summary>
+	
+```sql/* codes
 household id: hhid
 cluster id:
 livestock: HV246a + hv246a + hv246d + hv246e + hv246g
@@ -93,7 +93,8 @@ update dhshh10 set urbanrural = dhsclusters.urban_rura from dhsclusters where dh
 
 create table mwi as
 select st_union(st_makevalid(geom))::geometry('multipolygon',4326) from mwita;
-</pre> 
+```
+
 </details>
 
 
