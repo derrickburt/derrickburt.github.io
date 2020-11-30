@@ -56,8 +56,9 @@ The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert th
 <details> <summary> get </summary>
 	
 ```sql/* codes
-household id: hhid
-cluster id:
+/*count livestock*/
+ALTER TABLE dhshh1010 ADD COLUMN hhlivestock INTEGER;
+UPDATE dhshh1010 SET hhlivestock = hv246a + hv246d + hv246e + hv246g;
 ```
 
 </details>
