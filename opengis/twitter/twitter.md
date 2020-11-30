@@ -89,9 +89,7 @@ dorianWords %>%
 </details>
 <br/>
 
-<p align="center">
-  <img height="600" src="photos/word_Count.png">
-  </p>
+![wordCount](photos/word_Count.png)
 
 
 
