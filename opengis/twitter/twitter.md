@@ -74,23 +74,59 @@ dorianWords <- dorianWords %>%
 # how many words after removing the stop words?
 count(dorianWords)
 
-dorianWords %>%
+orianWords %>%
   count(word, sort = TRUE) %>%
   top_n(15) %>%
   mutate(word = reorder(word, n)) %>%
-  ggplot(aes(x = word, y = n)) +
+  ggplot(aes(x = word, y = n),
+         fill = "darkslategray4") +
   geom_col() +
   xlab(NULL) +
   coord_flip() +
   labs(x = "Count",
        y = "Unique words",
-       title = "Count of unique words found in tweets")
+       title = "Count of 15 Most Popular Words in Dorian Tweets") +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.text.y = element_text(size = 1)) +
+  theme_bw()
 ```
 </details>
 <br/>
 
 <p align="center">
   <img src="photos/wordCount.png">
+  </p>
+  
+The next visualization will pair words in a word cloud that have been used in over 30 tweets together
+
+<details><summary markdown="snap"> Code: </summary>
+  
+```r
+#create word pairs
+dorianWordPairs <- dorianWords %>% select(word) %>%
+  mutate(word = removeWords(word, stop_words$word)) %>%
+  unnest_tokens(paired_words, word, token = "ngrams", n = 2)
+
+dorianWordPairs <- separate(dorianWordPairs, paired_words, c("word1", "word2"),sep=" ")
+dorianWordPairs <- dorianWordPairs %>% count(word1, word2, sort=TRUE)
+
+#graph a word cloud with space indicating association. you may change the filter to filter more or less than pairs with 10 instances
+dorianWordPairs %>%
+  filter(n >= 30) %>%
+  graph_from_data_frame() %>%
+  ggraph(layout = "fr") +
+  geom_node_point(color = "darkslategray4", size = 3) +
+  geom_node_text(aes(label = name), vjust = 1.8, size = 3) +
+  labs(title = "Word Network: Tweets Hurricane Dorian",
+       subtitle = "September 2019 - Text mining twitter data ",
+       x = "", y = "") +
+  theme_void()
+```
+</details>
+<br/>
+
+<p align="center">
+  <img src="photos/wordCloud.png">
   </p>
 
 
