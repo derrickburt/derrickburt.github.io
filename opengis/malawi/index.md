@@ -53,7 +53,8 @@ To get the DHS data into a PostGIS database, we used this [R script](scripts/rtr
 
 The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert the DHS household criteria into composite capacity scores. I will provide a commented walk-through of the code and emphasize areas that problematize the reproducibility Malcomb et al.'s methodology
 
-
+<details> <summary> get </summary>
+<p>
 	
 ```sql
 /*count livestock*/
@@ -61,6 +62,8 @@ ALTER TABLE dhshh1010 ADD COLUMN hhlivestock INTEGER;
 UPDATE dhshh1010 SET hhlivestock = hv246a + hv246d + hv246e + hv246g;
 ```
 
+</p>
+</details>
 
 	
 <details>
