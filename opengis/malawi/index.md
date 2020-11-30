@@ -139,7 +139,7 @@ resulting in ## records*/
 ALTER TABLE dhshh1010 ADD COLUMN hhlivestock INTEGER;
 UPDATE dhshh1010 SET hhlivestock = hv246a + hv246d + hv246e + hv246g;
 
-/*illustrate with percent_rank() and ntile()*.
+/*illustrate with percent_rank() and ntile()*/
 select hhlivestock,
 (percent_rank() OVER(ORDER BY hhlivestock asc) * 4) + 1 as pctRtimes4plus1,
 percent_rank() OVER(ORDER BY hhlivestock asc) as pctRank,
