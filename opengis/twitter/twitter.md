@@ -331,11 +331,20 @@ The second visualizes the NDTI, which is basically just a normalization of the t
 
 ###  Clustering and Hotspot Visualization in GeoDa
 
-Using Geoda, an open source platform for spatial data analysis, I calculated the Gi* clustering for the counties to detect hotspot. What this statistic essentially does is calculate stastically significant low hotspots (counties with low tweet rates that are surrounded by counties with low tweet rates) and statistically significant high hot spots (counties with high tweet rates that are surrounded by counties with high tweet rates). 
+Using Geoda, an open source platform for spatial data analysis, I calculated the Gi* clustering for the counties to detect hotspot. What this statistic essentially does is calculate stastically significant coldspots (counties with low tweet rates that are surrounded by counties with low tweet rates) and statistically significant hotspots (counties with high tweet rates that are surrounded by counties with high tweet rates). 
 
-To make these maps, I used the **Database** selection (using all the necesarry criteria for my  database) to import the counties table from my PostGIS database into GeoDA. Then, I selected **Tools** > **Weights Manager** 
+To make these maps, I used the **Database** selection (using all the necesarry criteria for my  database) to import the counties table from my PostGIS database into GeoDA. Then, I selected **Tools** > **Weights Manager**, choosing my dorian tweet rate statistic as my ID and using **Distance Weight** as my default parameter. I then select **Space** > **Local G***, choosing the tweet rate variable as my weight, including a significance map, a cluster map, and row-standardized weights. 
 
-### Discussion
+The significance map below shows the counties that had statistically significant clustering (regardless of whether they were hot or cold) and their respective significance. 
 
+<p align="center">
+  <img height="600" src="photos/significanceGmap.05.png">
+  </p>
+
+The cluster map below visualize the hotspots and the coldspots at a significance level of p = 0.05. Several counties along the southern coast (especially Virginia, North Carolina, and South Carolina) had many counties considered significant hotpsots. There were also some counties in eastern Florida and on the coast of Massachussets with significant clustering. Several counties in the midwest were statistically significant lowspots.
+
+<p align="center">
+  <img height="600" src="photos/clusters.png">
+  </p>
 
 
