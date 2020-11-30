@@ -27,7 +27,7 @@ The first portion of this analysis consists of scraping twitter data into R and 
 
 Once you have installed the necesarry packages and loaded them into you library, you can load your API information into R and start scraping twitter data. This requires an API and you can only scrape tweets from the past week.
 
-<details><summary markdown="snap"> Code: </summary>
+<details><summary markdown="span"> Code: </summary>
   
 ```r
 #set up twitter API information // #replace app, consumer_key, and consumer_secret data with your own developer acct info
@@ -54,7 +54,7 @@ dorian <- search_tweets("dorian OR hurricane OR sharpiegate",
 
 Once you have saved the data into your environment, you can begin analyzing and visualizing the twitter content. Here, we will clean the tweets to only include plain text, unnest them (make rows out of individual words instead of rows of whole tweets), remove the stopwords, and visualize the most used words related to the hurricane.
 
-<details><summary markdown="snap"> Code: </summary>
+<details><summary markdown="span"> Code: </summary>
   
 ```r
 dorian$text <- plain_tweets(dorian$text)
@@ -101,7 +101,7 @@ orianWords %>%
   
 The next visualization will pair words in a word cloud that have been used in over 30 tweets together
 
-<details><summary markdown="snap"> Code: </summary>
+<details><summary markdown="span"> Code: </summary>
   
 ```r
 #create word pairs
@@ -136,7 +136,7 @@ dorianWordPairs %>%
 
 From R, you can connect to your PostGIS database and upload the twitter data. You can also get a [census API](https://api.census.gov/data/key_signup.html) and, using the rcensus package, upload that data into R and then send it into a PostGIS database.
 
-<details><summary markdown="snap"> Code: </summary>
+<details><summary markdown="span"> Code: </summary>
 
 ```r
 #Connectign to Postgres
@@ -187,7 +187,7 @@ dbDisconnect(con)
 
 With the twitter data and county-level data in R, you can begin. Here is the full [SQL script](scripts/sqlDorian.sql) I wrote to work clean, join, and perform the calculations on this data.
 
-<details><summary markdown="snap"> Code for Cleaning and Reprojecting to USA Contiguous Lambert Conformal Conic: </summary>
+<details><summary markdown="span"> Code for Cleaning and Reprojecting to USA Contiguous Lambert Conformal Conic: </summary>
   
 ```sql
 /* Add a projected coordinate system to your database (will need it for twitter data) */
@@ -232,7 +232,7 @@ WHERE statefp NOT IN ('54',	'51',	'50',	'47',	'45',	'44',	'42',	'39',	'37',	'36'
 After the twitter data has been cleaned and properly projected, I joined the county ID to a newly created twitter ID on an intersect. With the twitter data joined to the counties, I calculated the tweet rate per 1000 people, the NDTI (normalize tweet difference index - Professor Holler's rebranding of NDVI), and created centroids to make a kernel density map.
 
 
-<details><summary> Code: </summary>
+<details><summary markdown="span"> Code: </summary>
   
 ```sql
 /* Count number of each type of tweet by county */
