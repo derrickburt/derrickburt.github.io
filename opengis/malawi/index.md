@@ -55,7 +55,7 @@ The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert th
 
 
 	
-```sql/* codes
+```sql
 /*count livestock*/
 ALTER TABLE dhshh1010 ADD COLUMN hhlivestock INTEGER;
 UPDATE dhshh1010 SET hhlivestock = hv246a + hv246d + hv246e + hv246g;
@@ -66,7 +66,8 @@ UPDATE dhshh1010 SET hhlivestock = hv246a + hv246d + hv246e + hv246g;
 <details>
 <summary>Identify urban areas from DHS clusters and join to DHS survey data:</summary>
 	
-```sql/* codes
+```sql
+/* codes
 household id: hhid
 cluster id:
 livestock: HV246a + hv246a + hv246d + hv246e + hv246g
