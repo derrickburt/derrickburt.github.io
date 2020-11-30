@@ -231,7 +231,6 @@ WHERE statefp NOT IN ('54',	'51',	'50',	'47',	'45',	'44',	'42',	'39',	'37',	'36'
 
 After the twitter data has been cleaned and properly projected, I joined the county ID to a newly created twitter ID on an intersect. With the twitter data joined to the counties, I calculated the tweet rate per 1000 people, the NDTI (normalize tweet difference index - Professor Holler's rebranding of NDVI), and created centroids to make a kernel density map.
 
-
 <details><summary markdown="span"> Code: </summary>
   
 ```sql
@@ -312,7 +311,7 @@ FROM counties
 </details>
 <br/>
 
-#### Initial Hotspot Visualization
+### Initial Hotspot Visualization
 
 Using the data from the above queries, I produced two maps in QGIS to visualize the twitter data.
 
@@ -323,7 +322,7 @@ The first, below is a [kernel density map](https://pro.arcgis.com/en/pro-app/too
   </p>
   
   
-The second visualizes the NDTI, which is basically just a normalization of the tweets about Dorian compared to the baseline activity. The calculation:  (tweets about Dorian – baseline November tweets)/(tweets about Dorian + baseline November tweets). The darker purple areas have an above average 
+The second visualizes the NDTI, which is basically just a normalization of the tweets about Dorian compared to the baseline activity. The calculation:  (tweets about Dorian – baseline November tweets)/(tweets about Dorian + baseline November tweets). The map shows higher twitter activity related to the storm along the Southern coast as well as Florida
 
 <p align="center">
   <img height="600" src="photos/NDTImap.png">
