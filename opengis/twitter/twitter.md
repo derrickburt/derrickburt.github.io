@@ -48,6 +48,7 @@ dorian <- search_tweets("dorian OR hurricane OR sharpiegate",
                         geocode="32,-78,1000mi", 
                         retryonratelimit=TRUE)
 ```
+
 </details>
 <br/>
 
@@ -309,18 +310,21 @@ FROM counties
 #### Initial Hotspot Visualization
 
 Using the data from the above queries, I produced two maps in QGIS to visualize the twitter data.
-The first, below is a [kernel density map](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/kernel-density.htm), a heat map that shows the most concentrated locations of tweets.
+
+The first, below is a [kernel density map](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/kernel-density.htm), a heat map that shows the most concentrated locations of tweets per 10,000 people. For the parameters, I set the radius to 100km to emphasize counties with higher tweets, used 500 meters pixels (for smoother, go smaller -- it just may take longer to make), and set the "Weight from field" to the dorian tweet rate (per 10,000).
 
 <p align="center">
   <img src="photos/heatMap.png">
   </p>
   
-The second visualizes the NDTI, which is basically just a normalization of the tweets about Dorian compared to the baseline activity. The calculation:  (tweets about Dorian – baseline November tweets)/(tweets about Dorian + baseline November tweets).
-
+  
+The second visualizes the NDTI, which is basically just a normalization of the tweets about Dorian compared to the baseline activity. The calculation:  (tweets about Dorian – baseline November tweets)/(tweets about Dorian + baseline November tweets). The darker purple areas have an above average 
 
 <p align="center">
   <img src="photos/NDTImap.png">
   </p>
+  
+
 
 ### Statistical Clustering and HotspotAnalysis in GeoDa
 
