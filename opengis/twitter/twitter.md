@@ -311,26 +311,29 @@ FROM counties
 </details>
 <br/>
 
-### Initial Hotspot Visualization
+### Initial Tweet Visualization
 
 Using the data from the above queries, I produced two maps in QGIS to visualize the twitter data.
 
-The first, below is a [kernel density map](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/kernel-density.htm), a heat map that shows the most concentrated locations of tweets per 10,000 people. For the parameters, I set the radius to 100km to emphasize counties with higher tweets, used 500 meters pixels (for smoother, go smaller -- it just may take longer to make), and set the "Weight from field" to the dorian tweet rate (per 10,000). The map shows the largest clustering of tweets along the coasts of North Carolina, South Carolina, and Virgina as well as a smaller cluster on the Coast of Southern Massachussets around Cape Cod.
+The first, below is a [kernel density map](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/kernel-density.htm), a heat map that shows the most concentrated locations of tweets per 10,000 people. For the parameters, I set the radius to 100km to emphasize counties with higher tweets, used 500 meters pixels (for smoother, go smaller -- it just may take longer to make), and set the "Weight from field" to the dorian tweet rate (per 10,000). The map shows the largest clustering of tweets along the coasts of North Carolina, South Carolina, and Virgina as well as a smaller cluster on the Coast of Southern Massachussets around Cape Cod. These are areas that were most affected by Dorian.
 
 <p align="center">
   <img height="600" src="photos/heatMap.png">
   </p>
   
   
-The second visualizes the NDTI, which is basically just a normalization of the tweets about Dorian compared to the baseline activity. The calculation:  (tweets about Dorian – baseline November tweets)/(tweets about Dorian + baseline November tweets). The map shows higher twitter activity related to the storm along the Southern coast as well as Florida
+The second visualizes the NDTI, which is basically just a normalization of the tweets about Dorian compared to the baseline activity. The calculation:  (tweets about Dorian – baseline November tweets)/(tweets about Dorian + baseline November tweets). The map shows higher than normal twitter activity along the Southern coast as well as parts Florida. Similar to the heat map, we are seeing an increase in twitter activity in the locations hit hardest by Dorian.
 
 <p align="center">
   <img height="600" src="photos/NDTImap.png">
   </p>
   
 
+###  Clustering and Hotspot Visualization in GeoDa
 
-### Statistical Clustering and HotspotAnalysis in GeoDa
+Using Geoda, an open source platform for spatial data analysis, I calculated the Gi* clustering for the counties to detect hotspot. What this statistic essentially does is calculate stastically significant low hotspots (counties with low tweet rates that are surrounded by counties with low tweet rates) and statistically significant high hot spots (counties with high tweet rates that are surrounded by counties with high tweet rates). 
+
+To make these maps, I used the **Database** selection (using all the necesarry criteria for my  database) to import the counties table from my PostGIS database into GeoDA. Then, I selected **Tools** > **Weights Manager** 
 
 ### Discussion
 
