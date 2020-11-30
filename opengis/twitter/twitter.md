@@ -2,7 +2,7 @@
 
 ### Purpose
 
-The purpose of this exercise is to analyze the geographic and temporal distribution of Tweets in the Eastern United States during Hurricane Dorian. In the process of this, we will cover a number off things. First, we will practice scraping twitter data in R using [rtweet](https://cran.r-project.org/web/packages/rtweet/rtweet.pdf), cleaning it, and visualizing its temporal trends and performing sentiment analysis. Then, we will send the data to a PostGIS database to join it to county level data and count the level of tweets by county. Then, we will visualize the data with a heatmap of raw tweets and a choropleth of the NDTI (Normalized Tweet Difference Index). Finally, we will use GeoDa to perform a spatial hotspot analysis.
+The purpose of this exercise is to analyze the geographic and temporal distribution of Tweets in the Eastern United States during Hurricane Dorian. In the process of this, we will cover a number off things. First, we will practice scraping twitter data in R using [rtweet](https://cran.r-project.org/web/packages/rtweet/rtweet.pdf), cleaning it, and visualizing its temporal trends and performing sentiment analysis. Then, we will send the data to a PostGIS database to join it to county level data and count the level of tweets by county. Then, we will visualize the data with a heatmap of raw tweets and a choropleth of the NDTI (Normalized Tweet Difference Index). Finally, we will use GeoDa to perform a spatial hotspot analysis. Additionally, one of the motivating factors behind this lab was to see if there was a rise in Dorian-related tweets in Alabama after the "sharpie-gate" incident.
 
 ### Software
 
@@ -338,13 +338,20 @@ To make these maps, I used the **Database** selection (using all the necesarry c
 The significance map below shows the counties that had statistically significant clustering (regardless of whether they were hot or cold) and their respective significance. 
 
 <p align="center">
-  <img height="600" src="photos/significanceGmap.05.png">
+  <img height="500" src="photos/significanceGmap.05.png">
   </p>
 
 The cluster map below visualize the hotspots and the coldspots at a significance level of p = 0.05. Several counties along the southern coast (especially Virginia, North Carolina, and South Carolina) had many counties considered significant hotpsots. There were also some counties in eastern Florida and on the coast of Massachussets with significant clustering. Several counties in the midwest were statistically significant lowspots.
 
 <p align="center">
-  <img height="600" src="photos/clusters.png">
+  <img height="500" src="photos/clusters.png">
   </p>
 
+### Discussion
+
+This analysis shows us that there does seem to be a correlation between twitter activity and areas affected by natural disasters (Wang et al. 2016). Even though Donald Trump may have grabbed national attention by drawing a sharpie-line around Alabama, it seems that there was no surge in twitter activity in Alabama. Instead, we find that most significant clustering of twitter activity related to the storm was in areas that were physically impacted by the storm. This is useful information because when the power goes out or other lines of communication are interrupted, EMTs, firefighters, and other responder may actually be able to reliably use these tweets to recognize areas that are being impacted by the storm (Wang et al. 2016).
+
+### Resources
+
+Wang, Z., Ye, X., & Tsou, M. H. (2016). Spatial, temporal, and content analysis of Twitter for wildfire hazards. Natural Hazards, 83(1), 523-540.
 
