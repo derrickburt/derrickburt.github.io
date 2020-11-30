@@ -149,10 +149,10 @@ dhshh1010
 <br/>
 
 <details><summary markdown="span"> Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions 
-		of the methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding 
-		the fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these 
-		classifications.Further, 5 of the 12 household variables were represented either a 0 or 1 score, and there was no explanation as to how these 
-		variables were weighted nor any justification for the decision to use quintiles. </summary>
+	of the methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding 
+	the fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these 
+	classifications.Further, 5 of the 12 household variables were represented either a 0 or 1 score, and there was no explanation as to how these 
+	variables were weighted nor any justification for the decision to use quintiles. </summary>
 
 ```sql
 /* Standardizing to scale of 1 (low capacity) to 5 (high capacity) */
@@ -209,7 +209,6 @@ UPDATE dhshh10 set urbanruralscore =
 </details>
 <br/>
 
-
 <details><summary markdown="span">From here, the scores were weighted from a scale of .4 to 2.0 scale so that the final household resilience calculation (including 
 		the other elements) would scale from 0 to 5.</summary>
 
@@ -246,15 +245,6 @@ FROM mwita
 where capacity is not null
 ```
 
-</details>
-<br/>
-
-Below is my replication of [Figure 4](photos/MalcombFig4.png). Despite being created from the same exact data, It has not been reproduced exactly as the variables are scored with a different scale and show different geographic patterns in vulnerability; our map shows bigger clustsrs of more vulnerable (lower capacity) TAs in central Malawi
-
-<p align="center">
-  <img height="800" src="photos/Fig4.png">
-  </p>
-
 #### Calculating Sensitivity
 
 We could not calculate the livelihood sensitivity scores (from FEWSnet) because this data is no longer available. This means 20% of our final household resilience score is missing if we compare to Malcomb's.
@@ -280,7 +270,26 @@ After this step, we are almost ready to calculate the three rasters to get a fin
 
 #### Combining Indicators to Calculate Final Resilience Score (Fig. 5)
 
-With the three rasters properly clipped and classified, the following calculation in raster calculator (along with symbologizing to 'singleband pseudocolor' gave our (attempted) replicationg of Malcomb's [Figure 5](photos/MalcombFig5.png):
+With the three rasters properly clipped and classified, the following calculation in raster calculator was made to reproduce Figure 5:
+
+```((2- capacityGrid@1)*(.4) + (droughtRecode@1)*(.2)) + ((floodClip25@1)*(.2))```
+
+### Results
+
+#### Figure 4
+
+</details>
+<br/>
+
+This is my replication of [Figure 4](photos/MalcombFig4.png). Despite being created from the same exact data, It has not been reproduced exactly as the variables are scored with a different scale and show different geographic patterns in vulnerability.
+
+<p align="center">
+  <img height="800" src="photos/Fig4.png">
+  </p>
+
+#### Figure 5 
+
+This is my replication of [Figure 5](photos/MalcombFig5.png). It is missing 20% of the Malcomb calculation, and given the difference in our DHS survey quintiles from Figure 4, that is also skewing our results from theirs. 
 
 <p align="center">
   <img height="800" src="photos/Fig5.png">
@@ -289,7 +298,7 @@ With the three rasters properly clipped and classified, the following calculatio
 
 ### Discussion
 
-Both of the figures we attempted to produce have some notable distinctions from those published in Malcomb et al. Our reproduction of Figure 4, depsite having the same exact data and attempting to replicate the bits of their methodology that was explained, have neither the same range of scores nor the same distribution of capacity scores. Figure 5, even if we were able to incorporate the FEWSnet sensitivity data, is also skewed by our results from the household scores. Even though we can see similar vulnerability patterns in the south and central regions, most of the northern porition of our figure is quite different from that of Malcomb's.
+Both of the figures we attempted to produce have some notable distinctions from those published in Malcomb et al. Our reproduction of Figure 4, depsite having the same exact data and attempting to replicate the bits of their methodology that was explained, have neither the same range of scores nor the same distribution of capacity scores. Our also has larger clusters of more vulnerable (lower capacity) TAs in central Malawi. Figure 5, even if we were able to incorporate the FEWSnet sensitivity data, is also skewed by our results from the household scores. Even though we can see similar vulnerability patterns in the south and central regions, most of the northern porition of our figure is quite different from that of Malcomb's.
 
 Although the authors' claim they employ a "transparent and easily replicable methodlogy" in this study (Malcomb et al. 2014), I argue that this research is not reproducible. While policy makers and local actors in sub-Saharan Africa might be able to borrow the author's framework of using multi-criteria vulnerability indicators to visualize climmate capacity, we could not reproduce the results of this research using the same inputs to yield the same outputs (National Academies of Sciences, Engineering, and Medicine 2019). The impediments to this paper's reproducibility may be explained by the authors' incomplete or limited sharing of their methodology, the complexity of climate vulnerability analyses, as well as the general structure of academic research that does not allow for publications, as well as their methods and research, to be updated (Sui 2014). I will examine some of the components that prevent this research from being fully reproducible.
 
