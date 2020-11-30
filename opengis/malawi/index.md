@@ -97,8 +97,6 @@ select st_union(st_makevalid(geom))::geometry('multipolygon',4326) from mwita;
 
 </details>
 <br/>
-
-
 <details><summary markdown="span">Get rid of null values or missing data:</summary>
 
 ```sql
@@ -128,7 +126,6 @@ resulting in ## records*/
 
 </details>	
 <br/>
-
 <details><summary markdown="span">Combine different livestock into one column and show with percent rank:</summary>
 	
 ```sql
@@ -147,7 +144,6 @@ dhshh1010
 
 </details>
 <br/>
-
 <details><summary markdown="span"> Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions 
 	of the methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding 
 	the fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these 
@@ -208,7 +204,6 @@ UPDATE dhshh10 set urbanruralscore =
 
 </details>
 <br/>
-
 <details><summary markdown="span">From here, the scores were weighted from a scale of .4 to 2.0 scale so that the final household resilience calculation (including 
 		the other elements) would scale from 0 to 5.</summary>
 
@@ -244,6 +239,8 @@ SELECT ST_AsRaster(mwita.geom, (select rast from drought limit 1), '32BF', mwita
 FROM mwita
 where capacity is not null
 ```
+</details>
+<br/>
 
 #### Calculating Sensitivity
 
