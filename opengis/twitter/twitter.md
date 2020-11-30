@@ -90,7 +90,7 @@ dorianWords %>%
 <br/>
 
 <p align="center">
-  <img src="photos/word_Count.png">
+  <img src="photos/wordCount.png">
   </p>
 
 
