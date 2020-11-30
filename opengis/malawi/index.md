@@ -53,7 +53,15 @@ To get the DHS data into a PostGIS database, we used this [R script](scripts/rtr
 
 The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert the DHS household criteria into composite capacity scores. I will provide a commented walk-through of the code and emphasize areas that problematize the reproducibility Malcomb et al.'s methodology
 
+<details> <summary> get </summary>
+	
+```sql/* codes
+household id: hhid
+cluster id:
+```
 
+</details>
+	
 <details>
 <summary>Identify urban areas from DHS clusters and join to DHS survey data:</summary>
 	
