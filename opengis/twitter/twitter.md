@@ -91,6 +91,7 @@ orianWords %>%
         axis.text.y = element_text(size = 1)) +
   theme_bw()
 ```
+
 </details>
 <br/>
 
@@ -123,6 +124,7 @@ dorianWordPairs %>%
        x = "", y = "") +
   theme_void()
 ```
+
 </details>
 <br/>
 
@@ -179,6 +181,7 @@ dbWriteTable(con,'counties',counties, overwrite=TRUE)
 #disconnect from the database
 dbDisconnect(con)
 ```
+
 </details>
 <br/>
 
@@ -222,6 +225,7 @@ ALTER TABLE counties ADD PRIMARY KEY (geoid);
 DELETE FROM counties
 WHERE statefp NOT IN ('54',	'51',	'50',	'47',	'45',	'44',	'42',	'39',	'37',	'36',	'34',	'33',	'29',	'28',	'25',	'24',	'23',	'22',	'21',	'18',	'17',	'13',	'12',	'11',	'10',	'09',	'05',	'01');
 ```
+
 </details>
 <br/>
 
@@ -304,6 +308,7 @@ CREATE TABLE counties_pts AS
 SELECT*, ST_CENTROID(geometry)
 FROM counties
 ```
+
 </details>
 <br/>
 
@@ -311,17 +316,17 @@ FROM counties
 
 Using the data from the above queries, I produced two maps in QGIS to visualize the twitter data.
 
-The first, below is a [kernel density map](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/kernel-density.htm), a heat map that shows the most concentrated locations of tweets per 10,000 people. For the parameters, I set the radius to 100km to emphasize counties with higher tweets, used 500 meters pixels (for smoother, go smaller -- it just may take longer to make), and set the "Weight from field" to the dorian tweet rate (per 10,000).
+The first, below is a [kernel density map](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/kernel-density.htm), a heat map that shows the most concentrated locations of tweets per 10,000 people. For the parameters, I set the radius to 100km to emphasize counties with higher tweets, used 500 meters pixels (for smoother, go smaller -- it just may take longer to make), and set the "Weight from field" to the dorian tweet rate (per 10,000). The map shows the largest clustering of tweets along the coasts of North Carolina, South Carolina, and Virgina as well as a smaller cluster on the Coast of Southern Massachussets around Cape Cod.
 
 <p align="center">
-  <img src="photos/heatMap.png">
+  <img height="400" src="photos/heatMap.png">
   </p>
   
   
 The second visualizes the NDTI, which is basically just a normalization of the tweets about Dorian compared to the baseline activity. The calculation:  (tweets about Dorian – baseline November tweets)/(tweets about Dorian + baseline November tweets). The darker purple areas have an above average 
 
 <p align="center">
-  <img src="photos/NDTImap.png">
+  <img height="400" src="photos/NDTImap.png">
   </p>
   
 
