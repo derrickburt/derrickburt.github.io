@@ -54,20 +54,8 @@ To get the DHS data into a PostGIS database, we used this [R script](scripts/rtr
 The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert the DHS household criteria into composite capacity scores. I will provide a commented walk-through of the code and emphasize areas that problematize the reproducibility Malcomb et al.'s methodology
 
 
-<details> <summary markdown="span"> get </summary>
-	
-```sql
-/*count livestock*/
-ALTER TABLE dhshh1010 ADD COLUMN hhlivestock INTEGER;
-UPDATE dhshh1010 SET hhlivestock = hv246a + hv246d + hv246e + hv246g;
-```
-
-</details>
-<br/>
-
-	
-<details>
-<summary>Identify urban areas from DHS clusters and join to DHS survey data:</summary>
+<details> 
+	<summary markdown="span"> Identify urban areas from DHS clusters and join to DHS survey data:</summary>
 	
 ```sql
 /* codes
@@ -109,11 +97,13 @@ select st_union(st_makevalid(geom))::geometry('multipolygon',4326) from mwita;
 ```
 
 </details>
+<br/>
 
 
 <details>
-	<summary>Get rid of null values or missing data:</summary>
-	<pre>
+	<summary markdown="span">Get rid of null values or missing data:</summary>
+
+```sql
 --originally having 24825 records
 DELETE FROM dhshh1010 WHERE
 hv246a=98 or
@@ -136,12 +126,15 @@ hv226=96 or		   --cooking with 'other' fuel
 HV207=9;
 /*deleted 156 household records with missing data for our purposes
 resulting in ## records*/
-</pre>
+```
+
 </details>	
+<br/>
 
 <details>
-	<summary>Combine different livestock into one column and show with percent rank:</summary>
-	<pre>	
+	<summary markdown="span">Combine different livestock into one column and show with percent rank:</summary>
+	
+```sql
 /*count livestock*/
 ALTER TABLE dhshh1010 ADD COLUMN hhlivestock INTEGER;
 UPDATE dhshh1010 SET hhlivestock = hv246a + hv246d + hv246e + hv246g;
@@ -153,17 +146,19 @@ percent_rank() OVER(ORDER BY hhlivestock asc) as pctRank,
 ntile(5) over(order by hhlivestock asc) as ntile5
 from
 dhshh1010
-</pre>
-</details>
+```
 
+</details>
+<br/>
 
 <details>
-	<summary> Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions of the
-		methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding the
-		fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these classifications.
-		Further, 5 of the 12 household variables were represented either a 0 or 1 score, and there was no explanation as to how these variables were
-		weighted nor any justification for the decision to use quintiles. </summary>
-	<pre>
+	<summary markdown="span"> Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions 
+		of the methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding 
+		the fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these 
+		classifications.Further, 5 of the 12 household variables were represented either a 0 or 1 score, and there was no explanation as to how these 
+		variables were weighted nor any justification for the decision to use quintiles. </summary>
+
+```sql
 /* Standardizing to scale of 1 (low capacity) to 5 (high capacity) */
 /*  ORDER BY DESC will make high values to recieve a low score
 	ORDER BY ASC will make low values to receive a low score  */
@@ -213,14 +208,17 @@ UPDATE dhshh10 set urbanruralscore =
 		WHEN urbanrural = 'U' THEN 4
 		ELSE 3
 	END;
-</pre>
+```
+
 </details>
+<br/>
 
 
 <details>
-	<summary>From here, the scores were weighted from a scale of .4 to 2.0 scale so that the final household resilience calculation (including the other
-		elements) would scale from 0 to 5.</summary>
-	<pre> 
+	<summary markdown="span">From here, the scores were weighted from a scale of .4 to 2.0 scale so that the final household resilience calculation (including 
+		the other elements) would scale from 0 to 5.</summary>
+
+```sql
 /* Create a composite household capacity score, on scale from 0.4 to 2 */
 ALTER TABLE dhshh10 ADD COLUMN capacity REAL;
 UPDATE dhshh10 SET capacity =
@@ -251,11 +249,12 @@ CREATE TABLE capacity AS
 SELECT ST_AsRaster(mwita.geom, (select rast from drought limit 1), '32BF', mwita.capacity, -9999) as rast
 FROM mwita
 where capacity is not null
-</pre>
+```
+
 </details>
+<br/>
 
-
-Below is our replication of [Figure 4](photos/MalcombFig4.png). Despite being created from the same exact data, It has not been reproduced exactly as the variables are scored with a different scale and show different geographic patterns in vulnerability; our map shows bigger clustsrs of more vulnerable (lower capacity) TAs in central Malawi
+Below is my replication of [Figure 4](photos/MalcombFig4.png). Despite being created from the same exact data, It has not been reproduced exactly as the variables are scored with a different scale and show different geographic patterns in vulnerability; our map shows bigger clustsrs of more vulnerable (lower capacity) TAs in central Malawi
 
 <p align="center">
   <img height="800" src="photos/Fig4.png">
