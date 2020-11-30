@@ -25,11 +25,13 @@ You can download the status ID's for the tweets analyzed in this exercise here:
 
 The first portion of this analysis consists of scraping twitter data into R and performing some analyses of the twitter content. You can download the entire [R script](scripts/dorianTwitter.R) but I will walk through some of the code as well.
 
-<detials><summary markdown="snap">Once you have installed the necesarry packages and loaded them into you library, you can load your API information into R and start scraping twitter data. This requires an API and you can only scrape tweets from the past week.</summary>
+Once you have installed the necesarry packages and loaded them into you library, you can load your API information into R and start scraping twitter data. This requires an API and you can only scrape tweets from the past week.
+
+<details><summary markdown="snap"> Code: </summary>
+  
 ```r
-#set up twitter API information
+#set up twitter API information // #replace app, consumer_key, and consumer_secret data with your own developer acct info
 #this should launch a web browser and ask you to log in to twitter
-#replace app, consumer_key, and consumer_secret data with your own developer acct info
 twitter_token <- create_token(
   app = "name",  					
   consumer_key = "key",  	
@@ -48,5 +50,53 @@ dorian <- search_tweets("dorian OR hurricane OR sharpiegate",
 ```
 </details>
 <br/>
+
+Once you have saved the data into your environment, you can begin analyzing and visualizing the twitter content. Here, we will clean the tweets to only include plain text, unnest them (make rows out of individual words instead of rows of whole tweets), remove the stopwords, and visualize the most used words related to the hurricane.
+
+<details><summary markdown="snap"> Code: </summary>
+  
+```r
+dorian$text <- plain_tweets(dorian$text)
+
+dorianText <- select(dorian,text)
+dorianWords <- unnest_tokens(dorianText, word, text)
+
+# how many words do you have including the stop words?
+count(dorianWords)
+
+#create list of stop words (useless words) and add "t.co" twitter links to the list
+data("stop_words")
+stop_words <- stop_words %>% add_row(word="t.co",lexicon = "SMART")
+
+dorianWords <- dorianWords %>%
+  anti_join(stop_words) 
+
+# how many words after removing the stop words?
+count(dorianWords)
+
+dorianWords %>%
+  count(word, sort = TRUE) %>%
+  top_n(15) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(x = word, y = n)) +
+  geom_col() +
+  xlab(NULL) +
+  coord_flip() +
+  labs(x = "Count",
+       y = "Unique words",
+       title = "Count of unique words found in tweets")
+```
+</details>
+<br/>
+
+<p align="center">
+  <img height="600" src="photos/word_Count.png">
+  </p>
+
+
+
+
+
+
 
 census api: https://api.census.gov/data/key_signup.html
