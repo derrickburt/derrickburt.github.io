@@ -54,8 +54,7 @@ To get the DHS data into a PostGIS database, we used this [R script](scripts/rtr
 The following [sql code](scripts/vulnerabilitySQL.sql) was written to convert the DHS household criteria into composite capacity scores. I will provide a commented walk-through of the code and emphasize areas that problematize the reproducibility Malcomb et al.'s methodology
 
 
-<details> 
-	<summary> Identify urban areas from DHS clusters and join to DHS survey data:</summary>
+<details> <summary markdown="span"> Identify urban areas from DHS clusters and join to DHS survey data:</summary>
 	
 ```sql
 /* codes
@@ -100,8 +99,7 @@ select st_union(st_makevalid(geom))::geometry('multipolygon',4326) from mwita;
 <br/>
 
 
-<details>
-	<summary markdown="span">Get rid of null values or missing data:</summary>
+<details><summary markdown="span">Get rid of null values or missing data:</summary>
 
 ```sql
 --originally having 24825 records
@@ -131,8 +129,7 @@ resulting in ## records*/
 </details>	
 <br/>
 
-<details>
-	<summary markdown="span">Combine different livestock into one column and show with percent rank:</summary>
+<details><summary markdown="span">Combine different livestock into one column and show with percent rank:</summary>
 	
 ```sql
 /*count livestock*/
@@ -151,8 +148,7 @@ dhshh1010
 </details>
 <br/>
 
-<details>
-	<summary markdown="span"> Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions 
+<details><summary markdown="span"> Here is a small subset of our code to convert the household level data to quintiles. This was one of the more difficult portions 
 		of the methodology to reproduce. While Malcomb et al. explains that they reclassified these sets of data into quntiles from 0 to 5 (notwithstanding 
 		the fact that 0 to 5 actually represents 6 classes), they did not explain in detail the decision making processes that went into these 
 		classifications.Further, 5 of the 12 household variables were represented either a 0 or 1 score, and there was no explanation as to how these 
@@ -214,8 +210,7 @@ UPDATE dhshh10 set urbanruralscore =
 <br/>
 
 
-<details>
-	<summary markdown="span">From here, the scores were weighted from a scale of .4 to 2.0 scale so that the final household resilience calculation (including 
+<details><summary markdown="span">From here, the scores were weighted from a scale of .4 to 2.0 scale so that the final household resilience calculation (including 
 		the other elements) would scale from 0 to 5.</summary>
 
 ```sql
