@@ -319,14 +319,14 @@ Using the data from the above queries, I produced two maps in QGIS to visualize 
 The first, below is a [kernel density map](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/kernel-density.htm), a heat map that shows the most concentrated locations of tweets per 10,000 people. For the parameters, I set the radius to 100km to emphasize counties with higher tweets, used 500 meters pixels (for smoother, go smaller -- it just may take longer to make), and set the "Weight from field" to the dorian tweet rate (per 10,000). The map shows the largest clustering of tweets along the coasts of North Carolina, South Carolina, and Virgina as well as a smaller cluster on the Coast of Southern Massachussets around Cape Cod.
 
 <p align="center">
-  <img height="800" src="photos/heatMap.png">
+  <img height="600" src="photos/heatMap.png">
   </p>
   
   
 The second visualizes the NDTI, which is basically just a normalization of the tweets about Dorian compared to the baseline activity. The calculation:  (tweets about Dorian – baseline November tweets)/(tweets about Dorian + baseline November tweets). The darker purple areas have an above average 
 
 <p align="center">
-  <img height="800" src="photos/NDTImap.png">
+  <img height="600" src="photos/NDTImap.png">
   </p>
   
 
