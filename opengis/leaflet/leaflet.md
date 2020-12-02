@@ -92,52 +92,6 @@ Modification:
         });
 ```
 
-#### Popups 
-
-I edited the the naming of my popups from their attribute names more legible:
-
-Original:
-```html
-function pop_HomeswithinPTZone_4(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">fid</th>\
-                        <td>' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">total_res</th>\
-                        <td>' + (feature.properties['total_res'] !== null ? autolinker.link(feature.properties['total_res'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">pct_access</th>\
-                        <td>' + (feature.properties['pct_access'] !== null ? autolinker.link(feature.properties['pct_access'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-```
-
-Modification:
-```html
-function pop_HomeswithinPTZone_4(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">fid</th>\
-                        <td>' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">total_res</th>\
-                        <td>' + (feature.properties['total_res'] !== null ? autolinker.link(feature.properties['Total Residences'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">pct_access</th>\
-                        <td>' + (feature.properties['pct_access'] !== null ? autolinker.link(feature.properties['Pct Residences in Zone'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-```
-
 #### Add a Scale bar
 
 At the bottom of the script add ```L.control.scale().addTo(map);``` just before ```</script```:
@@ -148,3 +102,7 @@ L.control.scale().addTo(map);
     </body>
 </html>
 ```
+
+### Final Map
+
+Here is the link to the [final map!](dsmmap/index.html)
