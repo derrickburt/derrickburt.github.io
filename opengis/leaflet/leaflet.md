@@ -51,9 +51,9 @@ I set the "**Exporter**" to "Export to folder" and left the rest of the settings
 
 Upon exporting, a folder will be saved in the same location that your .qgz/.qgs filed is saved. You can click on the index.html file to get an initial view of your map. 
 
-#### Attribution
+#### Attributions in Footing
 
-I added a hyperlinked attribution in bottom corner to share my github page:
+I added a hyperlinked attribution in bottom corner to share my github page with users. For hyperlinks that I wanted to be opened in a new tab (all but my own), I inserted ```target="_blank"``` after the link to the respective website ```<href=link HERE>```.
 
 Original:
 ```html
@@ -64,5 +64,87 @@ Modification:
 ```html
 map.attributionControl.setPrefix('<a href="https://derrickburt.github.io" >derrickburt</a> &middot; <a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org" target="_blank">>QGIS</a>')
 ```
-![attribution1](photos/attribution1.png) > ![attribution2](photos/attribution2.png) 
+I also added an attribution for each individual layer, here's an example for the Subwards layer: 
 
+Original:
+```html
+        var layer_AllSubwards_1 = new L.geoJson(json_AllSubwards_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_AllSubwards_1',
+            layerName: 'layer_AllSubwards_1',
+            pane: 'pane_AllSubwards_1',
+            onEachFeature: pop_AllSubwards_1,
+            style: style_AllSubwards_1_0,
+        });
+```
+
+Modification:
+```html
+        var layer_AllSubwards_1 = new L.geoJson(json_AllSubwards_1, {
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            interactive: true,
+            dataVar: 'json_AllSubwards_1',
+            layerName: 'layer_AllSubwards_1',
+            pane: 'pane_AllSubwards_1',
+            onEachFeature: pop_AllSubwards_1,
+            style: style_AllSubwards_1_0,
+        });
+```
+
+#### Popups 
+
+I edited the the naming of my popups from their attribute names more legible:
+
+Original:
+```html
+function pop_HomeswithinPTZone_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">fid</th>\
+                        <td>' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">total_res</th>\
+                        <td>' + (feature.properties['total_res'] !== null ? autolinker.link(feature.properties['total_res'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pct_access</th>\
+                        <td>' + (feature.properties['pct_access'] !== null ? autolinker.link(feature.properties['pct_access'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+```
+
+Modification:
+```html
+function pop_HomeswithinPTZone_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">fid</th>\
+                        <td>' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">total_res</th>\
+                        <td>' + (feature.properties['total_res'] !== null ? autolinker.link(feature.properties['Total Residences'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pct_access</th>\
+                        <td>' + (feature.properties['pct_access'] !== null ? autolinker.link(feature.properties['Pct Residences in Zone'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+```
+
+#### Add a Scale bar
+
+At the bottom of the script add ```L.control.scale().addTo(map);``` just before ```</script```:
+
+```html
+L.control.scale().addTo(map);
+        </script>
+    </body>
+</html>
+```
