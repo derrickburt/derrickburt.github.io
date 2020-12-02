@@ -41,11 +41,11 @@ Here, you will will be deciding which layers will be visible upon opening the we
 
 #### Appearance 
 
-Here are the parameters I used in my [appearance tab](photos/Appearance.png).
+Here are the parameters I used in my [appearance tab](photos/Appearance.png). Most of the settings I left at their default. I changed the "**Add layers list**" to expanded to show the entire legend. I sent the "**Extent**" to "Canvas extent", and made sure my canvas was set to an appropriate scale before exporting. I set the "**Max Zoom Level**" to 25 and the "**Min Zoom Level**" to 3. I unchecked "**Restrict to extent**" so that users can zoom out as far as the like.
 
 #### Export 
 
-I left these at their default setting
+I set the "**Exporter**" to "Export to folder" and left the rest of the settings at their defaults.
 
 ### Customize by Editing the .html File
 
@@ -53,12 +53,16 @@ Upon exporting, a folder will be saved in the same location that your .qgz/.qgs 
 
 #### Attribution
 
-Adding a hyperlinked attribution to my github:
+I added a hyperlinked attribution in bottom corner to share my github page:
 
 Original:
 ```html
 map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
 ```
 
-
+Modification:
+```html
+map.attributionControl.setPrefix('<a href="https://derrickburt.github.io" >derrickburt</a> &middot; <a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org" target="_blank">>QGIS</a>')
+```
+![attribution1](photos/attribution1.png) > ![attribution2](photos/attribution2.png) 
 
