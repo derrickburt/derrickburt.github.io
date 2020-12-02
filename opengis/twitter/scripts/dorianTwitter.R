@@ -26,11 +26,11 @@ library(rccmisc)
 #this should launch a web browser and ask you to log in to twitter
 #replace app, consumer_key, and consumer_secret data with your own developer acct info
 twitter_token <- create_token(
-  app = "derrickburt",  					
-  consumer_key = "TMGgPnQX9F8khDPpq5kuKhTen",  	
-  consumer_secret = "UIgRlv9Ea5pwGCWROxcq3XMXUJFV7q85UjQbCpU8KzzLQSxRnu", 
-  access_token = "1250901141782659072-zJiVcOO1iCOEGRDLF8Oya5cM49HS4l",
-  access_secret = "hFtt7kiHqlDR3DT2uokq4pdQ5kkdcNbtVcvlZKibQJJNF"
+  app = "name",  					
+  consumer_key = "key",  	
+  consumer_secret = "secret", 
+  access_token = "token",
+  access_secret = "secret"
 )
 
 #get tweets for hurricane Dorian, searched on September 11, 2019
@@ -44,14 +44,23 @@ dorian <- search_tweets("dorian OR hurricane OR sharpiegate",
 
 #get tweets without any text filter for the same geographic region in November, searched on November 19, 2019
 #the query searches for all verified or unverified tweets, so essentially everything
-november <- search_tweets("-filter:verified OR filter:verified", n=200000, include_rts=FALSE, token=twitter_token, geocode="32,-78,1000mi", retryonratelimit=TRUE)
+november <- search_tweets("-filter:verified OR filter:verified", 
+                          n=200000, 
+                          include_rts=FALSE, 
+                          token=twitter_token, 
+                          geocode="32,-78,1000mi", 
+                          retryonratelimit=TRUE)
 
 ############### UPLOAD RESULTS TO POSTGIS DATABASE ###############
 
 #Connectign to Postgres
 #Create a con database connection with the dbConnect function.
 #Change the database name, user, and password to your own!
-con <- dbConnect(RPostgres::Postgres(), dbname='casey', host='artemis', user='casey', password='Casey2020*') 
+con <- dbConnect(RPostgres::Postgres(), 
+                 dbname='yourname', 
+                 host='yourhost', 
+                 user='youruser', 
+                 password='yourpassword*') 
 
 #list the database tables, to check if the database is working
 dbListTables(con) 
@@ -68,6 +77,15 @@ dbWriteTable(con,'november',november, overwrite=TRUE)
 #SQL to add geometry column of type point and crs NAD 1983: 
 #SELECT AddGeometryColumn ('public','winter','geom',4269,'POINT',2, false);
 #SQL to calculate geometry: update winter set geom = st_transform(st_makepoint(lng,lat),4326,4269);
+
+#get a Census API here: https://api.census.gov/data/key_signup.html
+#replace the key text 'yourkey' with your own key!
+Counties <- get_estimates("county",
+                          product="population",
+                          output="wide",
+                          geometry=TRUE,
+                          keep_geo_vars=TRUE, 
+                          key="yourkey")
 
 #make all lower-case names for this table
 counties <- lownames(Counties)
@@ -129,29 +147,6 @@ dorianWordPairs %>%
        x = "", y = "") +
   theme_void()
 
-############# SPATIAL ANALYSIS ############# 
 
-#get a Census API here: https://api.census.gov/data/key_signup.html
-#replace the key text 'yourkey' with your own key!
-Counties <- get_estimates("county",product="population",output="wide",geometry=TRUE,keep_geo_vars=TRUE, key="b37ff2db6db230a870c51ac5b5e9ec01c60b9f81")
-
-#select only the states you want, with FIPS state codes in quotes in the c() list
-#Warning: I missed washington DC in this list! It's selecting by FIPS codes
-#look up fips codes here: https://en.wikipedia.org/wiki/Federal_Information_Processing_Standard_state_code 
-WestCoastCounties <- filter(Counties,STATEFP %in% c("06","41","53"))
-
-#map results with GGPlot
-#note: cut_interval is an equal interval classification function, while cut_numer is a quantile / equal count function
-#you can change the colors, titles, and transparency of points
-ggplot() +
-  geom_sf(data=WestCoastCounties, aes(fill=cut_number(DENSITY,5)), color="grey")+
-  scale_fill_brewer(palette="GnBu")+
-  guides(fill=guide_legend(title="Population Density"))+
-  geom_point(data = drugTweetsGeo, aes(x=lng,y=lat),
-             colour = 'purple', alpha = .5) +
-  labs(title = "Tweet Locations about Drug Overdoses & Fentanyl")+
-  theme(plot.title=element_text(hjust=0.5),
-        axis.title.x=element_blank(),
-        axis.title.y=element_blank())
 
 
