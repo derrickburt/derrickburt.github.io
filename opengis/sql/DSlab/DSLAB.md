@@ -175,7 +175,7 @@ SET pct_access = (stops_access * 1.0/total_ct) * 1000;
   
 ### Leaflet Visualization
 
-To allow for a scalable and interactive visualization of this analysis, I have made a [leaflet web map](dsmmap/index.html).
+To allow for a scalable and interactive visualization of this analysis, I have made a [leaflet web map](leaflet/dsmmap/index.html). I have also provided some basic directions on how to publish a web map from qgis in the [following blog post](leaflet/leaflet.md).
 
 ### Discussion
 
