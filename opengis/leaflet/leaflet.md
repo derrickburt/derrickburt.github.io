@@ -47,12 +47,18 @@ Here are the parameters I used in my [appearance tab](photos/Appearance.png).
 
 I left these at their default setting
 
-### Editing the .html file
+### Customize by Editing the .html File
 
 Upon exporting, a folder will be saved in the same location that your .qgz/.qgs filed is saved. You can click on the index.html file to get an initial view of your map. 
 
-To edit some features, such as your attributes and symbology, open up the html file in a text ediot (I used Moped on a Mac, Notepad++ is good for Windows).
+#### Attribution
 
+Adding a hyperlinked attribution to my github:
+
+Original:
+```html
+map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+```
 
 
 
