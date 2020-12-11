@@ -20,16 +20,26 @@ The purpose of this exercise is to replicate Kang et al's methodology, using Jup
 * Most of the code is an exact replication of Kang et al.'s methodology (unless explicitly noted, it should be assumed that any code was written by Kange et al.)
 * Note on reproducibility: the notebook was run in the CyberGISX environment, so even with the data and notebook provided, my replication is only exactly reproducible within the CyberGISX platform. Otherwise, you will need to install all of the python packages on your local jupyter platform, and then the notebook should work.
 
-### Software
+### Kang et al. Methodology
+
+To the measure spatial accessibility of COVID-19 healthcare resources, Kang et al. use a P-E2SFCA. Essentially, their two-step methodology first finds the size of the population (either COVID-19 patients or population over fifty) of  within stagerred catchment areas of hospitals. They do this locating the nearest node on Open Street Map network (specifically using [OSMNX](https://osmnx.readthedocs.io/en/stable/_), a python package to import OSM networks) to each hospital, and calcuating catchment areas off 10, 20, and 30 minute drive times. The population of a catchment area is found by locating the centroids of the population's given geography (for covid, zip code level, and for over fifty, census tracts) within the catchment area. After the catchment areas are calculated, a [service-to-population ratio](Photos/ratio.png) is calculated to find the available resources (ICU beds or Ventilators) to the desired population. To allow for comparison, an [accessibility measurment](photos/accessibility.png). These accessibility measures are mapped onto hexagonal grids, and then aggregated onto one hexagonal grid, measuring accessibility on a relative scale of 0 to 1 (1 being the relatively most accessible, 0 being relatively least). More accessible areas will be those with the most overlapping catchment areas with more available resources (clusters of hospitals with more resources). The parallel implementa
+
+This figure, from the paper, provides a conceptual workflow of the spatial analysis:
+
+[!image1](photos/Workflow.png)
+
+This figure, from the paper, provides a conceptual workflow of the parallel computation:
+
+[!image2](photos/Parallel.png)
+
+### Replicating the Notebook for Connecticut
+
+#### Software
 
 * [QGIS 3.10](https://qgis.org/en/site/forusers/download.html)
 * [Jupyter Notebook](https://jupyter.org/) on [CyberGISX Platform](https://cybergisxhub.cigi.illinois.edu/registration/)
 
-### Kang et al. Methodology
-
-### Replicating the Notebook for Connecticut
-
-#### Data
+#### Data and Notebook
 
 #### Preparing the Data
 
