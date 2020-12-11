@@ -1,6 +1,6 @@
 ## This is a portfolio of GIS projects completed for an Open Source GIS course at Middlebury College. You can view my github profile [here](https://github.com/derrickburt).
 
-### [CyberGISX Jupyter Notebooks: Reproducing Analysis for Spatial Accessibility of Covid-19 Healthcare Resources](ctCovid/ctCovid.md)
+### [CyberGISX Jupyter Notebooks: Reproducing Spatial Accessibility Analysis of Covid-19 Healthcare Resources](ctCovid/ctCovid.md)
 
 ### [Interactive Data Viz with R Shiny: Vermont Parcel Values](vtParcels/vtParcels.md)
 
