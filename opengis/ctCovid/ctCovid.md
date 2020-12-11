@@ -134,7 +134,226 @@ hospitals.head()
 <br/>
 
 
+<details><summary markdown="span"> Map hospital data:</summary>
 
+```py
+# DERRICK: switch lat long to CT, bring out starting zoom a bit
+m = folium.Map(location=[41.5, -72.65], tiles='cartodbpositron', zoom_start=8.47)
+for i in range(0, len(hospitals)):
+    folium.CircleMarker(
+    # DERRICK: add CT data, edit lat long and pop ups
+      location=[hospitals.iloc[i]['LATITUDE'], hospitals.iloc[i]['LONGITUDE']],
+      # getting error tuple index out of range
+      # popup="{}{}\n{}{}\n{}{}".format('Hospital Name: ',hospitals.iloc[i]['NAME']),
+                                      #'Beds: ',hospitals.iloc[i]['BEDS']),
+      radius=5,
+      color='grey',
+      fill=True,
+      fill_opacity=0.6,
+      legend_name = 'Hospitals'
+    ).add_to(m)
+legend_html =   '''<div style="position: fixed; width: 20%; heigh: auto;
+                            bottom: 10px; left: 10px;
+                            solid grey; z-index:9999; font-size:14px;
+                            ">&nbsp; Legend<br>'''
+
+m
+```
+
+</details>	
+<br/>
+
+
+<details><summary markdown="span"> Load ct grid :</summary>
+
+```py
+# change to CT grid file
+grid_file = gpd.read_file('./CTData/GridFile/ctGrid.shp')
+grid_file.plot(figsize=(8,8))
+```
+
+</details>	
+<br/>
+
+<details><summary markdown="span"> Load CT street network with 15km buffer :</summary>
+
+```py
+#DERRICK: switch to CT and add buffer_dist
+if not os.path.exists("CTData/CT_Buffered_Network.graphml"):
+    G = osmnx.graph_from_place('Connecticut', buffer_dist=15000, network_type='drive')
+    osmnx.save_graphml(G, 'CT_Buffered_Network.graphml', folder="CTData")
+else:
+    G = osmnx.load_graphml('CT_Buffered_Network.graphml', folder="CTData", node_type=str)
+osmnx.plot_graph(G, fig_height=10)
+```
+
+</details>	
+<br/>
+
+<details><summary markdown="span"> Alter pop_centroid function for CT data :</summary>
+
+```py
+# to estimate the centroids of census tract / county
+def pop_centroid (pop_data, pop_type):
+    pop_data = pop_data.to_crs({'init': 'epsg:4326'})
+    if pop_type =="pop":
+        pop_data=pop_data[pop_data['OverFifty']>=0] 
+    if pop_type =="covid":
+        # DERRICK: change 'cases' to 'Cases'
+        pop_data=pop_data[pop_data['Cases']>=0]
+    pop_cent = pop_data.centroid # it make the polygon to the point without any other information
+    pop_centroid = gpd.GeoDataFrame()
+    i = 0
+    for point in tqdm(pop_cent, desc='Pop Centroid File Setting', position=0):
+        if pop_type== "pop":
+            pop = pop_data.iloc[i]['OverFifty']
+            # believe 'GEOID' will work
+            code = pop_data.iloc[i]['GEOID']
+        if pop_type =="covid":
+            pop = pop_data.iloc[i]['Cases']
+            # change ZCTA5CE10 to objectid
+            code = pop_data.iloc[i].OBJECTID
+        pop_centroid = pop_centroid.append({'code':code,'pop': pop,'geometry': point}, ignore_index=True)
+        i = i+1
+        #JOE: somehow this code loses the CRS metadata in conversion to centroids
+    pop_centroid.crs = "epsg:4326"
+    return(pop_centroid)
+```
+
+</details>	
+<br/>
+
+<details><summary markdown="span"> Alter hospital_measure_acc function for CT data :</summary>
+
+```py
+def hospital_measure_acc (_thread_id, hospital, pop_data, distances, weights):
+    ##distance weight = 1, 0.68, 0.22
+    polygons = []
+    for distance in distances:
+        polygons.append(calculate_catchment_area(G, hospital['nearest_osm'],distance))
+    for i in range(1, len(distances)):
+        polygons[i] = gpd.overlay(polygons[i], polygons[i-1], how="difference")
+        
+    num_pops = []
+    for j in pop_data.index:
+        point = pop_data['geometry'][j]
+        for k in range(len(polygons)):
+            if len(polygons[i]) > 0: # to exclude the weirdo (convex hull is not polygon)
+                if (point.within(polygons[k].iloc[0]["geometry"])):
+                    num_pops.append(pop_data['pop'][j]*weights[k])  
+    total_pop = sum(num_pops)
+    for i in range(len(distances)):
+        polygons[i]['time']=distances[i]
+        polygons[i]['total_pop']=total_pop
+        # DERRICK: add 'BEDS'
+        polygons[i]['hospital_beds'] = float(hospital['BEDS'])/polygons[i]['total_pop'] # proportion of # of beds over pops in 10 mins
+        polygons[i]['hospital_ICU'] = float(hospital['ICU'])/polygons[i]['total_pop'] # proportion of # of beds over pops in 10 mins
+        polygons[i].crs = { 'init' : 'epsg:4326'}
+        # change UTM zone from 16N 'epsg:32616' to zone 18n 'epsg:32618'
+        polygons[i] = polygons[i].to_crs({'init':'epsg:32618'})
+    print('\rCatchment for hospital {:4.0f} complete'.format(_thread_id), end="")
+    return(_thread_id, [ polygon.copy(deep=True) for polygon in polygons ])
+```
+
+</details>	
+<br/>
+
+<details><summary markdown="span"> Alter file_import function for CT data :</summary>
+
+```py
+def file_import (pop_type, region):
+    # DERRICK: change to CT and change file path to CTDAta
+    if not os.path.exists("CTData/CT_Buffered_Network.graphml"):
+        G = osmnx.graph_from_place('Connecticut', network_type='drive') # pulling the drive network the first time will take a while
+        osmnx.save_graphml(G, 'CT_Buffered_Network.graphml', folder="CTData")
+    else:
+        G = osmnx.load_graphml('CT_Buffered_Network.graphml', folder="CTData", node_type=str)
+    # change to CT Hospitals
+    hospitals = gpd.read_file('./CTData/HospitalData/hospitals.shp'.format(region))
+    # change to ctGrid -- possibility for later -- to make scalable grids basde on hospital regions
+    grid_file = gpd.read_file('./CTData/GridFile/ctGrid.shp'.format(region))
+    if pop_type=="pop":
+        pop_data = gpd.read_file('./CTData/PopData/csTracts.shp'.format(region))
+    if pop_type=="covid":
+        pop_data = gpd.read_file('./CTData/PopData/covidTown.shp'.format(region))
+    return G, hospitals, grid_file, pop_data
+```
+
+</details>	
+<br/>
+
+<details><summary markdown="span"> Alter output_map function  to change colors and plotting method :</summary>
+
+```py
+def output_map(output_grid, base_map, hospitals, resource):
+    ax=output_grid.plot(column=resource, cmap='Blues',figsize=(18,12), legend=True, zorder=1)
+    base_map.plot(ax=ax, facecolor="none", edgecolor='gray', lw=0.1)
+    #ax.scatter(hospitals.LONGITUDE, hospitals.LATITUDE, zorder=1, c='black', s=8)
+    hospitals.plot(ax=ax, markersize=10, zorder=1, c='red')
+    #JOE: changed code to plot hospitals with geometry rather than X and Y attributes, so that points may be projected
+```
+
+</details>	
+<br/>
+
+
+<details><summary markdown="span"> Alter model for CT data :</summary>
+
+```py
+import ipywidgets
+from IPython.display import display
+
+processor_dropdown = ipywidgets.Dropdown( options=[("1", 1), ("2", 2), ("3", 3), ("4", 4)],
+    value = 1, description = "Processor: ")
+
+place_dropdown = ipywidgets.Dropdown( options=[("Connecticut", "Connecticut")],
+    value = "Connecticut", description = "Region: ")
+
+population_dropdown = ipywidgets.Dropdown( options=[("Population at Risk", "pop"), ("COVID-19 Patients", "covid") ],
+    value = "pop", description = "Population: ")
+
+resource_dropdown = ipywidgets.Dropdown( options=[("All Beds", "hospital_beds"), ("ICU Beds", "hospital_ICU")],
+    value = "hospital_beds", description = "Resource: ")
+display(processor_dropdown,place_dropdown,population_dropdown,resource_dropdown)
+```
+
+</details>	
+<br/>
+
+<details><summary markdown="span"> Alter catchment and overlap caclulation to print processing time:</summary>
+
+```py
+# DERRICK: Add Code to PRINT processing time 
+start_time = time.time()
+catchments = measure_acc_par(hospitals, pop_data, G, distances, weights, num_proc=processor_dropdown.value)
+print("--- %s seconds ---" % (time.time() - start_time))
+
+# DERRICK: Add Code to PRINT processing time (seems)
+start_time = time.time()
+for j in range(len(catchments)):
+    catchments[j] = catchments[j][catchments[j][resource_dropdown.value]!=float('inf')]
+result=overlapping_function(grid_file, catchments, resource_dropdown.value, weights, num_proc=processor_dropdown.value)
+print("--- %s seconds ---" % (time.time() - start_time))
+```
+
+</details>	
+<br/>
+
+<details><summary markdown="span"> Alter output map to state plane CRS and add code to save map in result file:</summary>
+
+```py
+# DERRICK: Add code to transform to CT State Plane
+result = result.to_crs({'init': 'epsg:6433'})
+hospitals=hospitals.to_crs(epsg=6433)
+pop_data=pop_data.to_crs(epsg=6433)
+output_map(result, pop_data, hospitals, resource_dropdown.value)
+# DERRICK: add code to save the output plot
+# uncomment the below line if you want to save the output (rename)
+#plt.savefig("./CTData/Result/CovidICU.png")
+```
+
+</details>	
+<br/>
 
 
 ### Results
