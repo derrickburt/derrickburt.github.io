@@ -1,10 +1,14 @@
 ## This is a portfolio of GIS projects completed for an Open Source GIS course at Middlebury College. You can view my github profile [here](https://github.com/derrickburt).
 
+### [CyberGISX Jupyter Notebooks: Reproducing Analysis for Spatial Accessibility of Covid-19 Healthcare Resources](ctCovid/ctCovid.md)
+
+### [Interactive Data Viz with R Shiny: Vermont Parcel Values](vtParcels/vtParcels.md)
+
 ### [Spatial and Temporal Analysis of Hurricane Dorian Tweets](twitter/twitter.md)
 The purpose of this exercise is to analyze the geographic and temporal distribution of Tweets in the Eastern United States during Hurricane Dorian. In the process of this, we will cover a number off things. First, we will practice scraping twitter data in R using rtweet, cleaning it, and visualizing its temporal trends and performing sentiment analysis. Then, we will send the data to a PostGIS database to join it to county level data and count the level of tweets by county. Then, we will visualize the data with a heatmap of raw tweets and a choropleth of the NDTI (Normalized Tweet Difference Index). Finally, we will use GeoDa to perform a spatial hotspot analysis. Additionally, one of the motivating factors behind this lab was to see if there was a rise in Dorian-related tweets in Alabama after the “sharpie-gate” incident.
 
-### [Exploring Reproducibility and Replicability in GIS Vulnerability Research](malawi/index.md)
-The goal of this exercise is to reproduce and evaluate the methodologies Malcomb et al. has used to define and visualize climate vulnerability in Malawi. First, we will examine the methodology of Malcomb et al.’s analysis and use it to reproduce Figure 4 and Figure 5 from the research paper. Then, we will reflect upon the authors’ methodological approach, bringing in literature on vulnerability analysis.
+### [Reproducibility and Replicability of GIS Vulnerability Research in Malawi](malawi/index.md)
+The goal of this exercise is to reproduce and evaluate the methodologies Malcomb et al. used to measure and visualize climate vulnerability in Malawi. First, we will examine the methodology of Malcomb et al.’s analysis and use it to reproduce Figure 4 and Figure 5 from the research paper. Then, we will reflect upon the authors’ methodological approach, bringing in literature on vulnerability analysis.
 
 ### [Making a Leaflet Web Map From QGIS](leaflet/leaflet.md)
 This exercise will teach you how to use the qgis2web plugin to create a Leaflet web map from QGIS.
