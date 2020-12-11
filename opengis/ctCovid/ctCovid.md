@@ -68,8 +68,6 @@ The final verison of my notebook can be downloaded [here](CTSpatialAccessibility
 
 #### Preparing the Data
 
-##### Hospitals
-
 The Hospital shapefile data was brought into QGIS prepared with the following steps:
 
 1) Draw a 15km buffer around state ('ctState' in geopackage): ```Processing Toolbox > Buffer > parameters: input layer: 'ctShapefile', distance: '15km', output: 'Buffered'```
@@ -84,15 +82,15 @@ The ICU Bed data was brought into QGIS and cleaned with the following steps:
 
 The Population data was cleaned in Excel (summing the population age groups (50-54....85+) into 'OverFifty' and then brought into QGIS as 'popTracts' and processed with te following step:
 
-1) Join the population over Fifty to the tracts: ```Processing Toolbox > Join Attributes by Field Value > parameters: Input layer: 'tracts', Table field: `AFF_GEOID`, Input layer 2: 'popTracts`, Table field: `GEOID`, Layer 2 fields to copy: 'OverFifty', Join type: 'one-to_one', output: 'csTracts'
+* Join the population over Fifty to the tracts: ```Processing Toolbox > Join Attributes by Field Value > parameters: Input layer: 'tracts', Table field: `AFF_GEOID`, Input layer 2: 'popTracts`, Table field: `GEOID`, Layer 2 fields to copy: 'OverFifty', Join type: 'one-to_one', output: 'csTracts'
 
 The Covid data was cleaned in QGIS with the follow step:
 
-1) Join the covid cases to the towns: ```Processing Toolbox > Join Attributes by Field Value > parameters: Input layer: 'town', Table field: `Name`, Input layer 2: 'ctCovid`, Table field: `Name`, Layer 2 fields to copy: 'cases', Join type: 'one-to_one', output: 'covidTowns'
+* Join the covid cases to the towns: ```Processing Toolbox > Join Attributes by Field Value > parameters: Input layer: 'town', Table field: `Name`, Input layer 2: 'ctCovid`, Table field: `Name`, Layer 2 fields to copy: 'cases', Join type: 'one-to_one', output: 'covidTowns'
 
 The hexagonal grid was processed in QGIS with the following step:
 
-1) Create a hexagonal from 'ctState': ```Processing Toolbox > Create Grid > parameters: Grid type: 'hexagon', Grid extent: Use layer extent ('ctShape'), Horizontal spacing: 1.5km, Vertical spacing: 1.5km, Grid CRS: EPSG:32618, output: ctGrid```
+* Create a hexagonal from 'ctState': ```Processing Toolbox > Create Grid > parameters: Grid type: 'hexagon', Grid extent: Use layer extent ('ctShape'), Horizontal spacing: 1.5km, Vertical spacing: 1.5km, Grid CRS: EPSG:32618, output: ctGrid```
 
 With all the necessarry shapefiles prepared, the data were uploaded ot the CyberGISX notebook.
 
@@ -355,8 +353,36 @@ output_map(result, pop_data, hospitals, resource_dropdown.value)
 </details>	
 <br/>
 
-
 ### Results
+
+#### Access to Beds
+
+##### COVID-19 Patients:
+
+![imageCB](Result/CovidBeds.png)
+
+Using four processors, it took 63.119 seconds to calculate 38 catchments and 69.086 seconds to calculate their overlapping areas.
+
+##### At Risk Population:
+
+![imagePB](Result/AtRiskBeds.png)
+
+Using four processors, it took 67.942 seconds to calculate 40 catchments and 67.942 seconds to calculate their overlapping areas.
+
+#### Access to ICU Beds
+
+#### COVID-19 Patients:
+
+![imageCICU](Result/CovidICU.png)
+
+Using four processors, it took 61.103 seconds to calculate 35 catchments and 68.721 seconds to calculate their overlapping areas.
+
+#### At Risk Population:
+
+![imagePICU](Result/AtRiskICU.png)
+
+Using four processors, it took 56.078 seconds to calculate 35 catchments and 69.218 seconds to calculate their overlapping areas.
+
 
 ### Conclusion
 
