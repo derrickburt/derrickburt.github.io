@@ -355,20 +355,18 @@ output_map(result, pop_data, hospitals, resource_dropdown.value)
 
 ### Results
 
-#### Access to Beds
-
+### Access to Beds
 ##### COVID-19 Patients:
 ![imageCB](Result/CovidBeds1.png)
 
-Using four processors, it took 63.119 seconds to calculate 38 catchments and 69.086 seconds to calculate their overlapping areas.
+Using four processors, it took 63.119 seconds to calculate 38 catchments and 69.086 seconds to calculate their overlapping areas. 
 
 ##### At Risk Population:
 ![imagePB](Result/AtRiskBeds1.png)
 
 Using four processors, it took 67.942 seconds to calculate 40 catchments and 67.942 seconds to calculate their overlapping areas.
 
-#### Access to ICU Beds
-
+### Access to ICU Beds
 #### COVID-19 Patients:
 ![imageCICU](Result/CovidICU1.png)
 
@@ -379,7 +377,12 @@ Using four processors, it took 61.103 seconds to calculate 35 catchments and 68.
 
 Using four processors, it took 56.078 seconds to calculate 35 catchments and 69.218 seconds to calculate their overlapping areas.
 
+All four maps display some similar geographic distributions, with their highest accessibility ratings in the southeastern portion of the state (near Greenwich, Wesport, New Canaan) and in the north central portion of the state (just north of Hartford and south of Springfield, Mass). These patterns reveal some of the highest accessibility in regions near state borders, indicating that interstate hospitals can severely increase COVID-19 healthcare access for Connecticut residents. All four maps show much lower accessibility levels across all four combinations in the state's less populated counties: Litchfield, New London, and Windham.
 
-### Conclusion
+COVID-19 patients appear to have higher accessibility to both general beds and ICU beds compared to the At Risk population. Their access increases especially in more urban areas of that state (New Haven, Norwalk, and North of Hartford) as well as along border regions near hospitals from other states. 
 
-### Resources
+### Discussion Conclusion
+
+In terms of the results from this replication, it is clear that COVID-19 patients have higher accessibility to hospital beds in Connecticut compared to the
+
+
