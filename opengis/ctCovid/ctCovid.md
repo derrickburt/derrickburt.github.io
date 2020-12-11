@@ -26,11 +26,11 @@ To the measure spatial accessibility of COVID-19 healthcare resources, Kang et a
 
 This figure, from the paper, provides a conceptual workflow of the spatial analysis:
 
-[!image1](photos/Workflow.png)
+![image1](photos/Workflow.png)
 
 This figure, from the paper, provides a conceptual workflow of the parallel computation:
 
-[!image2](photos/Parallel.png)
+![image2](photos/Parallel.png)
 
 ### Replicating the Notebook for Connecticut
 
