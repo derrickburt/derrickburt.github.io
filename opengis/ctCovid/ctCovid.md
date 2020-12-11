@@ -14,10 +14,16 @@ The following resources document their methodology, data, and results:
 
 ### Purpose
 
+The purpose of this exercise is to replicate Kang et al's methodology, using Jupyter Notebook on their CyberGISX platform, to calulate spatial accessibility of COVID-19 healthcare resources in Connecticut. I will briefly summarize their methodology, walk through the process of acquiring and processing the necessary data for Connecticut, show and explain the code modifications that were made to Kang et al's Notebook for this replication, explain the results, and comment on the methodology and the process of replication.  
 
-A quick note on the accessibility of reproducing 
+*Important*: 
+* Most of the code is an exact replication of Kang et al.'s methodology (unless explicitly noted, it should be assumed that any code was written by Kange et al.)
+* Note on reproducibility: the notebook was run in the CyberGISX environment, so even with the data and notebook provided, my replication is only exactly reproducible within the CyberGISX platform. Otherwise, you will need to install all of the python packages on your local jupyter platform, and then the notebook should work.
 
 ### Software
+
+* [QGIS 3.10](https://qgis.org/en/site/forusers/download.html)
+* [Jupyter Notebook](https://jupyter.org/) on [CyberGISX Platform](https://cybergisxhub.cigi.illinois.edu/registration/)
 
 ### Kang et al. Methodology
 
