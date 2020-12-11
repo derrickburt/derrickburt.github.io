@@ -102,7 +102,7 @@ The following chunks of code were altered from Kang et al. to replicate the P-E2
 
 <details> <summary markdown="span"> Load population data:</summary>
 	
-```ipynb
+```py
 #DERRICK: change to CT overy fifty by tracts
 pop_data = gpd.read_file('./CTData/PopData/csTracts.shp')
 pop_data.head()
@@ -113,7 +113,7 @@ pop_data.head()
 
 <details><summary markdown="span"> Load covid data:</summary>
 
-```ipynb
+```py
 #DERRICK: change to CT covid by town
 pop_data = gpd.read_file('./CTData/PopData/covidTown.shp')
 pop_data.head()
@@ -124,7 +124,7 @@ pop_data.head()
 
 <details><summary markdown="span"> Load hospital data:</summary>
 
-```ipynb
+```py
 #DERRICK: change to CT hospitals
 hospitals = gpd.read_file('./CTData/HospitalData/hospitals.shp')
 hospitals.head()
