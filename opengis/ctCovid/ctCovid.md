@@ -49,6 +49,7 @@ I have attempted to replicate Kang et al.'s methodology for the State of Connect
 
 The following software was used in the analysis:
 
+* [Microsoft Excel](https://office.live.com/start/excel.aspx)
 * [QGIS 3.10](https://qgis.org/en/site/forusers/download.html)
 * [Jupyter Notebook](https://jupyter.org/) on [CyberGISX Platform](https://cybergisxhub.cigi.illinois.edu/registration/)
 
@@ -61,6 +62,7 @@ The following data was used for the analysis, all of the shapefiles can be downl
 * CT Census Tract Boundaries from [Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html )
 * CT Census Tract Population by Age from [Census Burearu](https://data.census.gov/cedsci/)
 * CT Active Covid Cases by Town (11/15/20-11/28/20) from [CT Open Data Portal](https://portal.ct.gov/Coronavirus/COVID-19-Data-Tracker)
+* Town Shapefile from [CT Open Geodata Portal](https://ct-deep-gis-open-data-website-ctdeep.hub.arcgis.com/search?groupIds=71c5c4a9c6ea4ea8ab54d1bf1faaeed8 )
 
 The final verison of my notebook can be downloaded [here](CTSpatialAccessibility (1).ipynb) - If you are not running on CyberGISX platform, you must install all libraries in the first code cell.
 
@@ -71,15 +73,69 @@ The final verison of my notebook can be downloaded [here](CTSpatialAccessibility
 The Hospital shapefile data was brought into QGIS prepared with the following steps:
 
 1) Draw a 15km buffer around state ('ctState' in geopackage): ```Processing Toolbox > Buffer > parameters: input layer: 'ctShapefile', distance: '15km', output: 'Buffered'```
-2) Extract hospitals the intersect are within buffer: ```Processing Toolbox > Extract by Location > parameters: extract features from: 'hospitals',  where the features : 'intersect', 'are within', by comparing to features from: `Buffered`, output: 'hospitalsBuffered'```
-3) Eliminates duplicates (each hospital had a duplicate in attribute table: ```Processing Toolbox > Delete duplicates by feature attribute > 
+2) Extract hospitals the intersect are within buffer: ```Processing Toolbox > Extract by Location > parameters: Extract features from: 'hospitals',  where the features : 'intersect', 'are within', by comparing to features from: `Buffered`, output: 'hospitalsBuffered'```
+3) Eliminates duplicates (each hospital had a duplicate in attribute table: ```Processing Toolbox > Delete duplicates by feature attribute > parameters:  Input layer: `hospitalsBuffffered`, Fields to match duplicate by: `NAME`, output: hospitalsNoDup```
+4) Select only hospitals that are "GENERAL ACUTE CARE": ```Processing Toolbox > Extract by Expression > paramters: Input layer: 'hospitalsNoDup', Expression: "TYPE" = 'GENERAL ACUTE CARE', output:'hospitalsCToICU'```
 
 The ICU Bed data was brought into QGIS and cleaned with the following steps:
 
-1) Keep the first 13 fields (important hospital information) as well as 'total_icu_beds_7_day_avg' by navigating ```Properties > Fields > Toggle editing mode > Delete Fields``` and deleting the undesired fields
-2) Filter for 
+1) Keep the first 13 fields (important hospital information) as well as 'total_icu_beds_7_day_avg' from hospitalsICU by navigating ```Properties > Fields > Toggle editing mode > Delete Fields``` and deleting the undesired fields
+2) Join hospital ICU data to hospital shapefile by address (somehow this worked, all 65 hospitals in both datasets had the samme exact address: ```Processing Toolbox > Join Attributes by Field Value > parameters: Input layer: 'hospitalsCT', Table field: `ADDRESS`, Input layer 2: 'hospitalsICU1`, Table field: `address`, Layer 2 fields to copy: 'ICU', Join type: 'one-to_one', output: 'hospitalsCT'```
+
+The Population data was cleaned in Excel (summing the population age groups (50-54....85+) into 'OverFifty' and then brought into QGIS as 'popTracts' and processed with te following step:
+
+1) Join the population over Fifty to the tracts: ```Processing Toolbox > Join Attributes by Field Value > parameters: Input layer: 'tracts', Table field: `AFF_GEOID`, Input layer 2: 'popTracts`, Table field: `GEOID`, Layer 2 fields to copy: 'OverFifty', Join type: 'one-to_one', output: 'csTracts'
+
+The Covid data was cleaned in QGIS with the follow step:
+
+1) Join the covid cases to the towns: ```Processing Toolbox > Join Attributes by Field Value > parameters: Input layer: 'town', Table field: `Name`, Input layer 2: 'ctCovid`, Table field: `Name`, Layer 2 fields to copy: 'cases', Join type: 'one-to_one', output: 'covidTowns'
+
+The hexagonal grid was processed in QGIS with the following step:
+
+1) Create a hexagonal from 'ctState': ```Processing Toolbox > Create Grid > parameters: Grid type: 'hexagon', Grid extent: Use layer extent ('ctShape'), Horizontal spacing: 1.5km, Vertical spacing: 1.5km, Grid CRS: EPSG:32618, output: ctGrid```
+
+With all the necessarry shapefiles prepared, the data were uploaded ot the CyberGISX notebook.
 
 #### Altering the Notebook
+
+The following chunks of code were altered from Kang et al. to replicate the P-E2SFCA methodology for the stape of Connecticut. Code is commented #DERRICK: where it was altered by myself and commented #JOE where altered by Professor Holler.
+
+<details> <summary markdown="span"> Load population data:</summary>
+	
+```ipynb
+#DERRICK: change to CT overy fifty by tracts
+pop_data = gpd.read_file('./CTData/PopData/csTracts.shp')
+pop_data.head()
+```
+
+</details>
+<br/>
+
+<details><summary markdown="span"> Load covid data:</summary>
+
+```ipynb
+#DERRICK: change to CT covid by town
+pop_data = gpd.read_file('./CTData/PopData/covidTown.shp')
+pop_data.head()
+```
+
+</details>	
+<br/>
+
+<details><summary markdown="span"> Load hospital data:</summary>
+
+```ipynb
+#DERRICK: change to CT hospitals
+hospitals = gpd.read_file('./CTData/HospitalData/hospitals.shp')
+hospitals.head()
+```
+
+</details>	
+<br/>
+
+
+
+
 
 ### Results
 
