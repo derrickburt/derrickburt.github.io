@@ -358,13 +358,11 @@ output_map(result, pop_data, hospitals, resource_dropdown.value)
 #### Access to Beds
 
 ##### COVID-19 Patients:
-
 ![imageCB](Result/CovidBeds.png)
 
 Using four processors, it took 63.119 seconds to calculate 38 catchments and 69.086 seconds to calculate their overlapping areas.
 
 ##### At Risk Population:
-
 ![imagePB](Result/AtRiskBeds.png)
 
 Using four processors, it took 67.942 seconds to calculate 40 catchments and 67.942 seconds to calculate their overlapping areas.
@@ -372,13 +370,11 @@ Using four processors, it took 67.942 seconds to calculate 40 catchments and 67.
 #### Access to ICU Beds
 
 #### COVID-19 Patients:
-
 ![imageCICU](Result/CovidICU.png)
 
 Using four processors, it took 61.103 seconds to calculate 35 catchments and 68.721 seconds to calculate their overlapping areas.
 
 #### At Risk Population:
-
 ![imagePICU](Result/AtRiskICU.png)
 
 Using four processors, it took 56.078 seconds to calculate 35 catchments and 69.218 seconds to calculate their overlapping areas.
