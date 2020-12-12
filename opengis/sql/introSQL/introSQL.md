@@ -22,16 +22,16 @@ If you do not have access to a PostGIS database already, here is a useful [set o
 ### Connecting to PostGIS in QGIS and Loading Data
 
 <details><summary> To connect to the database fromm QGIS, find the 'Database' menu and select 'DB Manager'. </summary>
-    <img src = "photos/connectDatabase.png" width="600">
-  </details>
+<img src = "photos/connectDatabase.png" width="600">
+</details>
 
 <details><summary> Import the downloaded geopackage and .csv into the database by selecting the 'Import Layer/File...' button. </summary>
-    <img src = "photos/importing.png" width="600">
-  </details>
+<img src = "photos/importing.png" width="600">
+</details>
 
 <details><summary> Select the correct file and import using the following parameters and refresh to see that it correctly loaded </summary>
-    <img src = "photos/parameters.png" width="600">
-  </details>
+<img src = "photos/parameters.png" width="600">
+</details>
   
 ### Explore Data and Prepare for Spatial Analysis 
 
