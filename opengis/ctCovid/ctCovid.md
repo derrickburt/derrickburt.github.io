@@ -1,4 +1,4 @@
-# Reproducing CyberGISX Analysis: Rapidly Measuring Spatial Accesibility of COVID-19 Healthcare in Connecticut
+# Reproducing CyberGISX Analysis: Rapidly Measuring Spatial Accessibility of COVID-19 Healthcare in Connecticut
 
 ### About 
 
@@ -370,7 +370,7 @@ output_map(result, pop_data, hospitals, resource_dropdown.value)
 
 Using four processors, it took 63.119 seconds to calculate 38 catchments and 69.086 seconds to calculate their overlapping areas. 
 
-##### At Risk Population:
+##### At-Risk Population:
 ![imagePB](Result/AtRiskBeds1.png)
 
 Using four processors, it took 67.942 seconds to calculate 40 catchments and 67.942 seconds to calculate their overlapping areas.
@@ -381,7 +381,7 @@ Using four processors, it took 67.942 seconds to calculate 40 catchments and 67.
 
 Using four processors, it took 61.103 seconds to calculate 35 catchments and 68.721 seconds to calculate their overlapping areas.
 
-#### At Risk Population:
+#### At-Risk Population:
 ![imagePICU](Result/AtRiskICU1.png)
 
 Using four processors, it took 56.078 seconds to calculate 35 catchments and 69.218 seconds to calculate their overlapping areas.
@@ -390,7 +390,7 @@ All four maps display some similar geographic distributions, with their highest 
 
 COVID-19 patients appear to have higher accessibility to both general beds and ICU beds compared to the At Risk population. Their access increases especially in more urban areas of that state (New Haven, Norwalk, and North of Hartford) as well as along border regions near hospitals from other states. 
 
-### Discussion Conclusion
+### Discussion and Conclusion
 
 #### Connecticut Spatial Accessibility
 
