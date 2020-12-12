@@ -34,7 +34,7 @@ This figure, from the paper, provides a conceptual workflow of the parallel comp
 
 ![image2](Photos/Parallel.png)
 
-Additionally, the authors' compare the [Social Vulnerability Index](https://www.atsdr.cdc.gov/placeandhealth/svi/index.html) in high and low accessibility areas. This portion of the analysis is not included in the Jupyter notebook.
+Additionally, the authors compare the [Social Vulnerability Index](https://www.atsdr.cdc.gov/placeandhealth/svi/index.html) in high and low accessibility areas. This portion of the analysis is not included in the Jupyter notebook.
 
 ### Replicating the Notebook for Connecticut
 
@@ -388,7 +388,7 @@ Using four processors, it took 56.078 seconds to calculate 35 catchments and 69.
 
 All four maps display some similar geographic distributions, with their highest accessibility ratings in the southeastern portion of the state (near Greenwich, Wesport, New Canaan) and in the north central portion of the state (just north of Hartford and south of Springfield, Mass). These patterns reveal some of the highest accessibility in regions near state borders, indicating that interstate hospitals can severely increase COVID-19 healthcare access for Connecticut residents. All four maps show much lower accessibility levels across all four combinations in the state's less populated counties: Litchfield, New London, and Windham.
 
-COVID-19 patients appear to have higher accessibility to both general beds and ICU beds compared to the At Risk population. Their access increases especially in more urban areas of that state (New Haven, Norwalk, and North of Hartford) as well as along border regions near hospitals from other states. 
+COVID-19 patients appear to have higher accessibility to both general beds and ICU beds compared to the At-Risk population. Their access increases especially in more urban areas of that state (New Haven, Norwalk, and North of Hartford) as well as along border regions near hospitals from other states. 
 
 ### Discussion and Conclusion
 
@@ -402,7 +402,7 @@ With the combination of the jupyter notebook and the paper, Kang et al. provide 
 
 In terms of replicating the study, some of the biggest barriers lie outside of the control of the authorship. The CyberGISX platform (as long as one has access to it!) allows users to easily get replicate the workflow with Jupyter Notebooks. The difficulty lies in the nature of the hospital resource data and the COVID-19 data. Although I was able to find a centralized dataset on national hospital resources, it lacked the ventilator data that the authors were able to acquire from the IDPH, rendering it impossible to replicate that portion of the analysis. Further, I could not find any publicly available zip-code level data for COVID-19 cases at the state level, and had to settle for town-level data, giving a less precise accessibility measurement than the authors have produced.
 
-Lastly, as a undergraduate with no prior experience using python or jupyter notebooks, the author's do provide a solid platform for accesssible replication. In conjunction with the paper, the notebook is set up to give users a strong conceptual understanding of what happens under the hood during the P-E2SFCA calculation. It was, at times, a bit difficult to line up which of the 13 or so functions that are defined were covering which part of the paper. If the code were commented more thorughly, with the goal of lining up, step-by-step, the code with the paper while considering a novice user, it would make the process of learning the notebook more accessible. However, by providing the users the opportunity to examine the code, we are able to get a really solid sense of the true nature of the analytic processes (Singleton 2016), making it easier to understand which parameters we needed to alter to customize our replication. Overall, as long as users are willing to spend a fair amount of time learning the code and its functions, the notebook and the paper allow for a replicable. Most of the issues
+Lastly, as a undergraduate with no prior experience using python or jupyter notebooks, the authors do provide a solid platform for accesssible replication. In conjunction with the paper, the notebook is set up to give users a strong conceptual understanding of what happens under the hood during the P-E2SFCA calculation. It was, at times, a bit difficult to line up which of the 13 or so functions that are defined were covering which part of the paper. If the code were commented more thorughly, with the goal of lining up, step-by-step, the code with the paper while considering a novice user, it would make the process of learning the notebook more accessible. However, by providing the users the opportunity to examine the code, we are able to get a really solid sense of the true nature of the analytic processes (Singleton 2016), making it easier to understand which parameters we needed to alter to customize our replication. Overall, as long as users are willing to spend a fair amount of time learning the code and its functions, the notebook and the paper allow for a replicable. Most of the issues
 of replicability pertain to accessing the same data for different regions, which lie outside of the authors control.
 
 ### Resources:
