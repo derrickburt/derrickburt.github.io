@@ -70,7 +70,8 @@ The final verison of my notebook can be downloaded [here](CTSpatialAccessibility
 
 The Hospital shapefile data was brought into QGIS prepared with the following steps:
 
-1. Draw a 15km buffer around state ('ctState' in geopackage): ```Processing Toolbox > Buffer > parameters: input layer: 'ctShapefile', distance: '15km', output: 'Buffered'```
+1. Draw a 15km buffer around state ('ctState' in geopackage): 
+```Processing Toolbox > Buffer > parameters: input layer: 'ctShapefile', distance: '15km', output: 'Buffered'```
 2. Extract hospitals the intersect are within buffer: 
 ```Processing Toolbox > Extract by Location > parameters: Extract features from: 'hospitals',  where the features : 'intersect', 'are within', by comparing to features from: `Buffered`, output: 'hospitalsBuffered'```
 3. Eliminates duplicates (each hospital had a duplicate in attribute table:
