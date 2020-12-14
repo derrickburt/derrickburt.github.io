@@ -1,2 +1,2 @@
 
-![image](burt_mapcritique.pdf)
+![image](crit/burt_mapcritique.pdf)
