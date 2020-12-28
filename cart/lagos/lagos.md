@@ -19,6 +19,4 @@ The goal of this poster map is to show Lagos' growth from 1984 to 2013 and visua
 
 ![image](Burt_FinalLayout-01.png)
 
-<p align="center">
-  <img height="800" src="/Fig5.png">
-  </p>
+
