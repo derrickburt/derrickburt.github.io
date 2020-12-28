@@ -9,13 +9,13 @@ This exercise compares important design choices between two urban planning maps.
 #### Gowanus Canal 
 
 <p align="center">
-  <img height="400" src="GowanusCanalMaporiginal.jpg">
+  <img height="600" src="GowanusCanalMaporiginal.jpg">
   </p>
 
 #### Albanian Rivers
 
 <p align="center">
-  <img height="400" src="AlbaniaRiversMap.jpg">
+  <img height="600" src="AlbaniaRiversMap.jpg">
   </p>
 
 ### Design Critique
