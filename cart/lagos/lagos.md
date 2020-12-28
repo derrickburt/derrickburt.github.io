@@ -2,7 +2,7 @@
 
 ### Purpose
 
-The goal of this poster map is to show Lagos' growth from 1984 to 2013 while visualizing some of the drivers of the city's expansion
+The goal of this poster map is to show Lagos' growth from 1984 to 2013 and visualize its drivers.
 
 ### Data
 
