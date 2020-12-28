@@ -6,13 +6,13 @@ This exercise compares important design choices between two urban planning maps.
 
 ### The Maps
 
-#### Gowanus Canal 
+#### Gowanus Canal by [Paul Xiaopu Wang](https://www.solopwang.com/lab)
 
 <p align="center">
   <img height="600" src="GowanusCanalMaporiginal.jpg">
   </p>
 
-#### Albanian Rivers
+#### Albanian Rivers by [FABRICations](https://www.fabrications.nl/portfolio-item/metabolismofalbania-2/)
 
 <p align="center">
   <img height="600" src="AlbaniaRiversMap.jpg">
