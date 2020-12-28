@@ -17,4 +17,4 @@ The goal of this poster map is to show Lagos' growth from 1984 to 2013 while vis
 
 ### Final Poster
 
-![poster](lagos/Burt_FinalLayout-01.png)
+[!poster](lagos/Burt_FinalLayout-01.png)
