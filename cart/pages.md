@@ -1,5 +1,5 @@
 
-# A complitation of cartographic maps, critiques, etc.
+# A compilation of maps, critiques, etc.
 
 ## [Visualizing Urban Growth in Lagos, Nigeria](lagos/lagos.md)
 The goal of this poster map is to show Lagos' growth from 1984 to 2013 and visualize its drivers.
