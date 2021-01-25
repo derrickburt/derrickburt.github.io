@@ -4,6 +4,11 @@
 
 The goal of this poster map is to show Lagos' growth from 1984 to 2013 and visualize its drivers.
 
+### Software
+
+* [QGIS 3.10](https://qgis.org/en/site/forusers/download.html)
+* [Adobe Illustrator](https://www.adobe.com/products/illustrator/free-trial-download.html)
+
 ### Data
 
 * Urban Growth from [Atlas of Urban Expansion](http://www.atlasofurbanexpansion.org/cities/view/Lagos)
