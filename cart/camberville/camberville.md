@@ -1,5 +1,5 @@
 
-# Transportation Access in Cambridge and Somerville, MA
+# Public Transit Access in Cambridge and Somerville, MA
 
 ### Purpose
 
