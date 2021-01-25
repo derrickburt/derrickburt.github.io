@@ -16,6 +16,6 @@ These maps aim to identify the accessibility of bus stops by foot in Cambridge a
 
 ### Maps
 
-![image](map/CambervilleParcels.jpg)
+![image](maps/CambervilleParcels.jpg)
 
-![image2](map/TransportationAccess.jpg)
+![image2](maps/TransportationAccess.jpg)
