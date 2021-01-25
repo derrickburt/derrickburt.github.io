@@ -1,6 +1,8 @@
 
 # A compilation of maps, critiques, etc.
 
+## [Transportation Access in Cambridge and Somerville, MA]
+
 ## [Visualizing Urban Growth in Lagos, Nigeria](lagos/lagos.md)
 The goal of this poster map is to show Lagos' growth from 1984 to 2013 and visualize its drivers.
 
