@@ -18,8 +18,8 @@ The goal of this poster map is to show Lagos' growth from 1984 to 2013 and visua
 
 ### Files
 
-* Download the [.ai file](lagos/mainmap_master.ai)
-* Download the [.jpg file](lagos/LagosUrbanGrowth.jpg)
+* Download the [.ai file](cart/lagos/mainmap_master.ai)
+* Download the [.jpg file](cart/lagos/LagosUrbanGrowth.jpg)
 
 ### Final Poster
 
