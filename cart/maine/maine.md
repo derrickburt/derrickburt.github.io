@@ -19,7 +19,7 @@ This set of maps aims to define and locate high priority habitat blocks that are
 
 * [Habitat Blocks](Regional_HabitatBlocks.jpg)
 * [Proprtions of Conserved Ecological Assets](Regional_ConservedSymbols.jpg)
-* [Watershed Eco Co-Occurence](Watershed_EcoAreas2.jpg)
+* [Watershed Eco Co-Occurence](Watershed_OverlappingEcoAreas2.jpg)
 
 ### Maps
 
@@ -27,5 +27,5 @@ This set of maps aims to define and locate high priority habitat blocks that are
 
 ![image2](Regional_ConservedSymbols.jpg)
 
-![image3](Watershed_EcoAreas2.jpg)
+![image3](Watershed_OverlappingEcoAreas2.jpg)
 
