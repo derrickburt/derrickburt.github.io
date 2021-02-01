@@ -1,6 +1,9 @@
 
 # A compilation of maps, critiques, etc.
 
+## [Watershed Conservation in Midcoast Maine](maine/maine.md)
+This set of maps aims to define and locate high priority habitat blocks that are not conserved in Coastal Maine.
+
 ## [Public Transit Access in Cambridge and Somerville, MA](camberville/camberville.md)
 These maps aim to identify the accessibility of bus stops by foot in Cambridge and Somerville in relation to the towns' land use patterns.
 
