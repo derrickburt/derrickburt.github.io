@@ -15,6 +15,12 @@ This set of maps aims to define and locate high priority habitat blocks that are
 * [Maine GeoLibrary](https://www.google.com/search?q=maine+geolibrary&rlz=1C5CHFA_enUS732US732&oq=maine+geolibrary&aqs=chrome..69i57j0l2j0i22i30.3845j1j1&sourceid=chrome&ie=UTF-8)
 * [The National Map](https://www.usgs.gov/core-science-systems/national-geospatial-program/national-map)
 
+## JPGS
+
+* [Habitat Blocks](Regional_HabitatBlocks.jpg)
+* [Proprtions of Conserved Ecological Assets](Regional_ConservedSymbols.jpg)
+* [Watershed Eco Co-Occurence](Watershed_EcoAreas.jpg)
+
 ### Maps
 
 ![image](Regional_HabitatBlocks.jpg)
