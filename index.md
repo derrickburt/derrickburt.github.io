@@ -2,6 +2,6 @@
 
 ### [Open GIS Science](opengis/pages.md)
 
-### [Cartographic Design](cart/pages.md)
+### [GIS Planning & Cartographic Design](cart/pages.md)
 
 
