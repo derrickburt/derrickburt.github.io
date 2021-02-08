@@ -1,6 +1,9 @@
 
 # A compilation of maps, critiques, etc.
 
+## [Solar Site Suitability/Development Potential in Chittenden County, VT](vtSolar/vtSolar.md)
+This analysis first aims to locate towns in Chittenden County with suitable land for solar panel development. Then, specific recommendations on most suitable parcels are made.
+
 ## [Watershed Conservation in Midcoast Maine](maine/maine.md)
 This set of maps aims to define and locate high priority habitat blocks that are not conserved in Coastal Maine.
 
