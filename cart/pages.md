@@ -8,6 +8,7 @@ This analysis first aims to locate towns in Chittenden County with the most suit
 This set of maps aims to define and locate high priority habitat blocks that are not conserved in Coastal Maine.
 
 ## [Demographics and Policing Patterns in Boston, MA](bostonPolice/bostonPolice.md)
+This visualization exercise aims to show residential patterns by income and race in Boston and compare them to the spatial layout of police contracting by private companies as well as arrests.
 
 ## [Public Transit Access in Cambridge and Somerville, MA](camberville/camberville.md)
 These maps aim to identify the accessibility of bus stops by foot in Cambridge and Somerville in relation to the towns' land use patterns.
