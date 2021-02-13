@@ -7,6 +7,8 @@ This analysis first aims to locate towns in Chittenden County with the most suit
 ## [Watershed Conservation in Midcoast Maine](maine/maine.md)
 This set of maps aims to define and locate high priority habitat blocks that are not conserved in Coastal Maine.
 
+## [Demographics and Policing Patterns in Boston, MA](bostonPolice/bostonPolice.md)
+
 ## [Public Transit Access in Cambridge and Somerville, MA](camberville/camberville.md)
 These maps aim to identify the accessibility of bus stops by foot in Cambridge and Somerville in relation to the towns' land use patterns.
 
