@@ -367,23 +367,23 @@ plt.savefig("./CTData/Result/AtRiskICULEG.png")
 
 ### Access to Beds
 ##### COVID-19 Patients:
-![imageCB](Result/CovidBeds1.png)
+![imageCB](Result/CovidBedsLEG.png)
 
 Using four processors, it took 63.119 seconds to calculate 38 catchments and 69.086 seconds to calculate their overlapping areas. 
 
 ##### At-Risk Population:
-![imagePB](Result/AtRiskBeds1.png)
+![imagePB](Result/AtRiskBedsLEG.png)
 
 Using four processors, it took 67.942 seconds to calculate 40 catchments and 67.942 seconds to calculate their overlapping areas.
 
 ### Access to ICU Beds
 #### COVID-19 Patients:
-![imageCICU](Result/CovidICU1.png)
+![imageCICU](Result/CovidICULEG.png)
 
 Using four processors, it took 61.103 seconds to calculate 35 catchments and 68.721 seconds to calculate their overlapping areas.
 
 #### At-Risk Population:
-![imagePICU](Result/AtRiskICU1.png)
+![imagePICU](Result/AtRiskICULEG.png)
 
 Using four processors, it took 56.078 seconds to calculate 35 catchments and 69.218 seconds to calculate their overlapping areas.
 
