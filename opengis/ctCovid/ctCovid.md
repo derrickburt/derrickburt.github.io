@@ -349,14 +349,15 @@ print("--- %s seconds ---" % (time.time() - start_time))
 <details><summary markdown="span"> Alter output map to state plane CRS and add code to save map in result file:</summary>
 
 ```py
-# DERRICK: Add code to transform to CT State Plane
+# DERRICK: Add code to transform to CT State Plane // Add code to make a legend
 result = result.to_crs({'init': 'epsg:6433'})
 hospitals=hospitals.to_crs(epsg=6433)
 pop_data=pop_data.to_crs(epsg=6433)
 output_map(result, pop_data, hospitals, resource_dropdown.value)
+plt.legend(bbox_to_anchor = (.95, .125), prop = {'size': 15}, frameon = False);
 # DERRICK: add code to save the output plot
 # uncomment the below line if you want to save the output (rename)
-#plt.savefig("./CTData/Result/CovidICU.png")
+plt.savefig("./CTData/Result/AtRiskICULEG.png")
 ```
 
 </details>	
