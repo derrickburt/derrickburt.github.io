@@ -3,8 +3,10 @@ layout: default
 title: Main Page
 ---
 
-### [Open GIS Science](opengis/pages.md)
+## [Maps](cart/pages.md)
 
-### [GIS Planning & Cartographic Design](cart/pages.md)
+## [Code](opengis/pages.md)
+
+
 
 
