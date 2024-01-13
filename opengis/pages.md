@@ -1,4 +1,3 @@
-# This is a portfolio of GIS projects completed for an Open Source GIS course at Middlebury College. You can view my github profile [here](https://github.com/derrickburt).
 
 ## [CyberGISX Jupyter Notebooks: Replicating Spatial Accessibility Analysis of Covid-19 Healthcare Resources](ctCovid/ctCovid.md)
 The purpose of this exercise is to replicate Kang et al's methodology, using a Jupyter Notebook on their CyberGISX platform, to calulate spatial accessibility of COVID-19 healthcare resources in Connecticut. I will briefly summarize their methodology, walk through the process of acquiring and processing the necessary data for Connecticut, show and explain the code modifications that were made to Kang et al's Notebook for this replication, explain the results, and comment on the methodology and the process of replication.  
