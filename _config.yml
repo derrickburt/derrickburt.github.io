@@ -1,6 +1,4 @@
 theme: jekyll-theme-minimal
 title: Derrick Burt's GIS Portfolio
 description: A collection of GIS analyses and maps.
-markdown: kramdown
-kramdown:
-  parse_block_html: false
+
