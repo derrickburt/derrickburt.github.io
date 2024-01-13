@@ -1,4 +1,7 @@
-##  Open gis, planning, and cartographic design projects. You can view my github profile [here](https://github.com/derrickburt).
+---
+layout: default
+title: Main Page
+---
 
 ### [Open GIS Science](opengis/pages.md)
 
