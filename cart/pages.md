@@ -1,6 +1,4 @@
 
-# A compilation of maps, critiques, etc.
-
 ## [Solar Site Suitability/Development Potential in Chittenden County, VT](vtSolar/vtSolar.md)
 This analysis first aims to locate towns in Chittenden County with the most suitable land for solar panel development. Then, specific parcels in those towns are recommended for solar development.
 
