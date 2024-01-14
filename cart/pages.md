@@ -1,14 +1,18 @@
 
 ### [Solar Site Suitability/Development Potential in Chittenden County, VT](vtSolar/vtSolar.md)
-Analyzing and locating suitable solar parcels in Chittenden County, VT.
-<p align="center">
-  <img width=25% height=25% src="./blob/master/cart/vtSolar/ChittendenSuitability.jpg"> 
-</p>
+
+<figure>
+    <img src="./vtSolar/ChittendenSuitability.jpg"
+         alt="Chittenden Solar Suitability"
+         height=50%
+         width=50%>
+</figure>
+
 
 ### [Watershed Conservation in Midcoast Maine](maine/maine.md)
 Defining and identifying high priority habitat blocks that are not conserved in Coastal Maine.
 <p align="center">
-  <img width=25% height=25% src="./maine/Regional_ConservedSymbols.jpg"> 
+  <img width="25%" height="25%" src="./maine/Regional_ConservedSymbols.jpg"> 
 </p>
 
 ### [Demographics and Policing Patterns in Boston, MA](bostonPolice/bostonPolice.md)
