@@ -1,18 +1,36 @@
 
-## [Solar Site Suitability/Development Potential in Chittenden County, VT](vtSolar/vtSolar.md)
-This analysis first aims to locate towns in Chittenden County with the most suitable land for solar panel development. Then, specific parcels in those towns are recommended for solar development.
+### [Solar Site Suitability/Development Potential in Chittenden County, VT](vtSolar/vtSolar.md)
+Analyzing and locating suitable solar parcels in Chittenden County, VT.
+<p align="center">
+  <img width=25% height=25% src="https://derrickburt.github.io/cart/vtSolar/ChittendenSuitability.jpg" 
+</p>
 
-## [Watershed Conservation in Midcoast Maine](maine/maine.md)
-This set of maps aims to define and locate high priority habitat blocks that are not conserved in Coastal Maine.
+### [Watershed Conservation in Midcoast Maine](maine/maine.md)
+Defining and identifying high priority habitat blocks that are not conserved in Coastal Maine.
+<p align="center">
+  <img width=25% height=25% src="https://derrickburt.github.io/cart/maine/Regional_ConservedSymbols.jpg" 
+</p>
 
-## [Demographics and Policing Patterns in Boston, MA](bostonPolice/bostonPolice.md)
-This visualization exercise aims to show residential patterns by income and race in Boston and compare them to the spatial layout of police contracting by private companies as well as arrests.
+### [Demographics and Policing Patterns in Boston, MA](bostonPolice/bostonPolice.md)
+Analyzing residential demographics, arrests, and private police contracting in Boston, MA.
+<p align="center">
+  <img width=25% height=25% src="https://derrickburt.github.io/cart/bostonPolice/HeatMapFinal.jpg" 
+</p>
 
-## [Public Transit Access in Cambridge and Somerville, MA](camberville/camberville.md)
-These maps aim to identify the accessibility of bus stops by foot in Cambridge and Somerville in relation to the towns' land use patterns.
+### [Public Transit Access in Cambridge and Somerville, MA](camberville/camberville.md)
+Assesing the accessibility of bus stops by foot in Cambridge and Somerville, MA.
+<p align="center">
+  <img width=25% height=25% src="https://derrickburt.github.io/cart/camberville/maps/TransportationAccess.jpg" 
+</p>
 
-## [Visualizing Urban Growth in Lagos, Nigeria](lagos/lagos.md)
-The goal of this poster map is to show Lagos' growth from 1984 to 2013 and visualize its drivers.
+### [Visualizing Urban Growth in Lagos, Nigeria](lagos/lagos.md)
+Vizualizing Lagos' growth from 1984 to 2013 and its drivers.
+<p align="center">
+  <img width=25% height=25% src="https://derrickburt.github.io/cart/lagos/Burt_FinalLayout-01.png" 
+</p>
 
-## [Urban Planning: Design Critique](crit/crit.md)
+### [Urban Planning: Design Critique](crit/crit.md)
 This exercise compares important design choices between two urban planning maps. 
+<p align="center">
+  <img width=25% height=25% src="https://derrickburt.github.io/cart/crit/burt_mapcritique.png" 
+</p>
