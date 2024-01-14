@@ -2,7 +2,7 @@
 ### [Solar Site Suitability/Development Potential in Chittenden County, VT](vtSolar/vtSolar.md)
 Analyzing and locating suitable solar parcels in Chittenden County, VT.
 <p align="center">
-  <img width=25% height=25% src="vtSolar/ChittendenSuitability.jpg"> 
+  <img width=25% height=25% src="https://derrickburt.github.io/assets/img/ChittendenSuitability.jpg"> 
 </p>
 
 ### [Watershed Conservation in Midcoast Maine](maine/maine.md)
