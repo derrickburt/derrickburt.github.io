@@ -2,13 +2,13 @@
 ### [Solar Site Suitability/Development Potential in Chittenden County, VT](vtSolar/vtSolar.md)
 Analyzing and locating suitable solar parcels in Chittenden County, VT.
 <p align="center">
-  <img width=25% height=25% src="https://derrickburt.github.io/derrickburt.github.io/assets/img/ChittendenSuitability.jpg"> 
+  <img width=25% height=25% src="https://github.com/derrickburt/derrickburt.github.io/blob/master/assets/img/ChittendenSuitability.jpg"> 
 </p>
 
 ### [Watershed Conservation in Midcoast Maine](maine/maine.md)
 Defining and identifying high priority habitat blocks that are not conserved in Coastal Maine.
 <p align="center">
-  <img width=25% height=25% src="maine/Regional_ConservedSymbols.jpg"> 
+  <img width=25% height=25% src="https://github.com/derrickburt/derrickburt.github.io/blob/master/assets/img/Regional_ConservedSymbols.jpg"> 
 </p>
 
 ### [Demographics and Policing Patterns in Boston, MA](bostonPolice/bostonPolice.md)
