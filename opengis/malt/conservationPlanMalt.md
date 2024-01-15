@@ -1,9 +1,11 @@
-# Conservation Plan for the Middlebury Area Land Trust
+# Conservation Planning Web Map for the Middlebury Area Land Trust
 
 ### Purpose
-This web map is part of the conservation planning work I did with the [Middlebury Area Land Trust (MALT)](https://www.maltvt.org/).  The web map is used ser to help MALT better identify and understand prospective conservation easements.
+This web map is part of the conservation planning work I did with the [Middlebury Area Land Trust (MALT)](https://www.maltvt.org/).  The web map is used by MALT staff to help better identify and understand prospective conservation easements.
 
-
+ <iframe
+        src="https://middlebury.maps.arcgis.com/apps/webappviewer/index.html?id=6a8153ac312543e2a204f122360b802e"
+        style="width:610px; height:450px" ></iframe> 
 
 ### Software
 
