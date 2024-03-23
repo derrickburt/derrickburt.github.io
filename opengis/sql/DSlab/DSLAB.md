@@ -169,10 +169,6 @@ SET pct_access = (stops_access * 1.0/total_ct) * 1000;
   <img height="600" src="photos/pctZones2.png">
   </p>
 
-<p align="center">
-  <img height="600" src="photos/ctZones2.png">
-  </p>
-  
 ### Leaflet Visualization
 
 To allow for a scalable and interactive visualization of this analysis, I have made a [leaflet web map](dsmmap/index.html). I have also provided some basic directions on how to publish a web map from qgis in the following blog post.
